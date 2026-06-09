@@ -1,0 +1,106 @@
+.testimonials {
+  padding: var(--section-pad) 0;
+  background: var(--cream-dark);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.testimonials__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  max-width: 800px !important;
+}
+
+.testimonials__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.testimonials__quote-icon {
+  color: var(--gold);
+  opacity: 0.35;
+  margin-bottom: 0.5rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.testimonials__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--charcoal);
+  min-height: 120px;
+}
+
+.testimonials__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+}
+
+.testimonials__author-name {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.testimonials__author-meta {
+  font-size: 0.82rem;
+  color: var(--stone-light);
+}
+
+/* Controls */
+.testimonials__controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.testimonials__btn {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.testimonials__btn:hover {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+  transform: scale(1.05);
+}
+
+.testimonials__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testimonials__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(26, 24, 20, 0.25);
+  transition: all 0.3s var(--ease);
+  padding: 0;
+  cursor: pointer;
+}
+
+.testimonials__dot--active {
+  background: var(--gold);
+  transform: scale(1.4);
+}
