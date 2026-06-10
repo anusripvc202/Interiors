@@ -5,11 +5,10 @@ import './Navbar.css';
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
+  { label: 'Find Designers', path: '/portfolio' },
   { label: 'Services', path: '/services' },
-  { label: 'Portfolio', path: '/portfolio' },
-  { label: 'Process', path: '/process' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'How It Works', path: '/process' },
+  { label: 'Bookings', path: '/contact' },
 ];
 
 export default function Navbar() {

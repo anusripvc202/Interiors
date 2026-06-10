@@ -1,0 +1,1120 @@
+/* ==========================================================================
+   LUXE INTERIORS — PROJECT PLANNER & CONFIGURATOR CSS
+   ========================================================================== */
+
+.planner-section {
+  padding: 5rem 0 8rem;
+  background-color: var(--cream);
+  min-height: 80vh;
+}
+
+/* --------------------------------------------------------------------------
+   PROGRESS TRACKER
+   -------------------------------------------------------------------------- */
+.planner__progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+  z-index: 1;
+}
+
+.planner__progress-line {
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--cream-dark);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.planner__progress-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--gold);
+  transition: width 0.4s var(--ease);
+}
+
+.planner__progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: default;
+}
+
+.planner__progress-num {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--cream);
+  border: 2px solid var(--cream-dark);
+  color: var(--stone-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.4s var(--ease);
+}
+
+.planner__progress-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone-light);
+  transition: color 0.4s var(--ease);
+}
+
+/* Active Step State */
+.planner__progress-step.active .planner__progress-num {
+  border-color: var(--gold);
+  color: var(--gold);
+  background-color: var(--white);
+  box-shadow: 0 0 15px rgba(201, 169, 110, 0.25);
+}
+
+.planner__progress-step.active .planner__progress-label {
+  color: var(--charcoal);
+  font-weight: 700;
+}
+
+/* Completed Step State */
+.planner__progress-step.completed .planner__progress-num {
+  background-color: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+.planner__progress-step.completed .planner__progress-label {
+  color: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   PLANNER HEADER & CONTAINERS
+   -------------------------------------------------------------------------- */
+.planner__container {
+  background: var(--white);
+  border: 1px solid rgba(201, 169, 110, 0.18);
+  border-radius: 8px;
+  padding: clamp(2rem, 5vw, 4rem);
+  box-shadow: 0 15px 50px rgba(26, 24, 20, 0.04);
+}
+
+.planner__header {
+  margin-bottom: 3rem;
+}
+
+.planner__header.text-center {
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.planner__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--charcoal);
+  line-height: 1.15;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.planner__title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.planner__subtitle {
+  font-family: var(--font-sans);
+  color: var(--stone);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   STEP 1: SPACES GRID
+   -------------------------------------------------------------------------- */
+.planner__spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.planner__space-card {
+  border: 1px solid var(--cream-dark);
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  background-color: var(--white);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.35s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.planner__space-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-light);
+  box-shadow: 0 10px 30px rgba(26, 24, 20, 0.05);
+}
+
+.planner__space-card.selected {
+  border-color: var(--gold);
+  background-color: rgba(248, 245, 240, 0.6);
+  box-shadow: 0 8px 25px rgba(201, 169, 110, 0.12);
+}
+
+.planner__space-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.planner__space-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.planner__space-desc {
+  font-size: 0.82rem;
+  color: var(--stone);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.planner__space-rate {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  letter-spacing: 0.02em;
+}
+
+.planner__space-checkbox {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.planner__space-card.selected .planner__space-checkbox {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   GRID LAYOUTS & SIDEBAR
+   -------------------------------------------------------------------------- */
+.planner__grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.planner__main {
+  width: 100%;
+}
+
+.planner__sidebar {
+  position: sticky;
+  top: 8rem;
+}
+
+.planner__sticky-card {
+  background-color: var(--cream);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 6px;
+  padding: 2.5rem;
+}
+
+.planner__sticky-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 0.25rem;
+}
+
+.planner__sticky-subtitle {
+  font-size: 0.78rem;
+  color: var(--stone);
+  margin-bottom: 2rem;
+}
+
+.planner__sticky-total {
+  display: flex;
+  align-items: flex-start;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.planner__sticky-total .currency {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.2rem;
+}
+
+.planner__sticky-total .total-val {
+  font-size: 3.5rem;
+  line-height: 1;
+  font-family: var(--font-sans);
+}
+
+.planner__sticky-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--stone);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.planner__breakdown h4 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone-light);
+  margin-bottom: 1rem;
+}
+
+.planner__breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--charcoal);
+  margin-bottom: 0.75rem;
+}
+
+.planner__breakdown-row:last-child {
+  margin-bottom: 0;
+}
+
+.planner__summary-pill {
+  margin-top: 2rem;
+  border-top: 1px dashed rgba(201, 169, 110, 0.25);
+  padding-top: 1.5rem;
+}
+
+.planner__summary-pill strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--stone-light);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.spaces-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.spaces-tags .tag {
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  color: var(--stone);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 2: STYLE SELECTION & SLIDERS
+   -------------------------------------------------------------------------- */
+.planner__sub-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-bottom: 1px solid var(--cream-dark);
+  padding-bottom: 0.75rem;
+}
+
+.planner__styles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.planner__style-card {
+  border: 1px solid var(--cream-dark);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s var(--ease);
+  background: var(--white);
+}
+
+.planner__style-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-light);
+}
+
+.planner__style-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 8px 25px rgba(201, 169, 110, 0.15);
+}
+
+.planner__style-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.planner__style-info {
+  padding: 1.25rem;
+}
+
+.planner__style-info h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--charcoal);
+  margin-bottom: 0.4rem;
+}
+
+.planner__style-info p {
+  font-size: 0.78rem;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+/* Sizes Slider List */
+.planner__sizes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.planner__size-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.planner__size-item-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.planner__size-slider-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.planner__size-slider-group input[type="range"] {
+  flex-grow: 1;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.planner__size-val {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--cream-dark);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  background: var(--cream);
+  min-width: 120px;
+}
+
+.planner__size-val input {
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--charcoal);
+  width: 100%;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.planner__size-val input:focus {
+  outline: none;
+}
+
+.planner__size-val span {
+  font-size: 0.75rem;
+  color: var(--stone-light);
+  font-weight: 500;
+}
+
+/* Materials Tiers */
+.planner__tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.planner__tier-card {
+  border: 1px solid var(--cream-dark);
+  border-radius: 6px;
+  padding: 1.75rem;
+  cursor: pointer;
+  background-color: var(--white);
+  transition: all 0.35s var(--ease);
+}
+
+.planner__tier-card:hover {
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.planner__tier-card.selected {
+  border-color: var(--gold);
+  background-color: rgba(248, 245, 240, 0.5);
+  box-shadow: 0 8px 25px rgba(201, 169, 110, 0.15);
+}
+
+.planner__tier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.planner__tier-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+
+.planner__badge-small {
+  background: var(--cream-dark);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: var(--stone);
+}
+
+.planner__tier-card.selected .planner__badge-small {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.planner__tier-card p {
+  font-size: 0.82rem;
+  color: var(--stone);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   STEP 3: DESIGNER MATCHING
+   -------------------------------------------------------------------------- */
+.planner__designers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.planner__designer-card {
+  border: 1px solid var(--cream-dark);
+  border-radius: 8px;
+  background: var(--white);
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.35s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.planner__designer-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-light);
+  box-shadow: 0 12px 35px rgba(26, 24, 20, 0.05);
+}
+
+.planner__designer-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(201, 169, 110, 0.18);
+  background: rgba(248, 245, 240, 0.4);
+}
+
+.planner__designer-header-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.planner__designer-avatar {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cream-dark);
+}
+
+.planner__designer-card.selected .planner__designer-avatar {
+  border-color: var(--gold);
+}
+
+.planner__designer-meta h4 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin: 0.2rem 0;
+}
+
+.designer-role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--stone-light);
+}
+
+.designer-match-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  background: rgba(201, 169, 110, 0.12);
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+}
+
+.planner__designer-body {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--stone);
+  flex-grow: 1;
+}
+
+.designer-specialty {
+  margin-bottom: 0.5rem;
+}
+
+.designer-bio {
+  font-style: italic;
+  margin-bottom: 1.25rem;
+  color: var(--stone-light);
+}
+
+.designer-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  border-top: 1px solid var(--cream-dark);
+  padding-top: 1rem;
+}
+
+.designer-rating .star {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.planner__designer-select-btn {
+  margin-top: 2rem;
+  border: 1px solid var(--cream-dark);
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s;
+}
+
+.planner__designer-card.selected .planner__designer-select-btn {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 4: SCHEDULE LAYOUT
+   -------------------------------------------------------------------------- */
+.planner__schedule-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+}
+
+.planner__schedule-col h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.planner__dates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.planner__date-box {
+  border: 1px solid var(--cream-dark);
+  border-radius: 6px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s var(--ease);
+}
+
+.planner__date-box:hover {
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.planner__date-box.selected {
+  border-color: var(--gold);
+  background-color: var(--cream);
+  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.12);
+}
+
+.planner__date-box .day-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone-light);
+}
+
+.planner__date-box .day-num {
+  font-size: 2.2rem;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1;
+  margin: 0.5rem 0;
+  color: var(--charcoal);
+}
+
+.planner__date-box .month {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.planner__times-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.planner__time-box {
+  border: 1px solid var(--cream-dark);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.planner__time-box:hover {
+  border-color: var(--gold-light);
+}
+
+.planner__time-box.selected {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 5: CONTACT & DETAIL INPUTS
+   -------------------------------------------------------------------------- */
+.planner__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.planner__form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.planner__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.planner__form-group label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--stone);
+}
+
+.planner__form-group input,
+.planner__form-group textarea {
+  padding: 1rem;
+  border: 1px solid var(--cream-dark);
+  border-radius: 4px;
+  background-color: var(--cream);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  transition: all 0.3s;
+}
+
+.planner__form-group input:focus,
+.planner__form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background-color: var(--white);
+  box-shadow: 0 0 10px rgba(201, 169, 110, 0.1);
+}
+
+.planner__summary-card {
+  border-left: 4px solid var(--gold);
+}
+
+.planner__summary-section {
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  padding: 1.25rem 0;
+}
+
+.planner__summary-section:first-of-type {
+  padding-top: 0;
+}
+
+.summary-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone-light);
+  margin-bottom: 0.75rem;
+}
+
+.summary-body {
+  font-size: 0.88rem;
+  color: var(--charcoal);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.planner__summary-total-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.planner__summary-total-footer span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--stone);
+}
+
+.planner__summary-total-footer strong {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+/* --------------------------------------------------------------------------
+   STEP 6: RECEIPT / CONFIRMATION
+   -------------------------------------------------------------------------- */
+.planner__receipt-step {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.planner__receipt-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-top: 6px solid var(--gold);
+  border-radius: 8px;
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 20px 60px rgba(26, 24, 20, 0.06);
+}
+
+.success-checkmark {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: rgba(201, 169, 110, 0.1);
+  color: var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+}
+
+.receipt-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin: 0.5rem 0 1rem;
+}
+
+.receipt-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.receipt-subtitle {
+  color: var(--stone);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.receipt__divider {
+  height: 1px;
+  border-top: 2px dashed var(--cream-dark);
+  margin: 2.5rem 0;
+}
+
+.receipt__details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem 2.5rem;
+  text-align: left;
+}
+
+.receipt__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.receipt__col .label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--stone-light);
+}
+
+.receipt__col .val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.receipt__total-panel {
+  background-color: var(--cream);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.receipt__total-panel span {
+  font-size: 0.85rem;
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.receipt__total-panel h3 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin: 0.5rem 0;
+}
+
+.receipt__total-panel p {
+  font-size: 0.72rem;
+  color: var(--stone-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   ACTIONS FOOTER & OFFLINE INFO
+   -------------------------------------------------------------------------- */
+.planner__footer {
+  border-top: 1px solid var(--cream-dark);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.planner__footer-info {
+  font-size: 0.88rem;
+  color: var(--stone);
+}
+
+.planner__actions-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.planner__actions-row.justify-between {
+  justify-content: space-between;
+}
+
+.planner__offline-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.15);
+  padding-top: 2rem;
+}
+
+.offline-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+.offline-item strong {
+  color: var(--charcoal);
+}
+
+/* --------------------------------------------------------------------------
+   KEYFRAMES & ANIMATIONS
+   -------------------------------------------------------------------------- */
+.anim-fade-in {
+  animation: fadeIn 0.5s var(--ease) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE LAYOUTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .planner__spaces-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .planner__grid-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .planner__sidebar {
+    position: static;
+  }
+  .planner__designers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .planner__progress {
+    margin-bottom: 2.5rem;
+  }
+  .planner__progress-label {
+    display: none;
+  }
+  .planner__styles-grid {
+    grid-template-columns: 1fr;
+  }
+  .planner__tiers-grid {
+    grid-template-columns: 1fr;
+  }
+  .planner__schedule-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .planner__dates-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .planner__designers-grid {
+    grid-template-columns: 1fr;
+  }
+  .planner__form-row {
+    grid-template-columns: 1fr;
+  }
+  .planner__offline-info {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .planner__spaces-grid {
+    grid-template-columns: 1fr;
+  }
+  .planner__dates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .planner__times-grid {
+    grid-template-columns: 1fr;
+  }
+  .receipt__details-grid {
+    grid-template-columns: 1fr;
+  }
+}

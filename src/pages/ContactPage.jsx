@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Contact from '../components/Contact/Contact';
+import ProjectPlanner from '../components/ProjectPlanner/ProjectPlanner';
 import PageHero from '../components/PageHero/PageHero';
 import { Building, Phone, Mail, MapPin } from 'lucide-react';
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
         subtitle="Visit our national studios or book a private consultation." 
         bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop" 
       />
-      <Contact />
+      <ProjectPlanner />
 
       {/* Interactive Studio Branch Selector */}
       <section className="locations-selector" style={{ padding: 'var(--section-pad) 0', background: 'var(--charcoal)', color: 'var(--white)' }}>

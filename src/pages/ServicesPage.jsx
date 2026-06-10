@@ -8,22 +8,22 @@ export default function ServicesPage() {
 
   // Simple cost estimator logic
   const calculateCosts = () => {
-    let ratePerSqftPremium = 120; // in USD
-    let ratePerSqftLuxury = 250;
+    let ratePerSqftPremium = 1200; // in INR
+    let ratePerSqftLuxury = 2200;
 
     if (roomType === 'Kitchen') {
-      ratePerSqftPremium = 180;
-      ratePerSqftLuxury = 380;
+      ratePerSqftPremium = 1800;
+      ratePerSqftLuxury = 3200;
     } else if (roomType === 'Commercial') {
-      ratePerSqftPremium = 95;
-      ratePerSqftLuxury = 190;
+      ratePerSqftPremium = 900;
+      ratePerSqftLuxury = 1600;
     } else if (roomType === 'Hotel Suite') {
-      ratePerSqftPremium = 150;
-      ratePerSqftLuxury = 320;
+      ratePerSqftPremium = 1600;
+      ratePerSqftLuxury = 2800;
     }
 
-    const premiumEstimate = (sqft * ratePerSqftPremium).toLocaleString();
-    const luxuryEstimate = (sqft * ratePerSqftLuxury).toLocaleString();
+    const premiumEstimate = (sqft * ratePerSqftPremium).toLocaleString('en-IN');
+    const luxuryEstimate = (sqft * ratePerSqftLuxury).toLocaleString('en-IN');
 
     return { premiumEstimate, luxuryEstimate };
   };
@@ -80,7 +80,7 @@ export default function ServicesPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div style={{ background: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--gold)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em' }}>Premium Tier Estimate</span>
-              <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--charcoal)', margin: 0 }}>${premiumEstimate}</h3>
+              <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--charcoal)', margin: 0 }}>₹{premiumEstimate}</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--stone)', lineHeight: '1.6' }}>
                 Includes bespoke custom styling, handpicked high-end local furniture, standard designer lighting layouts, and expert contractor management.
               </p>
@@ -88,7 +88,7 @@ export default function ServicesPage() {
 
             <div style={{ background: 'var(--charcoal)', color: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--gold-light)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em' }}>Ultra-Luxury Tier Estimate</span>
-              <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--gold)', margin: 0 }}>${luxuryEstimate}</h3>
+              <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--gold)', margin: 0 }}>₹{luxuryEstimate}</h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.6' }}>
                 Includes fine imported Italian materials, premium architectural renovations, fully customized modular layout, automated smart lighting systems, and design director supervision.
               </p>

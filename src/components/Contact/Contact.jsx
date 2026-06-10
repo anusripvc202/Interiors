@@ -10,7 +10,7 @@ export default function Contact() {
     email: '',
     phone: '',
     projectType: 'Residential',
-    budget: 'Premium ($25k - $50k)',
+    budget: 'Premium (₹15 Lakhs - ₹35 Lakhs)',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -29,7 +29,7 @@ export default function Contact() {
       email: '',
       phone: '',
       projectType: 'Residential',
-      budget: 'Premium ($25k - $50k)',
+      budget: 'Premium (₹15 Lakhs - ₹35 Lakhs)',
       message: '',
     });
     setSubmitted(false);
@@ -172,9 +172,9 @@ export default function Contact() {
                     onChange={(e) => setFormState({ ...formState, budget: e.target.value })}
                   >
                     <option value="Select Range" disabled>Select Range</option>
-                    <option value="Standard ($10k - $25k)">Standard ($10k - $25k)</option>
-                    <option value="Premium ($25k - $50k)">Premium ($25k - $50k)</option>
-                    <option value="Ultra Luxury ($50k+)">Ultra Luxury ($50k+)</option>
+                    <option value="Standard (₹5 Lakhs - ₹15 Lakhs)">Standard (₹5 Lakhs - ₹15 Lakhs)</option>
+                    <option value="Premium (₹15 Lakhs - ₹35 Lakhs)">Premium (₹15 Lakhs - ₹35 Lakhs)</option>
+                    <option value="Ultra Luxury (₹35 Lakhs+)">Ultra Luxury (₹35 Lakhs+)</option>
                   </select>
                 </div>
               </div>
