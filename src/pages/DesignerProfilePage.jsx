@@ -160,7 +160,7 @@ export default function DesignerProfilePage() {
 
       {/* Main Content Layout */}
       <section style={{ padding: '4rem 0 6rem', background: 'var(--cream)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '4rem', alignItems: 'start' }} className="planner__grid-layout">
+        <div className="container planner__grid-layout">
           
           {/* LEFT COLUMN: ABOUT & DYNAMIC PACKAGES CATALOG */}
           <div>
@@ -197,7 +197,7 @@ export default function DesignerProfilePage() {
                 <p style={{ color: 'var(--stone)', fontSize: '0.85rem', margin: 0 }}>Select a design tier to configure date and time for booking.</p>
               </div>
 
-              <div className="packages-block-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+              <div className="packages-block-grid">
                 {designer.packages.map((pkg) => {
                   const isSelected = selectedPackageId === pkg.id;
                   return (
@@ -362,7 +362,7 @@ export default function DesignerProfilePage() {
 
             {/* TAB CONTENT: PORTFOLIO */}
             {activeTab === 'portfolio' && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }} className="portfolio-teaser__grid">
+              <div className="portfolio-teaser__grid">
                 {designer.portfolio.map((work, idx) => (
                   <div key={idx} style={{ background: 'var(--white)', border: '1px solid var(--cream-dark)', borderRadius: '6px', overflow: 'hidden' }}>
                     <div style={{ height: '240px', overflow: 'hidden' }}>
@@ -526,7 +526,7 @@ export default function DesignerProfilePage() {
                   {/* Step A: Select Date */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Select Consultation Date</label>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                    <div className="planner__dates-grid">
                       {availableDates.map((date) => (
                         <div
                           key={date.formatted}
@@ -555,7 +555,7 @@ export default function DesignerProfilePage() {
                   {selectedDate && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       <label style={{ fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Select Time Slot</label>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.5rem' }}>
+                      <div className="planner__times-grid">
                         {timeSlots.map((time) => (
                           <div
                             key={time}

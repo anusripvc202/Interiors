@@ -161,20 +161,7 @@ export default function PortfolioPage() {
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
           
           {/* Style Finder Banner */}
-          <div style={{
-            background: 'var(--charcoal)',
-            color: 'var(--white)',
-            padding: '2.5rem',
-            borderRadius: '6px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '2rem',
-            flexWrap: 'wrap',
-            position: 'relative',
-            overflow: 'hidden',
-            border: '1px solid rgba(201,169,110,0.15)'
-          }}>
+          <div className="portfolio__style-finder-banner">
             <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px' }}>
               <span className="section-label" style={{ color: 'var(--gold-light)' }}>Style Finder</span>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', margin: '0.25rem 0 0.5rem', fontWeight: 400 }}>Not sure which design style suits your space?</h3>
@@ -198,22 +185,11 @@ export default function PortfolioPage() {
           </div>
           
           {/* Filters Panel */}
-          <div style={{ 
-            background: 'var(--white)', 
-            padding: '1.5rem', 
-            borderRadius: '6px', 
-            border: '1px solid rgba(201, 169, 110, 0.2)',
-            display: 'flex', 
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '1.5rem',
-            flexWrap: 'wrap',
-            boxShadow: '0 8px 30px rgba(0,0,0,0.02)'
-          }}>
+          <div className="portfolio__filter-bar">
             
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', flexGrow: 1 }}>
+            <div className="portfolio__filter-group">
               {/* City Filter */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '180px' }}>
+              <div className="portfolio__filter-item">
                 <label style={{ fontSize: '0.65rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Location</label>
                 <select
                   value={selectedCity}
@@ -228,7 +204,7 @@ export default function PortfolioPage() {
               </div>
 
               {/* Style Filter */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '220px' }}>
+              <div className="portfolio__filter-item portfolio__filter-item--wide">
                 <label style={{ fontSize: '0.65rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Design Style</label>
                 <select
                   value={selectedStyle}
@@ -244,7 +220,7 @@ export default function PortfolioPage() {
               </div>
 
               {/* Price Range Filter */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '180px' }}>
+              <div className="portfolio__filter-item">
                 <label style={{ fontSize: '0.65rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Starting Fee</label>
                 <select
                   value={selectedPriceRange}
@@ -259,7 +235,7 @@ export default function PortfolioPage() {
               </div>
 
               {/* Experience Filter */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '180px' }}>
+              <div className="portfolio__filter-item">
                 <label style={{ fontSize: '0.65rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Experience</label>
                 <select
                   value={selectedExperience}
@@ -275,7 +251,7 @@ export default function PortfolioPage() {
             </div>
 
             {/* Sort Panel */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', minWidth: '180px' }}>
+            <div className="portfolio__filter-item">
               <label style={{ fontSize: '0.65rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Sort By</label>
               <select
                 value={sortBy}
@@ -302,17 +278,6 @@ export default function PortfolioPage() {
             {filteredDesigners.map(designer => (
               <div 
                 key={designer.id}
-                style={{
-                  background: 'var(--white)',
-                  border: '1px solid rgba(201, 169, 110, 0.2)',
-                  borderRadius: '8px',
-                  padding: '2.5rem',
-                  display: 'grid',
-                  gridTemplateColumns: '300px 1fr',
-                  gap: '3rem',
-                  boxShadow: '0 10px 40px rgba(0,0,0,0.02)',
-                  alignItems: 'start'
-                }}
                 className="directory-designer-card"
               >
                 {/* Designer Profile Sidebar */}
@@ -414,7 +379,7 @@ export default function PortfolioPage() {
                   {/* Portfolio Gallery Thumbnails */}
                   <div>
                     <h4 style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.1em', margin: '0 0 0.75rem' }}>Sample Designs</h4>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                    <div className="portfolio-thumbs-grid">
                       {designer.portfolio.map((work, idx) => (
                         <div key={idx} style={{ position: 'relative', height: '160px', overflow: 'hidden', borderRadius: '4px' }} className="portfolio-thumb-card">
                           <img 

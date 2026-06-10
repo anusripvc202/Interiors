@@ -40,7 +40,7 @@ export default function ProcessPage() {
 
       {/* Interactive FAQ Accordion */}
       <section className="faq" style={{ padding: 'var(--section-pad) 0', background: 'var(--cream)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '4rem', alignItems: 'flex-start' }}>
+        <div className="container design-accordion__grid">
           <div>
             <p className="section-label">Common Queries</p>
             <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>Frequently Asked <em>Questions</em></h2>

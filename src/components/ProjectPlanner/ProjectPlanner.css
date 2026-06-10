@@ -1052,6 +1052,12 @@
   animation: fadeIn 0.5s var(--ease) forwards;
 }
 
+.packages-block-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
 /* --------------------------------------------------------------------------
    RESPONSIVE LAYOUTS
    -------------------------------------------------------------------------- */
@@ -1068,6 +1074,10 @@
   }
   .planner__designers-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .packages-block-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 }
 
@@ -1102,6 +1112,9 @@
     gap: 1rem;
     align-items: flex-start;
   }
+  .packages-block-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1118,3 +1131,4 @@
     grid-template-columns: 1fr;
   }
 }
+

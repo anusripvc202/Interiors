@@ -61,21 +61,9 @@ export default function Home() {
           </div>
 
           {/* Search Filter Widget */}
-          <form onSubmit={handleSearch} style={{ 
-            background: 'var(--white)', 
-            padding: '1rem', 
-            borderRadius: '8px', 
-            border: '1px solid rgba(201, 169, 110, 0.3)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-            display: 'flex', 
-            gap: '1rem', 
-            width: '100%', 
-            maxWidth: '850px',
-            flexWrap: 'wrap',
-            alignItems: 'center'
-          }}>
+          <form onSubmit={handleSearch} className="home__search-form">
             {/* City Selection */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', flex: '1 1 200px', textAlign: 'left', padding: '0 0.5rem' }}>
+            <div className="search-group">
               <label style={{ fontSize: '0.68rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Select Location</label>
               <select 
                 value={searchCity}
@@ -89,10 +77,10 @@ export default function Home() {
               </select>
             </div>
 
-            <div style={{ width: '1px', height: '35px', background: 'var(--cream-dark)', display: 'none' }} className="search-divider" />
+            <div className="search-divider" />
 
             {/* Style Selection */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', flex: '1 1 250px', textAlign: 'left', padding: '0 0.5rem' }}>
+            <div className="search-group">
               <label style={{ fontSize: '0.68rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Design Style Specialty</label>
               <select
                 value={searchStyle}
@@ -108,7 +96,7 @@ export default function Home() {
             </div>
 
             {/* Search Button */}
-            <button type="submit" className="btn-primary" style={{ padding: '1rem 2rem', border: 'none', height: '100%', borderRadius: '4px', cursor: 'pointer', flexShrink: 0 }}>
+            <button type="submit" className="btn-primary">
               <Search size={16} />
               <span>Search Designers</span>
             </button>
@@ -126,7 +114,7 @@ export default function Home() {
             <p style={{ color: 'var(--stone)', fontSize: '0.95rem' }}>We have standardized the interior design lifecycle so you can hire and plan transparently.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }} className="milestones__grid">
+          <div className="home__steps-grid">
             <div style={{ background: 'var(--white)', padding: '2.5rem', borderBottom: '3px solid var(--gold)', borderRadius: '4px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
               <div style={{ background: 'rgba(201, 169, 110, 0.12)', color: 'var(--gold-dark)', padding: '1.25rem', borderRadius: '50%' }}>
                 <Compass size={28} />
@@ -178,7 +166,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }} className="awards-showcase__grid">
+          <div className="awards-showcase__grid">
             {designersData.map((designer) => (
               <div 
                 key={designer.id}
@@ -248,7 +236,7 @@ export default function Home() {
             <p style={{ color: 'var(--stone)', fontSize: '0.95rem' }}>Select a design school to view matched specialists and conceptual layouts.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }} className="portfolio-teaser__grid">
+          <div className="portfolio-teaser__grid">
             {[
               { label: 'Japandi Minimalism', img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500&q=80', desc: 'Japanese simplicity meets Nordic warmth.' },
               { label: 'Modern Luxury', img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500&q=80', desc: 'Opulent metals, marbles, and integrations.' },

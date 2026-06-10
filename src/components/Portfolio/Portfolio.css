@@ -162,3 +162,122 @@
   .portfolio__grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
   .portfolio__item-overlay { opacity: 1; }
 }
+
+/* ===========================
+   DIRECTORY RESPONSIVENESS
+   =========================== */
+.portfolio__style-finder-banner {
+  background: var(--charcoal);
+  color: var(--white);
+  padding: 2.5rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,110,0.15);
+}
+
+@media (max-width: 768px) {
+  .portfolio__style-finder-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+  .portfolio__style-finder-banner button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.portfolio__filter-bar {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.02);
+}
+
+.portfolio__filter-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.portfolio__filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 180px;
+}
+
+.portfolio__filter-item--wide {
+  min-width: 220px;
+}
+
+@media (max-width: 1024px) {
+  .portfolio__filter-bar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .portfolio__filter-group {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio__filter-item,
+  .portfolio__filter-item--wide {
+    min-width: 100% !important;
+  }
+}
+
+.directory-designer-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 8px;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .directory-designer-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+}
+
+.portfolio-thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .portfolio-thumbs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-thumbs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
