@@ -1,10 +1,23 @@
 import { useState } from 'react';
 import Services from '../components/Services/Services';
 import PageHero from '../components/PageHero/PageHero';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+
+const faqsList = [
+  { q: "How does the Luxe Interiors marketplace match me with designers?", a: "We utilize your location, preferred aesthetic style (determined via our Style Quiz), and project scope to match you with verified independent designers who have portfolios aligning with your goals." },
+  { q: "What is included in the Essential, Premium, and Luxury packages?", a: "Essential plans cover concept layouts and materials selection. Premium plans add photo-realistic 3D renders and electrical/lighting schematics. Luxury plans include European material sourcing, modular kitchen templates, and onsite director supervision." },
+  { q: "Can I choose custom project add-ons later?", a: "Yes. You can select custom add-ons (like Vastu Reviews, 3D video walkthroughs, or extra revisions) directly on the designer's booking page, or request them during your initial slot review." },
+  { q: "What is the rescheduling policy for consultation bookings?", a: "You can reschedule your booked consultation up to 24 hours before your slot free of charge. Cancellations within 24 hours may incur a small transaction fee to cover the designer's reserved slot." }
+];
 
 export default function ServicesPage() {
   const [roomType, setRoomType] = useState('Living Room');
   const [sqft, setSqft] = useState(300);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
 
   // Simple cost estimator logic
   const calculateCosts = () => {
@@ -93,6 +106,69 @@ export default function ServicesPage() {
                 Includes fine imported Italian materials, premium architectural renovations, fully customized modular layout, automated smart lighting systems, and design director supervision.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Accordion Section */}
+      <section className="faq-section" style={{ padding: '6rem 0', background: 'var(--white)' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="section-label" style={{ justifyContent: 'center' }}>Help Center</span>
+            <h2 className="section-title">Frequently Asked <em>Questions</em></h2>
+            <p style={{ color: 'var(--stone)', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+              Everything you need to know about our interior designer marketplace booking system.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {faqsList.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div 
+                  key={index}
+                  style={{
+                    border: '1px solid var(--cream-dark)',
+                    borderRadius: '6px',
+                    overflow: 'hidden',
+                    background: 'var(--cream)',
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    style={{
+                      width: '100%',
+                      padding: '1.5rem',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: '1.15rem',
+                      color: 'var(--charcoal)',
+                      fontWeight: 500
+                    }}
+                  >
+                    <span>{faq.q}</span>
+                    {isOpen ? <ChevronUp size={18} style={{ color: 'var(--gold-dark)' }} /> : <ChevronDown size={18} style={{ color: 'var(--stone)' }} />}
+                  </button>
+                  {isOpen && (
+                    <div style={{
+                      padding: '0 1.5rem 1.5rem',
+                      fontSize: '0.95rem',
+                      color: 'var(--stone)',
+                      lineHeight: '1.7'
+                    }}>
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

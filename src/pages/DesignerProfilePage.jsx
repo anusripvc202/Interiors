@@ -9,6 +9,13 @@ import PageHero from '../components/PageHero/PageHero';
 
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '03:30 PM', '05:00 PM'];
 
+const interiorAddOns = [
+  { id: '3d-video', name: '3D Render Video Walkthrough', price: 8000, desc: 'A dynamic 60-second virtual walk-through of your future space.' },
+  { id: 'material-board', name: 'Physical Swatch Box Delivery', price: 5000, desc: 'Paint swatches, wallpaper samples, and wood/fabric samples sent to your door.' },
+  { id: 'vastu-consult', name: 'Vastu / Feng Shui Review', price: 3500, desc: 'Expert layout alignment guidance to ensure positive energy flow.' },
+  { id: 'extra-revisions', name: '3 Extra Design Revisions', price: 4000, desc: 'Allows you to make additional updates to the conceptual layouts.' }
+];
+
 // Generate next 6 days starting tomorrow, skipping Sunday
 const getAvailableDates = () => {
   const dates = [];
@@ -35,11 +42,29 @@ export default function DesignerProfilePage() {
   const designer = designersData.find(d => d.id === id);
 
   const [selectedPackageId, setSelectedPackageId] = useState('');
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [clientInfo, setClientInfo] = useState({ name: '', email: '', phone: '', notes: '' });
   const [isBooked, setIsBooked] = useState(false);
   const [activeTab, setActiveTab] = useState('portfolio'); // portfolio, reviews
+
+  const calculateTotal = () => {
+    if (!selectedPackage) return 0;
+    const addOnTotal = selectedAddOns.reduce((sum, addOnId) => {
+      const item = interiorAddOns.find(a => a.id === addOnId);
+      return sum + (item ? item.price : 0);
+    }, 0);
+    return selectedPackage.price + addOnTotal;
+  };
+
+  const handleAddOnToggle = (addOnId) => {
+    if (selectedAddOns.includes(addOnId)) {
+      setSelectedAddOns(selectedAddOns.filter(id => id !== addOnId));
+    } else {
+      setSelectedAddOns([...selectedAddOns, addOnId]);
+    }
+  };
 
   const sidebarRef = useRef(null);
   const availableDates = getAvailableDates();
@@ -76,6 +101,7 @@ export default function DesignerProfilePage() {
 
   const handleReset = () => {
     setSelectedPackageId('');
+    setSelectedAddOns([]);
     setSelectedDate('');
     setSelectedTime('');
     setClientInfo({ name: '', email: '', phone: '', notes: '' });
@@ -405,9 +431,20 @@ export default function DesignerProfilePage() {
                     <span style={{ color: 'var(--stone-light)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Selected Package</span>
                     <strong style={{ color: 'var(--charcoal)' }}>{selectedPackage?.name}</strong>
                   </div>
+                  {selectedAddOns.length > 0 && (
+                    <div>
+                      <span style={{ color: 'var(--stone-light)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Add-ons Selected</span>
+                      <ul style={{ paddingLeft: '1rem', margin: '0.2rem 0', color: 'var(--stone)', fontSize: '0.8rem', listStyleType: 'disc' }}>
+                        {selectedAddOns.map(addOnId => {
+                          const item = interiorAddOns.find(a => a.id === addOnId);
+                          return <li key={addOnId}>{item?.name} (+₹{item?.price.toLocaleString('en-IN')})</li>;
+                        })}
+                      </ul>
+                    </div>
+                  )}
                   <div>
                     <span style={{ color: 'var(--stone-light)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Cost Summary</span>
-                    <strong style={{ color: 'var(--gold-dark)', fontSize: '1.25rem' }}>₹{selectedPackage?.price.toLocaleString('en-IN')}</strong>
+                    <strong style={{ color: 'var(--gold-dark)', fontSize: '1.25rem' }}>₹{calculateTotal().toLocaleString('en-IN')}</strong>
                   </div>
                 </div>
 
@@ -428,12 +465,63 @@ export default function DesignerProfilePage() {
                     <p style={{ fontSize: '0.72rem', color: 'var(--stone)', margin: '0.2rem 0 0' }}>Assigning Lead: {designer.name}</p>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <span style={{ fontSize: '0.62rem', textTransform: 'uppercase', display: 'block', color: 'var(--stone-light)', fontWeight: 600 }}>{selectedPackage?.name}</span>
-                    <strong style={{ fontSize: '1.15rem', color: 'var(--gold-dark)' }}>₹{selectedPackage?.price.toLocaleString('en-IN')}</strong>
+                    <span style={{ fontSize: '0.62rem', textTransform: 'uppercase', display: 'block', color: 'var(--stone-light)', fontWeight: 600 }}>Total Price</span>
+                    <strong style={{ fontSize: '1.15rem', color: 'var(--gold-dark)' }}>₹{calculateTotal().toLocaleString('en-IN')}</strong>
                   </div>
                 </div>
                 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+
+                  {/* Project Add-ons */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <label style={{ fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.05em' }}>Custom Project Add-ons (Optional)</label>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      {interiorAddOns.map((addOn) => {
+                        const isChecked = selectedAddOns.includes(addOn.id);
+                        return (
+                          <div 
+                            key={addOn.id}
+                            onClick={() => handleAddOnToggle(addOn.id)}
+                            style={{
+                              border: '1px solid var(--cream-dark)',
+                              borderRadius: '4px',
+                              padding: '0.75rem',
+                              cursor: 'pointer',
+                              background: isChecked ? 'rgba(201, 169, 110, 0.05)' : 'var(--white)',
+                              borderColor: isChecked ? 'var(--gold)' : 'var(--cream-dark)',
+                              transition: 'all 0.2s',
+                              display: 'flex',
+                              gap: '0.75rem',
+                              alignItems: 'flex-start'
+                            }}
+                          >
+                            <div style={{
+                              width: '16px',
+                              height: '16px',
+                              border: '1.5px solid var(--stone-light)',
+                              borderRadius: '3px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              marginTop: '2px',
+                              background: isChecked ? 'var(--gold)' : 'transparent',
+                              borderColor: isChecked ? 'var(--gold)' : 'var(--stone-light)',
+                              flexShrink: 0
+                            }}>
+                              {isChecked && <Check size={10} color="var(--white)" />}
+                            </div>
+                            <div style={{ flexGrow: 1 }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <strong style={{ fontSize: '0.8rem', color: 'var(--charcoal)' }}>{addOn.name}</strong>
+                                <span style={{ fontSize: '0.8rem', color: 'var(--gold-dark)', fontWeight: 'bold' }}>+₹{addOn.price.toLocaleString('en-IN')}</span>
+                              </div>
+                              <p style={{ fontSize: '0.7rem', color: 'var(--stone)', margin: '0.2rem 0 0', lineHeight: '1.4' }}>{addOn.desc}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
 
                   {/* Step A: Select Date */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
