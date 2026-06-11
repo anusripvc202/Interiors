@@ -19,10 +19,16 @@ export default function LoginPage() {
   // Login form state
   const [activeTab, setActiveTab] = useState('client'); // 'client' | 'designer'
   const [isSignUp, setIsSignUp] = useState(false);
+  const [regRole, setRegRole] = useState('client'); // 'client' | 'designer'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [preferredStyle, setPreferredStyle] = useState('Japandi Minimalism');
+  const [regCity, setRegCity] = useState('Bangalore');
+  const [regStyleSpecialty, setRegStyleSpecialty] = useState('Japandi Minimalism');
+  const [regExperience, setRegExperience] = useState('5 Years');
+  const [regStartingRate, setRegStartingRate] = useState('15000');
+  const [regBio, setRegBio] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
@@ -68,15 +74,36 @@ export default function LoginPage() {
       return;
     }
 
-    const result = await signup(name, email, password, preferredStyle);
+    let result;
+    if (regRole === 'designer') {
+      if (!regCity || !regStyleSpecialty || !regExperience || !regStartingRate) {
+        setError('Please fill in all designer profile fields.');
+        return;
+      }
+      result = await signup(name, email, password, 'designer', '', {
+        city: regCity,
+        styleSpecialty: regStyleSpecialty,
+        experience: regExperience,
+        startingRate: Number(regStartingRate),
+        bio: regBio
+      });
+    } else {
+      result = await signup(name, email, password, 'client', preferredStyle, {});
+    }
+
     if (!result.success) {
       setError(result.message || 'Signup failed.');
     } else {
-      setSuccessMsg('Account registered successfully! Loading your client dashboard...');
+      setSuccessMsg(
+        regRole === 'designer' 
+          ? 'Designer account registered successfully! Loading designer portal...' 
+          : 'Account registered successfully! Loading your client dashboard...'
+      );
       // Clear form
       setName('');
       setEmail('');
       setPassword('');
+      setRegBio('');
       setIsSignUp(false);
     }
   };
@@ -196,8 +223,29 @@ export default function LoginPage() {
 
             {/* Form */}
             {isSignUp ? (
-              // SIGN UP FORM (CLIENT ONLY)
+              // SIGN UP FORM (CLIENT OR DESIGNER)
               <form onSubmit={handleSignUpSubmit} className="auth-form">
+                
+                {/* Role Tabs for Sign Up */}
+                <div className="auth-tabs" style={{ marginBottom: '1.5rem' }}>
+                  <button 
+                    type="button"
+                    onClick={() => { setRegRole('client'); setError(''); }}
+                    className={`auth-tab ${regRole === 'client' ? 'active' : ''}`}
+                  >
+                    <User size={14} />
+                    <span>Client Signup</span>
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => { setRegRole('designer'); setError(''); }}
+                    className={`auth-tab ${regRole === 'designer' ? 'active' : ''}`}
+                  >
+                    <Award size={14} />
+                    <span>Designer Signup</span>
+                  </button>
+                </div>
+
                 <div className="form-group">
                   <label htmlFor="reg-name">Full Name</label>
                   <div className="input-wrapper">
@@ -250,20 +298,95 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="reg-style">Preferred Design Theme</label>
-                  <select 
-                    id="reg-style"
-                    value={preferredStyle}
-                    onChange={(e) => setPreferredStyle(e.target.value)}
-                    className="select-input"
-                  >
-                    <option value="Japandi Minimalism">Japandi Minimalism</option>
-                    <option value="Modern Luxury">Modern Luxury</option>
-                    <option value="Classic Parisian">Classic Parisian</option>
-                    <option value="Mid-Century Organic">Mid-Century Organic</option>
-                  </select>
-                </div>
+                {regRole === 'client' ? (
+                  /* Client Fields */
+                  <div className="form-group">
+                    <label htmlFor="reg-style">Preferred Design Theme</label>
+                    <select 
+                      id="reg-style"
+                      value={preferredStyle}
+                      onChange={(e) => setPreferredStyle(e.target.value)}
+                      className="select-input"
+                    >
+                      <option value="Japandi Minimalism">Japandi Minimalism</option>
+                      <option value="Modern Luxury">Modern Luxury</option>
+                      <option value="Classic Parisian">Classic Parisian</option>
+                      <option value="Mid-Century Organic">Mid-Century Organic</option>
+                    </select>
+                  </div>
+                ) : (
+                  /* Designer Fields */
+                  <>
+                    <div className="form-group" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label htmlFor="reg-city">City / Location</label>
+                        <select 
+                          id="reg-city"
+                          value={regCity}
+                          onChange={(e) => setRegCity(e.target.value)}
+                          className="select-input"
+                        >
+                          <option value="Bangalore">Bangalore</option>
+                          <option value="Mumbai">Mumbai</option>
+                          <option value="Delhi">Delhi</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="reg-specialty">Specialty Style</label>
+                        <select 
+                          id="reg-specialty"
+                          value={regStyleSpecialty}
+                          onChange={(e) => setRegStyleSpecialty(e.target.value)}
+                          className="select-input"
+                        >
+                          <option value="Japandi Minimalism">Japandi Minimalism</option>
+                          <option value="Modern Luxury">Modern Luxury</option>
+                          <option value="Classic Parisian">Classic Parisian</option>
+                          <option value="Mid-Century Organic">Mid-Century Organic</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-group" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label htmlFor="reg-experience">Experience</label>
+                        <input 
+                          type="text" 
+                          id="reg-experience" 
+                          required 
+                          placeholder="e.g. 5 Years"
+                          style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid var(--cream-dark)', outline: 'none' }}
+                          value={regExperience}
+                          onChange={(e) => setRegExperience(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="reg-rate">Starting Rate (₹)</label>
+                        <input 
+                          type="number" 
+                          id="reg-rate" 
+                          required 
+                          placeholder="e.g. 15000"
+                          style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid var(--cream-dark)', outline: 'none' }}
+                          value={regStartingRate}
+                          onChange={(e) => setRegStartingRate(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="reg-bio">Professional Bio</label>
+                      <textarea 
+                        id="reg-bio"
+                        placeholder="Describe your design background, philosophy, and special skills..."
+                        value={regBio}
+                        onChange={(e) => setRegBio(e.target.value)}
+                        rows={3}
+                        style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid var(--cream-dark)', outline: 'none', fontFamily: 'inherit', fontSize: '0.85rem' }}
+                      />
+                    </div>
+                  </>
+                )}
 
                 <button type="submit" className="btn-primary auth-submit">
                   <span>Register Premium Profile</span>

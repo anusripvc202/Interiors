@@ -240,19 +240,30 @@ export function AuthProvider({ children }) {
   };
 
   // SIGNUP
-  const signup = async (name, email, password, preferredStyle) => {
+  const signup = async (name, email, password, role = 'client', preferredStyle = 'Modern Luxury', designerData = {}) => {
     try {
       const res = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, preferredStyle })
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role,
+          preferredStyle,
+          city: designerData.city,
+          styleSpecialty: designerData.styleSpecialty,
+          experience: designerData.experience,
+          startingRate: designerData.startingRate,
+          bio: designerData.bio
+        })
       });
       const data = await res.json();
 
       if (res.ok && data.success) {
         localStorage.setItem('luxe_token', data.token);
         setUser(data.user);
-        setBookings([]); // New client starts with no bookings
+        setBookings([]); // New user starts with no bookings
         setIsBackendOnline(true);
         return { success: true };
       } else {
@@ -264,40 +275,74 @@ export function AuthProvider({ children }) {
 
     // Offline signup logic
     const sanitizedEmail = email.toLowerCase().trim();
-    const styleMap = {
-      'Japandi Minimalism': 'japandi',
-      'Modern Luxury': 'modern',
-      'Classic Parisian': 'parisian',
-      'Mid-Century Organic': 'midcentury'
-    };
+    
+    if (role === 'designer') {
+      const designerCode = name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+        
+      const designerUser = {
+        name,
+        email: sanitizedEmail,
+        role: 'designer',
+        designerId: designerCode,
+        details: {
+          id: designerCode,
+          name,
+          role: 'Design Specialist',
+          avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+          city: designerData.city || 'Bangalore',
+          style: designerData.styleSpecialty || 'Japandi Minimalism',
+          rating: 5.0,
+          reviewsCount: 0,
+          experience: designerData.experience || '3 Years',
+          startingRate: Number(designerData.startingRate) || 12000,
+          bio: designerData.bio || ''
+        }
+      };
+      
+      setUser(designerUser);
+      localStorage.setItem('luxe_user', JSON.stringify(designerUser));
+      setIsBackendOnline(false);
+      return { success: true };
+    } else {
+      const styleMap = {
+        'Japandi Minimalism': 'japandi',
+        'Modern Luxury': 'modern',
+        'Classic Parisian': 'parisian',
+        'Mid-Century Organic': 'midcentury'
+      };
 
-    if (registeredClients.some(c => c.email.toLowerCase() === sanitizedEmail)) {
-      return { success: false, message: 'Email already registered' };
+      if (registeredClients.some(c => c.email.toLowerCase() === sanitizedEmail)) {
+        return { success: false, message: 'Email already registered' };
+      }
+
+      const newClient = {
+        name,
+        email: sanitizedEmail,
+        password: password || 'password',
+        preferredStyle,
+        styleId: styleMap[preferredStyle] || 'modern'
+      };
+
+      const updatedClients = [...registeredClients, newClient];
+      setRegisteredClients(updatedClients);
+      localStorage.setItem('luxe_clients', JSON.stringify(updatedClients));
+
+      const clientUser = {
+        name: newClient.name,
+        email: newClient.email,
+        role: 'client',
+        preferredStyle: newClient.preferredStyle,
+        styleId: newClient.styleId
+      };
+      setUser(clientUser);
+      localStorage.setItem('luxe_user', JSON.stringify(clientUser));
+      setIsBackendOnline(false);
+      return { success: true };
     }
-
-    const newClient = {
-      name,
-      email: sanitizedEmail,
-      password: password || 'password',
-      preferredStyle,
-      styleId: styleMap[preferredStyle] || 'modern'
-    };
-
-    const updatedClients = [...registeredClients, newClient];
-    setRegisteredClients(updatedClients);
-    localStorage.setItem('luxe_clients', JSON.stringify(updatedClients));
-
-    const clientUser = {
-      name: newClient.name,
-      email: newClient.email,
-      role: 'client',
-      preferredStyle: newClient.preferredStyle,
-      styleId: newClient.styleId
-    };
-    setUser(clientUser);
-    localStorage.setItem('luxe_user', JSON.stringify(clientUser));
-    setIsBackendOnline(false);
-    return { success: true };
   };
 
   // LOGOUT

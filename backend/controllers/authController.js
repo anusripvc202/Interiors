@@ -12,13 +12,15 @@ const generateToken = (payload) => {
   return jwt.sign(payload, jwtSecret, { expiresIn: '30d' });
 };
 
-// 1. REGISTER CLIENT
+// 1. REGISTER CLIENT OR DESIGNER
 export async function register(req, res) {
-  const { name, email, password, preferredStyle } = req.body;
+  const { name, email, password, role, preferredStyle, city, styleSpecialty, experience, startingRate, bio } = req.body;
 
   if (!name || !email || !password) {
     return res.status(400).json({ success: false, message: 'Missing required registration parameters.' });
   }
+
+  const userRole = role === 'designer' ? 'designer' : 'client';
 
   try {
     const sanitizedEmail = email.toLowerCase().trim();
@@ -32,38 +34,134 @@ export async function register(req, res) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Map style names to styles code id
-    const styleMap = {
-      'Japandi Minimalism': 'japandi',
-      'Modern Luxury': 'modern',
-      'Classic Parisian': 'parisian',
-      'Mid-Century Organic': 'midcentury'
-    };
-    const styleId = styleMap[preferredStyle] || 'modern';
-
-    // Insert user row
-    const [result] = await pool.query(
-      'INSERT INTO users (name, email, password, role, preferred_style, style_id) VALUES (?, ?, ?, ?, ?, ?)',
-      [name, sanitizedEmail, hashedPassword, 'client', preferredStyle || 'Modern Luxury', styleId]
-    );
-
-    const userId = result.insertId;
-
-    // Generate JWT
-    const token = generateToken({ id: userId, email: sanitizedEmail, role: 'client' });
-
-    return res.status(201).json({
-      success: true,
-      token,
-      user: {
-        id: userId,
-        name,
-        email: sanitizedEmail,
-        role: 'client',
-        preferredStyle: preferredStyle || 'Modern Luxury',
-        styleId
+    if (userRole === 'designer') {
+      if (!city || !styleSpecialty || !experience || !startingRate) {
+        return res.status(400).json({ success: false, message: 'Missing designer profile parameters.' });
       }
-    });
+
+      // Generate base designer code from name
+      let designerCode = name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+
+      // Check if designer code exists, append random number if needed
+      const [existingCodes] = await pool.query('SELECT id FROM designer_profiles WHERE designer_code = ?', [designerCode]);
+      if (existingCodes.length > 0) {
+        designerCode = `${designerCode}-${Math.floor(Math.random() * 1000)}`;
+      }
+
+      // Default avatar URLs
+      const avatars = [
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
+        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80'
+      ];
+      const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+
+      // Start transaction
+      const connection = await pool.getConnection();
+      try {
+        await connection.beginTransaction();
+
+        // 1. Insert into users
+        const [userResult] = await connection.query(
+          'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+          [name, sanitizedEmail, hashedPassword, 'designer']
+        );
+        const userId = userResult.insertId;
+
+        // 2. Insert into designer_profiles
+        await connection.query(
+          `INSERT INTO designer_profiles 
+            (user_id, designer_code, role_title, avatar_url, city, style_specialty, rating, reviews_count, experience, starting_rate, bio) 
+           VALUES (?, ?, ?, ?, ?, ?, 5.0, 0, ?, ?, ?)`
+          ,
+          [
+            userId,
+            designerCode,
+            'Design Specialist',
+            randomAvatar,
+            city,
+            styleSpecialty,
+            experience,
+            Number(startingRate),
+            bio || ''
+          ]
+        );
+        
+        await connection.commit();
+
+        const token = generateToken({ id: userId, email: sanitizedEmail, role: 'designer', designerId: designerCode });
+
+        return res.status(201).json({
+          success: true,
+          token,
+          user: {
+            id: userId,
+            name,
+            email: sanitizedEmail,
+            role: 'designer',
+            designerId: designerCode,
+            details: {
+              id: designerCode,
+              name,
+              role: 'Design Specialist',
+              avatar: randomAvatar,
+              city,
+              style: styleSpecialty,
+              rating: 5.0,
+              reviewsCount: 0,
+              experience,
+              startingRate: Number(startingRate),
+              bio: bio || ''
+            }
+          }
+        });
+
+      } catch (err) {
+        await connection.rollback();
+        throw err;
+      } finally {
+        connection.release();
+      }
+
+    } else {
+      // Map style names to styles code id
+      const styleMap = {
+        'Japandi Minimalism': 'japandi',
+        'Modern Luxury': 'modern',
+        'Classic Parisian': 'parisian',
+        'Mid-Century Organic': 'midcentury'
+      };
+      const styleId = styleMap[preferredStyle] || 'modern';
+
+      // Insert user row
+      const [result] = await pool.query(
+        'INSERT INTO users (name, email, password, role, preferred_style, style_id) VALUES (?, ?, ?, ?, ?, ?)',
+        [name, sanitizedEmail, hashedPassword, 'client', preferredStyle || 'Modern Luxury', styleId]
+      );
+
+      const userId = result.insertId;
+
+      // Generate JWT
+      const token = generateToken({ id: userId, email: sanitizedEmail, role: 'client' });
+
+      return res.status(201).json({
+        success: true,
+        token,
+        user: {
+          id: userId,
+          name,
+          email: sanitizedEmail,
+          role: 'client',
+          preferredStyle: preferredStyle || 'Modern Luxury',
+          styleId
+        }
+      });
+    }
   } catch (error) {
     console.error('Registration failed:', error);
     return res.status(500).json({ success: false, message: 'Server error during profile creation.' });
