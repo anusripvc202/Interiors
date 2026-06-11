@@ -53,7 +53,7 @@ export default function ServicesPage() {
       <Services />
 
       {/* Interactive Budget Estimator Widget */}
-      <section className="estimator" style={{ padding: 'var(--section-pad) 0', background: 'var(--cream)' }}>
+      <section className="estimator" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-dark)' }}>
         <div className="container estimator__grid">
           <div>
             <p className="section-label">Interactive Tool</p>
@@ -61,7 +61,7 @@ export default function ServicesPage() {
             <p style={{ color: 'var(--stone)', lineHeight: '1.8', marginBottom: '2rem' }}>
               Plan your renovation budget transparently. Select your project parameters below to get an estimated cost for Premium and Ultra-Luxury fit-outs.
             </p>
-            <div style={{ background: 'var(--white)', padding: '2rem', border: '1px solid rgba(201, 169, 110, 0.25)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '2rem', border: '1px solid rgba(124, 58, 237, 0.25)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone)' }}>Select Space Type</label>
                 <select
@@ -91,7 +91,7 @@ export default function ServicesPage() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ background: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--gold)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--purple)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em' }}>Premium Tier Estimate</span>
               <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--charcoal)', margin: 0 }}>₹{premiumEstimate}</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--stone)', lineHeight: '1.6' }}>
@@ -99,7 +99,7 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div style={{ background: 'var(--charcoal)', color: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--gold-light)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ background: 'var(--bg-card-2)', color: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--teal)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em' }}>Ultra-Luxury Tier Estimate</span>
               <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--gold)', margin: 0 }}>₹{luxuryEstimate}</h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.6' }}>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="faq-section" style={{ padding: '6rem 0', background: 'var(--white)' }}>
+      <section className="faq-section" style={{ padding: '6rem 0', background: 'var(--bg-dark)' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span className="section-label" style={{ justifyContent: 'center' }}>Help Center</span>
@@ -128,10 +128,10 @@ export default function ServicesPage() {
                 <div 
                   key={index}
                   style={{
-                    border: '1px solid var(--cream-dark)',
+                    border: '1px solid var(--border)',
                     borderRadius: '6px',
                     overflow: 'hidden',
-                    background: 'var(--cream)',
+                    background: 'var(--bg-card)',
                     transition: 'all 0.3s'
                   }}
                 >

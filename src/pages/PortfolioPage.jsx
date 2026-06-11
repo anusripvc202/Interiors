@@ -155,11 +155,11 @@ export default function PortfolioPage() {
       <PageHero 
         title="Find Verified Designers" 
         subtitle="Compare expert stylists, view visual concepts, and schedule consultations." 
-        bgImage="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=85&auto=format&fit=crop" 
+        bgImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85&auto=format&fit=crop" 
       />
 
       {/* Directory Filter Bar Section */}
-      <section className="marketplace-directory" style={{ padding: '4rem 0 6rem', background: 'var(--cream)' }}>
+      <section className="marketplace-directory" style={{ padding: '4rem 0 6rem', background: 'var(--bg-dark)' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
           
           {/* Style Finder Banner */}
@@ -408,7 +408,7 @@ export default function PortfolioPage() {
             ))}
 
             {filteredDesigners.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--white)', border: '1px solid var(--cream-dark)', borderRadius: '6px' }}>
+              <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '6px' }}>
                 <Compass size={40} style={{ color: 'var(--gold)', marginBottom: '1rem' }} />
                 <h3>No designers found matching these parameters</h3>
                 <p style={{ color: 'var(--stone)', marginTop: '0.5rem' }}>Try clearing your filters or choosing a different city.</p>
@@ -440,8 +440,8 @@ export default function PortfolioPage() {
           backdropFilter: 'blur(8px)'
         }}>
           <div style={{
-            background: 'var(--white)',
-            border: '1px solid rgba(201, 169, 110, 0.3)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             padding: '3rem 2.5rem',
             maxWidth: '550px',
@@ -482,8 +482,8 @@ export default function PortfolioPage() {
                         padding: '1.1rem 1.25rem',
                         cursor: 'pointer',
                         transition: 'all 0.2s',
-                        background: hoveredOpt === opt.key ? 'var(--white)' : 'var(--cream)',
-                        borderColor: hoveredOpt === opt.key ? 'var(--gold)' : 'var(--cream-dark)',
+                        background: hoveredOpt === opt.key ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-card-2)',
+                        borderColor: hoveredOpt === opt.key ? 'var(--purple-light)' : 'var(--border)',
                         boxShadow: hoveredOpt === opt.key ? '0 4px 12px rgba(201, 169, 110, 0.15)' : 'none',
                         color: 'var(--charcoal)'
                       }}
@@ -579,8 +579,8 @@ export default function PortfolioPage() {
           backdropFilter: 'blur(8px)'
         }}>
           <div style={{
-            background: 'var(--white)',
-            border: '1px solid rgba(201, 169, 110, 0.3)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
             borderRadius: '8px',
             padding: '3rem 2.5rem',
             maxWidth: '900px',

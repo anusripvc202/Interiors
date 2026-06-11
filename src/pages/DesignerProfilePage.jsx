@@ -160,19 +160,19 @@ export default function DesignerProfilePage() {
       </section>
 
       {/* Main Content Layout */}
-      <section style={{ padding: '4rem 0 6rem', background: 'var(--cream)' }}>
+      <section style={{ padding: '4rem 0 6rem', background: 'var(--bg-dark)' }}>
         <div className="container planner__grid-layout">
           
           {/* LEFT COLUMN: ABOUT & DYNAMIC PACKAGES CATALOG */}
           <div>
             {/* About Card */}
-            <div style={{ background: 'var(--white)', padding: '2.5rem', borderRadius: '6px', border: '1px solid rgba(201, 169, 110, 0.2)', marginBottom: '2.5rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '6px', border: '1px solid var(--border)', marginBottom: '2.5rem' }}>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', margin: '0 0 1rem', color: 'var(--charcoal)' }}>About {designer.name}</h3>
               <p style={{ color: 'var(--stone)', fontSize: '0.95rem', lineHeight: '1.8', margin: 0 }}>
                 {designer.bio} Based in <strong>{designer.city}</strong>, I have over {designer.experience} of experience transforming ordinary living environments into custom residential projects. My design philosophy is built on structural layout balance, material authenticity, and details that reflect the owner's lifestyle.
               </p>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', borderTop: '1px solid var(--cream-dark)', marginTop: '2rem', paddingTop: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', borderTop: '1px solid var(--border)', marginTop: '2rem', paddingTop: '1.5rem' }}>
                 <div>
                   <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--stone-light)', fontWeight: 700, display: 'block', marginBottom: '0.25rem' }}>Rating</span>
                   <span style={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--charcoal)', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
@@ -191,7 +191,7 @@ export default function DesignerProfilePage() {
             </div>
 
             {/* Redesigned 3-Column Catalog Packages Section */}
-            <div style={{ background: 'var(--white)', padding: '2.5rem', borderRadius: '6px', border: '1px solid rgba(201, 169, 110, 0.2)', marginBottom: '2.5rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '6px', border: '1px solid var(--border)', marginBottom: '2.5rem' }}>
               <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
                 <span className="section-label" style={{ justifyContent: 'center' }}>Design Catalog</span>
                 <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: 'var(--charcoal)', margin: '0.5rem 0 0.25rem' }}>Choose Your Design Package</h3>
@@ -206,12 +206,12 @@ export default function DesignerProfilePage() {
                       key={pkg.id}
                       onClick={() => handlePackageSelect(pkg.id)}
                       style={{
-                        border: isSelected ? '2px solid var(--gold)' : '1px solid var(--cream-dark)',
+                        border: isSelected ? '2px solid var(--purple-light)' : '1px solid var(--border)',
                         borderRadius: '6px',
                         padding: '1.5rem',
                         cursor: 'pointer',
                         transition: 'all 0.3s var(--ease)',
-                        background: isSelected ? 'rgba(248, 245, 240, 0.8)' : 'var(--white)',
+                        background: isSelected ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-card-2)',
                         boxShadow: isSelected ? '0 10px 25px rgba(201, 169, 110, 0.15)' : 'none',
                         display: 'flex',
                         flexDirection: 'column',
@@ -309,9 +309,9 @@ export default function DesignerProfilePage() {
                           width: '100%', 
                           padding: '0.6rem', 
                           fontSize: '0.7rem', 
-                          background: isSelected ? 'var(--gold)' : 'transparent',
-                          color: isSelected ? 'var(--white)' : 'var(--gold)',
-                          border: '1px solid var(--gold)',
+                          background: isSelected ? 'var(--purple)' : 'transparent',
+                          color: isSelected ? 'var(--white)' : 'var(--purple-light)',
+                          border: '1px solid var(--purple)',
                           fontWeight: '600',
                           textTransform: 'uppercase',
                           letterSpacing: '0.08em',
@@ -328,7 +328,7 @@ export default function DesignerProfilePage() {
             </div>
 
             {/* Navigation Tabs (Portfolio / Reviews) */}
-            <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--cream-dark)', paddingBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
               <button 
                 onClick={() => setActiveTab('portfolio')}
                 style={{ 
@@ -337,8 +337,8 @@ export default function DesignerProfilePage() {
                   fontSize: '0.8rem', 
                   textTransform: 'uppercase', 
                   letterSpacing: '0.1em',
-                  color: activeTab === 'portfolio' ? 'var(--gold-dark)' : 'var(--stone-light)',
-                  borderBottom: activeTab === 'portfolio' ? '2px solid var(--gold)' : 'none',
+                  color: activeTab === 'portfolio' ? 'var(--purple-light)' : 'var(--text-muted)',
+                  borderBottom: activeTab === 'portfolio' ? '2px solid var(--purple-light)' : 'none',
                   paddingBottom: '0.5rem'
                 }}
               >
@@ -352,8 +352,8 @@ export default function DesignerProfilePage() {
                   fontSize: '0.8rem', 
                   textTransform: 'uppercase', 
                   letterSpacing: '0.1em',
-                  color: activeTab === 'reviews' ? 'var(--gold-dark)' : 'var(--stone-light)',
-                  borderBottom: activeTab === 'reviews' ? '2px solid var(--gold)' : 'none',
+                  color: activeTab === 'reviews' ? 'var(--purple-light)' : 'var(--text-muted)',
+                  borderBottom: activeTab === 'reviews' ? '2px solid var(--purple-light)' : 'none',
                   paddingBottom: '0.5rem'
                 }}
               >
@@ -365,7 +365,7 @@ export default function DesignerProfilePage() {
             {activeTab === 'portfolio' && (
               <div className="portfolio-teaser__grid">
                 {designer.portfolio.map((work, idx) => (
-                  <div key={idx} style={{ background: 'var(--white)', border: '1px solid var(--cream-dark)', borderRadius: '6px', overflow: 'hidden' }}>
+                  <div key={idx} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '6px', overflow: 'hidden' }}>
                     <div style={{ height: '240px', overflow: 'hidden' }}>
                       <img src={work.image} alt={work.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
@@ -386,7 +386,7 @@ export default function DesignerProfilePage() {
                   { user: 'Rajesh Sharma', rating: 5, date: 'April 28, 2026', comment: 'Prompt, professional, and has an outstanding eye for textures. The renders provided were spot-on.' },
                   { user: 'Emily Cole', rating: 4, date: 'March 15, 2026', comment: 'Highly creative designs. Sophia helped us source beautiful vintage items that customized our living space.' }
                 ].map((review, idx) => (
-                  <div key={idx} style={{ background: 'var(--white)', padding: '1.5rem', borderRadius: '6px', border: '1px solid rgba(201, 169, 110, 0.15)' }}>
+                  <div key={idx} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '6px', border: '1px solid var(--border)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'center' }}>
                       <strong style={{ fontSize: '0.9rem', color: 'var(--charcoal)' }}>{review.user}</strong>
                       <span style={{ fontSize: '0.75rem', color: 'var(--stone-light)' }}>{review.date}</span>
@@ -405,8 +405,8 @@ export default function DesignerProfilePage() {
           <div className="planner__sidebar" ref={sidebarRef}>
             {isBooked ? (
               /* Receipt Confirmation Ticket */
-              <div className="planner__sticky-card planner__receipt-card text-center" style={{ borderTop: '6px solid var(--gold)', padding: '2.5rem 2rem' }}>
-                <div className="success-checkmark" style={{ width: '4rem', height: '4rem', background: 'rgba(201,169,110,0.1)', color: 'var(--gold-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', margin: '0 auto 1.5rem' }}>
+              <div className="planner__sticky-card planner__receipt-card text-center" style={{ borderTop: '6px solid var(--purple)', padding: '2.5rem 2rem' }}>
+                <div className="success-checkmark" style={{ width: '4rem', height: '4rem', background: 'rgba(124,58,237,0.1)', color: 'var(--purple-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', margin: '0 auto 1.5rem' }}>
                   <Check size={36} />
                 </div>
                 <span className="section-label" style={{ justifyContent: 'center' }}>Consultation Confirmed</span>
@@ -457,8 +457,8 @@ export default function DesignerProfilePage() {
               </div>
             ) : selectedPackageId ? (
               /* Booking Steps Card */
-              <div className="planner__sticky-card" style={{ background: 'var(--white)', border: '1px solid rgba(201,169,110,0.25)', borderRadius: '6px', padding: '2.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--cream-dark)', paddingBottom: '0.75rem', marginBottom: '1.5rem' }}>
+              <div className="planner__sticky-card" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '6px', padding: '2.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem', marginBottom: '1.5rem' }}>
                   <div>
                     <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--charcoal)', margin: 0 }}>
                       Book Schedule
@@ -484,12 +484,12 @@ export default function DesignerProfilePage() {
                             key={addOn.id}
                             onClick={() => handleAddOnToggle(addOn.id)}
                             style={{
-                              border: '1px solid var(--cream-dark)',
+                              border: '1px solid var(--border)',
                               borderRadius: '4px',
                               padding: '0.75rem',
                               cursor: 'pointer',
-                              background: isChecked ? 'rgba(201, 169, 110, 0.05)' : 'var(--white)',
-                              borderColor: isChecked ? 'var(--gold)' : 'var(--cream-dark)',
+                              background: isChecked ? 'rgba(124, 58, 237, 0.12)' : 'var(--bg-card-2)',
+                              borderColor: isChecked ? 'var(--purple-light)' : 'var(--border)',
                               transition: 'all 0.2s',
                               display: 'flex',
                               gap: '0.75rem',
@@ -533,14 +533,14 @@ export default function DesignerProfilePage() {
                           key={date.formatted}
                           onClick={() => setSelectedDate(date.formatted)}
                           style={{
-                            border: '1px solid var(--cream-dark)',
+                            border: '1px solid var(--border)',
                             borderRadius: '4px',
                             padding: '0.6rem 0.2rem',
                             textAlign: 'center',
                             cursor: 'pointer',
-                            background: selectedDate === date.formatted ? 'var(--gold)' : 'var(--white)',
+                            background: selectedDate === date.formatted ? 'var(--purple)' : 'transparent',
                             color: selectedDate === date.formatted ? 'var(--white)' : 'var(--charcoal)',
-                            borderColor: selectedDate === date.formatted ? 'var(--gold)' : 'var(--cream-dark)',
+                            borderColor: selectedDate === date.formatted ? 'var(--purple)' : 'var(--border)',
                             transition: 'all 0.3s'
                           }}
                         >
@@ -562,16 +562,16 @@ export default function DesignerProfilePage() {
                             key={time}
                             onClick={() => setSelectedTime(time)}
                             style={{
-                              border: '1px solid var(--cream-dark)',
+                              border: '1px solid var(--border)',
                               borderRadius: '4px',
                               padding: '0.6rem',
                               textAlign: 'center',
                               cursor: 'pointer',
                               fontSize: '0.8rem',
                               fontWeight: '500',
-                              background: selectedTime === time ? 'var(--gold)' : 'var(--white)',
+                              background: selectedTime === time ? 'var(--purple)' : 'transparent',
                               color: selectedTime === time ? 'var(--white)' : 'var(--charcoal)',
-                              borderColor: selectedTime === time ? 'var(--gold)' : 'var(--cream-dark)',
+                              borderColor: selectedTime === time ? 'var(--purple)' : 'var(--border)',
                               transition: 'all 0.3s'
                             }}
                           >
@@ -584,7 +584,7 @@ export default function DesignerProfilePage() {
 
                   {/* Step C: Contact Info */}
                   {selectedTime && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px dashed var(--cream-dark)', paddingTop: '1.25rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px dashed var(--border)', paddingTop: '1.25rem' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                         <label style={{ fontSize: '0.68rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone-light)' }}>Your Name</label>
                         <input 
@@ -593,7 +593,7 @@ export default function DesignerProfilePage() {
                           placeholder="e.g. John Doe"
                           value={clientInfo.name}
                           onChange={(e) => setClientInfo({ ...clientInfo, name: e.target.value })}
-                          style={{ padding: '0.7rem', border: '1px solid var(--cream-dark)', borderRadius: '4px', background: 'var(--cream)', outline: 'none', fontSize: '0.85rem' }}
+                          style={{ padding: '0.7rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--bg-card-2)', outline: 'none', fontSize: '0.85rem' }}
                         />
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -604,7 +604,7 @@ export default function DesignerProfilePage() {
                           placeholder="e.g. john@example.com"
                           value={clientInfo.email}
                           onChange={(e) => setClientInfo({ ...clientInfo, email: e.target.value })}
-                          style={{ padding: '0.7rem', border: '1px solid var(--cream-dark)', borderRadius: '4px', background: 'var(--cream)', outline: 'none', fontSize: '0.85rem' }}
+                          style={{ padding: '0.7rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--bg-card-2)', outline: 'none', fontSize: '0.85rem' }}
                         />
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -615,7 +615,7 @@ export default function DesignerProfilePage() {
                           placeholder="e.g. +91 98765 43210"
                           value={clientInfo.phone}
                           onChange={(e) => setClientInfo({ ...clientInfo, phone: e.target.value })}
-                          style={{ padding: '0.7rem', border: '1px solid var(--cream-dark)', borderRadius: '4px', background: 'var(--cream)', outline: 'none', fontSize: '0.85rem' }}
+                          style={{ padding: '0.7rem', border: '1px solid var(--border)', borderRadius: '4px', background: 'var(--bg-card-2)', outline: 'none', fontSize: '0.85rem' }}
                         />
                       </div>
                     </div>
@@ -636,7 +636,7 @@ export default function DesignerProfilePage() {
               </div>
             ) : (
               /* Prompt to select package */
-              <div className="planner__sticky-card text-center" style={{ background: 'var(--white)', border: '1px dashed rgba(201,169,110,0.3)', borderRadius: '6px', padding: '3rem 2rem' }}>
+              <div className="planner__sticky-card text-center" style={{ background: 'var(--bg-card)', border: '1px dashed var(--border)', borderRadius: '6px', padding: '3rem 2rem' }}>
                 <Compass size={36} style={{ color: 'var(--gold)', marginBottom: '1rem' }} />
                 <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--charcoal)', margin: '0 0 0.5rem' }}>Schedule Appointment</h4>
                 <p style={{ fontSize: '0.8rem', color: 'var(--stone)', lineHeight: '1.6', margin: 0 }}>

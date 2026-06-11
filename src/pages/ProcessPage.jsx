@@ -39,7 +39,7 @@ export default function ProcessPage() {
       <Process />
 
       {/* Interactive FAQ Accordion */}
-      <section className="faq" style={{ padding: 'var(--section-pad) 0', background: 'var(--cream)' }}>
+      <section className="faq" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-dark)' }}>
         <div className="container design-accordion__grid">
           <div>
             <p className="section-label">Common Queries</p>
@@ -50,7 +50,7 @@ export default function ProcessPage() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqs.map((faq, idx) => (
-              <div key={faq.q} style={{ background: 'var(--white)', border: '1px solid rgba(201,169,110,0.25)', overflow: 'hidden' }}>
+              <div key={faq.q} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', overflow: 'hidden' }}>
                 <button
                   onClick={() => toggleFAQ(idx)}
                   style={{
