@@ -525,10 +525,32 @@ body::after {
 
 @media (max-width: 640px) {
   .portfolio-teaser__grid,
-  .milestones__grid,
-  .awards-showcase__grid {
+  .milestones__grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .awards-showcase__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+    padding: 0.5rem 0.25rem 1.5rem;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .awards-showcase__grid::-webkit-scrollbar {
+    display: none; /* Safari & Chrome */
+  }
+
+  .awards-showcase__grid .designer-hover-card {
+    flex: 0 0 85% !important;
+    scroll-snap-align: center;
   }
 }
 
