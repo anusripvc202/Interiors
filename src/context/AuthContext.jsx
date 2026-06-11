@@ -285,7 +285,8 @@ export function AuthProvider({ children }) {
           styleSpecialty: designerData.styleSpecialty,
           experience: designerData.experience,
           startingRate: designerData.startingRate,
-          bio: designerData.bio
+          bio: designerData.bio,
+          avatarUrl: designerData.avatarUrl
         })
       });
       const data = await res.json();
@@ -334,7 +335,7 @@ export function AuthProvider({ children }) {
           id: designerCode,
           name,
           role: 'Design Specialist',
-          avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+          avatar: designerData.avatarUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
           city: designerData.city || 'Bangalore',
           style: designerData.styleSpecialty || 'Japandi Minimalism',
           rating: 5.0,

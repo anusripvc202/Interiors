@@ -1,4 +1,5 @@
 import pool from '../config/db.js';
+import { sendBookingNotificationEmail } from '../utils/emailHelper.js';
 
 // Helper to format database booking row to frontend schema
 function formatBooking(row) {
@@ -73,13 +74,19 @@ export async function createBooking(req, res) {
   }
 
   try {
-    // Look up designer user ID based on designer code (e.g. 'aria-chen' -> user_id = 2)
-    const [profiles] = await pool.query('SELECT user_id FROM designer_profiles WHERE designer_code = ?', [designerId]);
-    if (profiles.length === 0) {
+    // Look up designer user and profile details based on designer code (e.g. 'aria-chen')
+    const [designerInfo] = await pool.query(`
+      SELECT dp.user_id, u.email, u.name as designer_name
+      FROM designer_profiles dp
+      JOIN users u ON dp.user_id = u.id
+      WHERE dp.designer_code = ?
+    `, [designerId]);
+
+    if (designerInfo.length === 0) {
       return res.status(404).json({ success: false, message: `Designer with code "${designerId}" not found.` });
     }
 
-    const designerUserId = profiles[0].user_id;
+    const { user_id: designerUserId, email: designerEmail, designer_name: designerName } = designerInfo[0];
 
     const query = `
       INSERT INTO bookings (client_name, client_email, client_phone, client_notes, space_type, designer_id, date, time, status, cost)
@@ -96,6 +103,20 @@ export async function createBooking(req, res) {
       time,
       cost
     ]);
+
+    // Send email notification to designer (does not block client response)
+    sendBookingNotificationEmail({
+      clientName,
+      clientEmail,
+      clientPhone,
+      clientNotes,
+      spaceType,
+      date,
+      time,
+      cost
+    }, designerEmail, designerName).catch(err => {
+      console.error('Designer email notification failed:', err);
+    });
 
     return res.status(201).json({
       success: true,

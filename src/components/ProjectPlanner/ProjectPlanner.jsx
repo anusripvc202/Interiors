@@ -27,11 +27,7 @@ const tierOptions = [
   { id: 'luxury', label: 'Ultra-Luxury Tier', multiplier: 1.8, desc: 'Imported European materials, smart-home automation, bespoke carpentry, exclusive designer brands, and director-level supervision.' }
 ];
 
-const designers = [
-  { id: 'aria', name: 'Aria Chen', role: 'Design Director', specialty: 'Japandi Minimalism', rating: '4.9', matchRate: '98%', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&q=80', bio: 'Passionate about clean lines, sustainable timbers, and functional harmony.' },
-  { id: 'julian', name: 'Julian Mercer', role: 'Principal Architect', specialty: 'Modern Luxury & Parisian', rating: '5.0', matchRate: '96%', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80', bio: 'Specialist in custom residential estates and classical restorations.' },
-  { id: 'marcus', name: 'Marcus Sterling', role: 'Senior Stylist', specialty: 'Mid-Century & Commercial', rating: '4.8', matchRate: '93%', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80', bio: 'Focuses on integrating organic styling with active biophilic features.' }
-];
+
 
 // Helper to generate next 7 work days starting tomorrow
 const getAvailableDates = () => {
@@ -58,13 +54,13 @@ const getAvailableDates = () => {
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '03:30 PM', '05:00 PM'];
 
 export default function ProjectPlanner() {
-  const { user, addBooking } = useAuth();
+  const { user, addBooking, designersList } = useAuth();
   const [step, setStep] = useState(1);
   const [selectedSpaces, setSelectedSpaces] = useState([]);
   const [spaceSizes, setSpaceSizes] = useState({}); // spaceId -> sqft
   const [selectedStyle, setSelectedStyle] = useState('japandi');
   const [selectedTier, setSelectedTier] = useState('premium');
-  const [selectedDesigner, setSelectedDesigner] = useState('aria');
+  const [selectedDesigner, setSelectedDesigner] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   
@@ -74,6 +70,12 @@ export default function ProjectPlanner() {
     phone: '',
     notes: ''
   });
+
+  useEffect(() => {
+    if (designersList && designersList.length > 0 && !selectedDesigner) {
+      setSelectedDesigner(designersList[0].id);
+    }
+  }, [designersList, selectedDesigner]);
 
   useEffect(() => {
     if (user) {
@@ -168,17 +170,9 @@ export default function ProjectPlanner() {
     e.preventDefault();
     if (!clientInfo.name || !clientInfo.email || !clientInfo.phone) return;
 
-    // Save consultation to client profile
-    const designerNameMap = {
-      'aria': 'Aria Chen',
-      'julian': 'Julian Mercer',
-      'marcus': 'Marcus Sterling'
-    };
-    const designerIdMap = {
-      'aria': 'aria-chen',
-      'julian': 'julian-mercer',
-      'marcus': 'marcus-sterling'
-    };
+    const activeDesignerObj = (designersList || []).find(d => d.id === selectedDesigner);
+    const designerName = activeDesignerObj ? activeDesignerObj.name : 'Aria Chen';
+    const designerId = activeDesignerObj ? activeDesignerObj.id : 'aria-chen';
 
     const calculation = getCalculation();
 
@@ -188,8 +182,8 @@ export default function ProjectPlanner() {
       clientPhone: clientInfo.phone,
       clientNotes: clientInfo.notes,
       spaceType: selectedSpaces.map(spaceId => spaceOptions.find(s => s.id === spaceId)?.label).join(', '),
-      designerId: designerIdMap[selectedDesigner] || 'aria-chen',
-      designerName: designerNameMap[selectedDesigner] || 'Aria Chen',
+      designerId: designerId,
+      designerName: designerName,
       date: selectedDate,
       time: selectedTime,
       cost: `₹${calculation.total.toLocaleString('en-IN')}`
@@ -443,8 +437,13 @@ export default function ProjectPlanner() {
               </div>
 
               <div className="planner__designers-grid">
-                {designers.map(designer => {
+                {(designersList || []).map(designer => {
                   const isSelected = selectedDesigner === designer.id;
+                  // Dynamic match calculation based on selected style
+                  const activeStyleObj = styleOptions.find(s => s.id === selectedStyle);
+                  const isMatchingStyle = activeStyleObj && designer.style && designer.style.toLowerCase() === activeStyleObj.label.toLowerCase();
+                  const matchRate = isMatchingStyle ? '98%' : '90%';
+
                   return (
                     <div 
                       key={designer.id}
@@ -452,15 +451,15 @@ export default function ProjectPlanner() {
                       className={`planner__designer-card ${isSelected ? 'selected' : ''}`}
                     >
                       <div className="planner__designer-header-row">
-                        <img src={designer.image} alt={designer.name} className="planner__designer-avatar" />
+                        <img src={designer.avatar} alt={designer.name} className="planner__designer-avatar" />
                         <div className="planner__designer-meta">
-                          <span className="designer-match-tag"><Award size={12} /> {designer.matchRate} Match</span>
+                          <span className="designer-match-tag"><Award size={12} /> {matchRate} Match</span>
                           <h4>{designer.name}</h4>
-                          <span className="designer-role">{designer.role}</span>
+                          <span className="designer-role">{designer.role || 'Design Specialist'}</span>
                         </div>
                       </div>
                       <div className="planner__designer-body">
-                        <p className="designer-specialty"><strong>Specialty:</strong> {designer.specialty}</p>
+                        <p className="designer-specialty"><strong>Specialty:</strong> {designer.style}</p>
                         <p className="designer-bio">"{designer.bio}"</p>
                         <div className="designer-rating">
                           <span className="star">★</span> <span>{designer.rating} / 5.0 (Client Rating)</span>
@@ -662,7 +661,7 @@ export default function ProjectPlanner() {
                     <div className="summary-body">
                       <div className="summary-row">
                         <span>Lead:</span>
-                        <span>{designers.find(d => d.id === selectedDesigner)?.name}</span>
+                        <span>{(designersList || []).find(d => d.id === selectedDesigner)?.name || 'Aria Chen'}</span>
                       </div>
                     </div>
                   </div>
@@ -711,7 +710,7 @@ export default function ProjectPlanner() {
                   </div>
                   <div className="receipt__col">
                     <span className="label">Designer Assigned</span>
-                    <span className="val">{designers.find(d => d.id === selectedDesigner)?.name}</span>
+                    <span className="val">{(designersList || []).find(d => d.id === selectedDesigner)?.name || 'Aria Chen'}</span>
                   </div>
                   <div className="receipt__col">
                     <span className="label">Date & Time</span>

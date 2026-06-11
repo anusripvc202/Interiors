@@ -29,6 +29,9 @@ export default function LoginPage() {
   const [regExperience, setRegExperience] = useState('5 Years');
   const [regStartingRate, setRegStartingRate] = useState('15000');
   const [regBio, setRegBio] = useState('');
+  const [regAvatarUrl, setRegAvatarUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
@@ -50,6 +53,55 @@ export default function LoginPage() {
   const designerBookings = user && user.role === 'designer' && Array.isArray(bookings)
     ? bookings.filter(b => b.designerId === user.designerId)
     : [];
+
+  const handleImageFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setUploadError('Image size must be under 5MB.');
+      return;
+    }
+
+    setUploadError('');
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch('http://localhost:5000/api/auth/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.url) {
+          setRegAvatarUrl(data.url);
+          setIsUploading(false);
+          return;
+        }
+      }
+      
+      console.warn('Backend image upload failed or server offline. Using local base64 fallback.');
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setRegAvatarUrl(reader.result);
+        setIsUploading(false);
+      };
+      reader.readAsDataURL(file);
+
+    } catch (err) {
+      console.warn('Error uploading to backend, falling back to base64: ', err);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setRegAvatarUrl(reader.result);
+        setIsUploading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +137,8 @@ export default function LoginPage() {
         styleSpecialty: regStyleSpecialty,
         experience: regExperience,
         startingRate: Number(regStartingRate),
-        bio: regBio
+        bio: regBio,
+        avatarUrl: regAvatarUrl
       });
     } else {
       result = await signup(name, email, password, 'client', preferredStyle, {});
@@ -104,6 +157,7 @@ export default function LoginPage() {
       setEmail('');
       setPassword('');
       setRegBio('');
+      setRegAvatarUrl('');
       setIsSignUp(false);
     }
   };
@@ -371,6 +425,72 @@ export default function LoginPage() {
                           value={regStartingRate}
                           onChange={(e) => setRegStartingRate(e.target.value)}
                         />
+                      </div>
+                    </div>
+
+                     <div className="form-group">
+                      <label>Profile Photo</label>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '0.25rem' }}>
+                        <div style={{
+                          width: '64px',
+                          height: '64px',
+                          borderRadius: '50%',
+                          backgroundColor: 'var(--cream-light)',
+                          border: '2px dashed var(--cream-dark)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          overflow: 'hidden',
+                          flexShrink: 0
+                        }}>
+                          {regAvatarUrl ? (
+                            <img 
+                              src={regAvatarUrl} 
+                              alt="Preview" 
+                              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                            />
+                          ) : (
+                            <User size={24} style={{ color: 'var(--charcoal-light)' }} />
+                          )}
+                        </div>
+                        
+                        <div style={{ flexGrow: 1 }}>
+                          <label htmlFor="reg-avatar-file" style={{
+                            display: 'inline-block',
+                            padding: '0.5rem 1rem',
+                            backgroundColor: 'var(--cream-dark)',
+                            color: 'var(--charcoal)',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.85rem',
+                            fontWeight: '500',
+                            transition: 'background-color 0.2s',
+                            border: '1px solid transparent'
+                          }}
+                          onMouseOver={(e) => e.target.style.backgroundColor = '#e2d4c5'}
+                          onMouseOut={(e) => e.target.style.backgroundColor = 'var(--cream-dark)'}
+                          >
+                            Choose Photo
+                          </label>
+                          <input 
+                            type="file" 
+                            id="reg-avatar-file" 
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageFileChange}
+                          />
+                          <div style={{ fontSize: '0.75rem', color: 'var(--charcoal-light)', marginTop: '0.25rem' }}>
+                            {isUploading ? (
+                              <span style={{ color: 'var(--accent)' }}>Uploading photo...</span>
+                            ) : uploadError ? (
+                              <span style={{ color: 'red' }}>{uploadError}</span>
+                            ) : regAvatarUrl ? (
+                              <span style={{ color: 'green' }}>✓ Photo uploaded</span>
+                            ) : (
+                              <span>Upload profile photo (Max 5MB)</span>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
 

@@ -14,7 +14,7 @@ const generateToken = (payload) => {
 
 // 1. REGISTER CLIENT OR DESIGNER
 export async function register(req, res) {
-  const { name, email, password, role, preferredStyle, city, styleSpecialty, experience, startingRate, bio } = req.body;
+  const { name, email, password, role, preferredStyle, city, styleSpecialty, experience, startingRate, bio, avatarUrl } = req.body;
 
   if (!name || !email || !password) {
     return res.status(400).json({ success: false, message: 'Missing required registration parameters.' });
@@ -60,6 +60,7 @@ export async function register(req, res) {
         'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80'
       ];
       const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+      const chosenAvatar = avatarUrl && avatarUrl.trim() !== '' ? avatarUrl.trim() : randomAvatar;
 
       // Start transaction
       const connection = await pool.getConnection();
@@ -83,7 +84,7 @@ export async function register(req, res) {
             userId,
             designerCode,
             'Design Specialist',
-            randomAvatar,
+            chosenAvatar,
             city,
             styleSpecialty,
             experience,
@@ -109,7 +110,7 @@ export async function register(req, res) {
               id: designerCode,
               name,
               role: 'Design Specialist',
-              avatar: randomAvatar,
+              avatar: chosenAvatar,
               city,
               style: styleSpecialty,
               rating: 5.0,

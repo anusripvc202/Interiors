@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 
+import path from 'path';
+
 dotenv.config();
 
 const app = express();
@@ -18,6 +20,9 @@ app.use(cors({
 
 // Body parser middleware for JSON payloads
 app.use(express.json());
+
+// Serve static uploads folder
+app.use('/uploads', express.static(path.resolve('uploads')));
 
 // API Base check route
 app.get('/', (req, res) => {

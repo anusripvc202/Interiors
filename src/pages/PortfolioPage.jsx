@@ -202,6 +202,8 @@ export default function PortfolioPage() {
                   <option value="Bangalore">Bangalore</option>
                   <option value="Mumbai">Mumbai</option>
                   <option value="Delhi">Delhi</option>
+                  <option value="Jubilee Hills">Jubilee Hills</option>
+                  <option value="Banjara Hills">Banjara Hills</option>
                 </select>
               </div>
 
