@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { MapPin, Star, Compass, DollarSign, Award, Grid, ArrowRight, Check } from 'lucide-react';
 import { designersData } from '../data/designersData';
 import PageHero from '../components/PageHero/PageHero';
+import '../components/Portfolio/Portfolio.css';
 
 const quizQuestions = [
   {
