@@ -43,7 +43,7 @@ export default function ContactPage() {
       <ProjectPlanner />
 
       {/* Interactive Studio Branch Selector */}
-      <section className="locations-selector" style={{ padding: 'var(--section-pad) 0', background: 'var(--charcoal)', color: 'var(--white)' }}>
+      <section className="locations-selector" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card)', color: 'var(--white)' }}>
         <div className="container locations-selector__grid">
           <div>
             <p className="section-label" style={{ color: 'var(--gold)' }}>Our Studios</p>

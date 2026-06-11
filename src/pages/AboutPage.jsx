@@ -46,7 +46,7 @@ export default function AboutPage() {
       <About />
 
       {/* Interactive Milestones Timeline */}
-      <section className="milestones" ref={ref} style={{ padding: 'var(--section-pad) 0', background: 'var(--charcoal)', color: 'var(--white)' }}>
+      <section className="milestones" ref={ref} style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card)', color: 'var(--white)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <p className="section-label" style={{ color: 'var(--gold)' }}>Our Journey</p>
