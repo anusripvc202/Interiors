@@ -16,7 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, logout } = useAuth();
+  const { user, logout, isBackendOnline } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -64,6 +64,17 @@ export default function Navbar() {
 
         {/* CTA & Auth Profile */}
         <div className="navbar__actions">
+          {/* DB Connection Status Badge */}
+          <div 
+            className={`db-status-badge ${isBackendOnline ? 'db-status-badge--online' : 'db-status-badge--offline'}`}
+            title={isBackendOnline ? "Connected to Live MySQL Database" : "Using Local Storage Mock Data"}
+          >
+            <span className="db-status-badge__dot"></span>
+            <span className="db-status-badge__text">
+              {isBackendOnline ? "Live DB" : "Offline Mock"}
+            </span>
+          </div>
+
           {user && (
             <div className="navbar__user-pill">
               <span className="navbar__user-name">Hi, {user.name ? user.name.split(' ')[0] : 'User'} ✦</span>
