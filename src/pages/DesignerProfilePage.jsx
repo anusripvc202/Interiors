@@ -4,7 +4,7 @@ import {
   MapPin, Star, Compass, DollarSign, Award, Grid, ArrowLeft, 
   Check, Calendar as CalendarIcon, Clock, Mail, Phone, ChevronRight 
 } from 'lucide-react';
-import { designersData } from '../data/designersData';
+import { useAuth } from '../hooks/useAuth';
 import PageHero from '../components/PageHero/PageHero';
 
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '03:30 PM', '05:00 PM'];
@@ -38,8 +38,9 @@ const getAvailableDates = () => {
 };
 
 export default function DesignerProfilePage() {
+  const { designersList } = useAuth();
   const { id } = useParams();
-  const designer = designersData.find(d => d.id === id);
+  const designer = designersList.find(d => d.id === id);
 
   const [selectedPackageId, setSelectedPackageId] = useState('');
   const [selectedAddOns, setSelectedAddOns] = useState([]);

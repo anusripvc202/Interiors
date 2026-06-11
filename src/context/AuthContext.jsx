@@ -51,7 +51,22 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const initializeAuth = async () => {
       const token = localStorage.getItem('luxe_token');
-      
+      let backendOnline = false;
+
+      // Proactively check database connection and load designer directory
+      try {
+        const dRes = await fetch(`${API_URL}/auth/designers`);
+        const dData = await dRes.json();
+        if (dRes.ok && dData.success) {
+          setDesignersList(dData.designers);
+          setIsBackendOnline(true);
+          backendOnline = true;
+        }
+      } catch (error) {
+        console.warn('⚠️ LuxeAPI offline. Falling back to offline client mock mode.');
+        setIsBackendOnline(false);
+      }
+
       if (token) {
         try {
           // Attempt connection to Express API
@@ -63,6 +78,7 @@ export function AuthProvider({ children }) {
           if (res.ok && data.success) {
             setUser(data.user);
             setIsBackendOnline(true);
+            backendOnline = true;
             
             // Load bookings from API
             const bookingPath = data.user.role === 'designer' ? 'bookings/designer' : 'bookings/client';
@@ -76,12 +92,23 @@ export function AuthProvider({ children }) {
             return;
           }
         } catch (error) {
-          console.warn('⚠️ LuxeAPI offline. Falling back to offline client mock mode.');
+          // Handled by dRes catch block
         }
       }
 
       // FALLBACK TO LOCAL STORAGE MOCK
-      setIsBackendOnline(false);
+      if (!backendOnline) {
+        setIsBackendOnline(false);
+        try {
+          const savedDesigners = localStorage.getItem('luxe_designers');
+          if (savedDesigners) {
+            setDesignersList(JSON.parse(savedDesigners));
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
       try {
         const savedUser = localStorage.getItem('luxe_user');
         if (savedUser) {
@@ -126,15 +153,6 @@ export function AuthProvider({ children }) {
       } catch (e) {
         console.error(e);
       }
-
-      try {
-        const savedDesigners = localStorage.getItem('luxe_designers');
-        if (savedDesigners) {
-          setDesignersList(JSON.parse(savedDesigners));
-        }
-      } catch (e) {
-        console.error(e);
-      }
     };
 
     initializeAuth();
@@ -165,6 +183,18 @@ export function AuthProvider({ children }) {
         if (bRes.ok && bData.success) {
           setBookings(bData.bookings);
         }
+
+        // Fetch designers list to keep UI in sync
+        try {
+          const dRes = await fetch(`${API_URL}/auth/designers`);
+          const dData = await dRes.json();
+          if (dRes.ok && dData.success) {
+            setDesignersList(dData.designers);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+
         return { success: true };
       } else {
         return { success: false, message: data.message || 'Login failed.' };
@@ -265,6 +295,18 @@ export function AuthProvider({ children }) {
         setUser(data.user);
         setBookings([]); // New user starts with no bookings
         setIsBackendOnline(true);
+
+        // Fetch designers list to keep UI in sync
+        try {
+          const dRes = await fetch(`${API_URL}/auth/designers`);
+          const dData = await dRes.json();
+          if (dRes.ok && dData.success) {
+            setDesignersList(dData.designers);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+
         return { success: true };
       } else {
         return { success: false, message: data.message || 'Registration failed.' };

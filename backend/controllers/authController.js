@@ -313,3 +313,103 @@ export async function updateDesignerProfile(req, res) {
     return res.status(500).json({ success: false, message: 'Server error updating designer details.' });
   }
 }
+
+// 5. GET ALL DESIGNERS (public directory catalog)
+export async function getAllDesigners(req, res) {
+  try {
+    const query = `
+      SELECT dp.*, u.name, u.email
+      FROM designer_profiles dp
+      JOIN users u ON dp.user_id = u.id
+      ORDER BY dp.rating DESC
+    `;
+    const [rows] = await pool.query(query);
+
+    // Default portfolio configurations based on style specialties
+    const defaultPortfolios = {
+      'Japandi Minimalism': [
+        { title: 'The Zen Lounge', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80' },
+        { title: 'Oak & Clay Kitchen', image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80' },
+        { title: 'Japandi Bedroom Retreat', image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80' }
+      ],
+      'Modern Luxury': [
+        { title: 'The Marble Penthouse', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80' },
+        { title: 'Sleek Executive Office', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' },
+        { title: 'Golden Accents Kitchen', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80' }
+      ],
+      'Classic Parisian': [
+        { title: 'Haussmann Salon', image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80' },
+        { title: 'Gilded Dining Parlour', image: 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?w=800&q=80' },
+        { title: 'Ornate Boudoir', image: 'https://images.unsplash.com/photo-1505693395321-883724634266?w=800&q=80' }
+      ],
+      'Mid-Century Organic': [
+        { title: 'Walnut Haven Living Room', image: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80' },
+        { title: 'Teak Sideboard Dining Space', image: 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?w=800&q=80' },
+        { title: 'Biophilic Sunroom Sanctuary', image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80' }
+      ]
+    };
+
+    const formatted = rows.map(profile => {
+      const style = profile.style_specialty || 'Japandi Minimalism';
+      const rate = Number(profile.starting_rate) || 15000;
+      
+      const styleMap = {
+        'Japandi Minimalism': 'japandi',
+        'Modern Luxury': 'modern',
+        'Classic Parisian': 'parisian',
+        'Mid-Century Organic': 'midcentury'
+      };
+
+      const portfolio = defaultPortfolios[style] || defaultPortfolios['Japandi Minimalism'];
+
+      return {
+        id: profile.designer_code,
+        name: profile.name,
+        email: profile.email,
+        role: profile.role_title,
+        avatar: profile.avatar_url,
+        city: profile.city,
+        style: style,
+        styleId: styleMap[style] || 'japandi',
+        rating: Number(profile.rating),
+        reviewsCount: Number(profile.reviews_count),
+        experience: profile.experience,
+        startingRate: rate,
+        bio: profile.bio,
+        portfolio: portfolio,
+        packages: [
+          { 
+            id: 'essential', 
+            name: 'Essential Plan', 
+            price: rate, 
+            hours: 4, 
+            designers: 1, 
+            desc: 'Concept layout sketch, 4-hour design consultation, physical paint & materials palette.' 
+          },
+          { 
+            id: 'premium', 
+            name: 'Premium Plan', 
+            price: Math.round(rate * 1.8), 
+            hours: 8, 
+            designers: 1, 
+            popular: true, 
+            desc: 'Essential plan benefits plus photorealistic 3D room renders and purchase specification sheet.' 
+          },
+          { 
+            id: 'luxury', 
+            name: 'Luxury Plan', 
+            price: Math.round(rate * 3.0), 
+            hours: 12, 
+            designers: 2, 
+            desc: 'Premium plan benefits plus turnkey execution drawings, automation design consultation, and director review.' 
+          }
+        ]
+      };
+    });
+
+    return res.status(200).json({ success: true, designers: formatted });
+  } catch (error) {
+    console.error('Fetch designers catalog failed:', error);
+    return res.status(500).json({ success: false, message: 'Server error retrieving designers catalog.' });
+  }
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { MapPin, Star, Compass, DollarSign, Award, Grid, ArrowRight, Check } from 'lucide-react';
-import { designersData } from '../data/designersData';
+import { useAuth } from '../hooks/useAuth';
 import PageHero from '../components/PageHero/PageHero';
 import '../components/Portfolio/Portfolio.css';
 
@@ -39,6 +39,7 @@ const quizQuestions = [
 ];
 
 export default function PortfolioPage() {
+  const { designersList } = useAuth();
   const location = useLocation();
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
@@ -103,7 +104,7 @@ export default function PortfolioPage() {
 
   // Filter and Sort logic
   const getFilteredDesigners = () => {
-    let list = [...designersData];
+    let list = [...designersList];
 
     if (selectedCity) {
       list = list.filter(d => d.city.toLowerCase() === selectedCity.toLowerCase());
@@ -612,7 +613,7 @@ export default function PortfolioPage() {
                   <tr style={{ borderBottom: '2px solid var(--cream-dark)' }}>
                     <th style={{ padding: '1rem', color: 'var(--stone-light)', fontSize: '0.75rem', textTransform: 'uppercase' }}>Criteria</th>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return (
                         <th key={id} style={{ padding: '1rem', minWidth: '180px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -631,28 +632,28 @@ export default function PortfolioPage() {
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Design Aesthetic</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--gold-dark)', fontWeight: 'bold' }}>{d?.style}</td>;
                     })}
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Experience</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>{d?.experience}</td>;
                     })}
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Location</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>{d?.city}</td>;
                     })}
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Client Rating</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return (
                         <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>
                           <span style={{ color: 'var(--gold)' }}>★</span> {d?.rating} ({d?.reviewsCount} reviews)
@@ -663,14 +664,14 @@ export default function PortfolioPage() {
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Starting Rate</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)', fontWeight: 'bold' }}>₹{d?.startingRate.toLocaleString('en-IN')}</td>;
                     })}
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Essential Plan</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       const p = d?.packages.find(pkg => pkg.id === 'essential');
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>₹{p?.price.toLocaleString('en-IN')} <span style={{ display: 'block', fontSize: '0.68rem', color: 'var(--stone-light)' }}>({p?.hours} hrs, {p?.designers} designer)</span></td>;
                     })}
@@ -678,7 +679,7 @@ export default function PortfolioPage() {
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Premium Plan</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       const p = d?.packages.find(pkg => pkg.id === 'premium');
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>₹{p?.price.toLocaleString('en-IN')} <span style={{ display: 'block', fontSize: '0.68rem', color: 'var(--stone-light)' }}>({p?.hours} hrs, {p?.designers} designers)</span></td>;
                     })}
@@ -686,7 +687,7 @@ export default function PortfolioPage() {
                   <tr style={{ borderBottom: '1px solid var(--cream-dark)' }}>
                     <td style={{ padding: '1rem', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--stone)' }}>Luxury Plan</td>
                     {comparedDesignerIds.map(id => {
-                      const d = designersData.find(designer => designer.id === id);
+                      const d = designersList.find(designer => designer.id === id);
                       const p = d?.packages.find(pkg => pkg.id === 'luxury');
                       return <td key={id} style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--charcoal)' }}>₹{p?.price.toLocaleString('en-IN')} <span style={{ display: 'block', fontSize: '0.68rem', color: 'var(--stone-light)' }}>({p?.hours} hrs, {p?.designers} designers)</span></td>;
                     })}
