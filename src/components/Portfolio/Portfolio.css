@@ -327,3 +327,13 @@
 @media (max-width: 480px) {
   .portfolio-thumbs-grid { grid-template-columns: 1fr; }
 }
+
+.calendar-day-hover:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+}
+
+.time-slot-hover:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+}
