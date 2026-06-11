@@ -340,12 +340,12 @@ export async function getAllDesigners(req, res) {
       ],
       'Classic Parisian': [
         { title: 'Haussmann Salon', image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80' },
-        { title: 'Gilded Dining Parlour', image: 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?w=800&q=80' },
-        { title: 'Ornate Boudoir', image: 'https://images.unsplash.com/photo-1505693395321-883724634266?w=800&q=80' }
+        { title: 'Gilded Dining Parlour', image: 'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=800&q=80' },
+        { title: 'Ornate Boudoir', image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800&q=80' }
       ],
       'Mid-Century Organic': [
         { title: 'Walnut Haven Living Room', image: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80' },
-        { title: 'Teak Sideboard Dining Space', image: 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?w=800&q=80' },
+        { title: 'Teak Sideboard Dining Space', image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80' },
         { title: 'Biophilic Sunroom Sanctuary', image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80' }
       ]
     };

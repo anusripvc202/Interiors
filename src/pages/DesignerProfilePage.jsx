@@ -116,7 +116,7 @@ export default function DesignerProfilePage() {
         position: 'relative', 
         height: '40vh', 
         minHeight: '320px', 
-        backgroundImage: `linear-gradient(to bottom, rgba(26, 24, 20, 0.4) 0%, rgba(26, 24, 20, 0.8) 100%), url(${designer.portfolio[0].image})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(26, 24, 20, 0.4) 0%, rgba(26, 24, 20, 0.8) 100%), url(${designer.portfolio?.[0]?.image || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80'})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
@@ -364,7 +364,7 @@ export default function DesignerProfilePage() {
             {/* TAB CONTENT: PORTFOLIO */}
             {activeTab === 'portfolio' && (
               <div className="portfolio-teaser__grid">
-                {designer.portfolio.map((work, idx) => (
+                {designer.portfolio?.map((work, idx) => (
                   <div key={idx} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '6px', overflow: 'hidden' }}>
                     <div style={{ height: '240px', overflow: 'hidden' }}>
                       <img src={work.image} alt={work.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

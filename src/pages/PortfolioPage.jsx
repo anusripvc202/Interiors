@@ -384,7 +384,7 @@ export default function PortfolioPage() {
                   <div>
                     <h4 style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--stone-light)', letterSpacing: '0.1em', margin: '0 0 0.75rem' }}>Sample Designs</h4>
                     <div className="portfolio-thumbs-grid">
-                      {designer.portfolio.map((work, idx) => (
+                      {designer.portfolio?.map((work, idx) => (
                         <div key={idx} style={{ position: 'relative', height: '160px', overflow: 'hidden', borderRadius: '4px' }} className="portfolio-thumb-card">
                           <img 
                             src={work.image} 

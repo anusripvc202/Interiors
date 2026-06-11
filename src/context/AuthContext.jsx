@@ -325,6 +325,33 @@ export function AuthProvider({ children }) {
         .replace(/[^a-z0-9\s]/g, '')
         .trim()
         .replace(/\s+/g, '-');
+
+      const defaultPortfolios = {
+        'Japandi Minimalism': [
+          { title: 'The Zen Lounge', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80' },
+          { title: 'Oak & Clay Kitchen', image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80' },
+          { title: 'Japandi Bedroom Retreat', image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80' }
+        ],
+        'Modern Luxury': [
+          { title: 'The Marble Penthouse', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80' },
+          { title: 'Sleek Executive Office', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' },
+          { title: 'Golden Accents Kitchen', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80' }
+        ],
+        'Classic Parisian': [
+          { title: 'Haussmann Salon', image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80' },
+          { title: 'Gilded Dining Parlour', image: 'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=800&q=80' },
+          { title: 'Ornate Boudoir', image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800&q=80' }
+        ],
+        'Mid-Century Organic': [
+          { title: 'Walnut Haven Living Room', image: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80' },
+          { title: 'Teak Sideboard Dining Space', image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80' },
+          { title: 'Biophilic Sunroom Sanctuary', image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80' }
+        ]
+      };
+      
+      const specialty = designerData.styleSpecialty || 'Japandi Minimalism';
+      const portfolio = defaultPortfolios[specialty] || defaultPortfolios['Japandi Minimalism'];
+      const startingRate = Number(designerData.startingRate) || 12000;
         
       const designerUser = {
         name,
@@ -337,17 +364,51 @@ export function AuthProvider({ children }) {
           role: 'Design Specialist',
           avatar: designerData.avatarUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
           city: designerData.city || 'Bangalore',
-          style: designerData.styleSpecialty || 'Japandi Minimalism',
+          style: specialty,
           rating: 5.0,
           reviewsCount: 0,
           experience: designerData.experience || '3 Years',
-          startingRate: Number(designerData.startingRate) || 12000,
-          bio: designerData.bio || ''
+          startingRate: startingRate,
+          bio: designerData.bio || '',
+          portfolio: portfolio,
+          packages: [
+            { 
+              id: 'essential', 
+              name: 'Essential Plan', 
+              price: startingRate, 
+              hours: 4, 
+              designers: 1, 
+              desc: 'Concept layout sketch, 4-hour design consultation, physical paint & materials palette.' 
+            },
+            { 
+              id: 'premium', 
+              name: 'Premium Plan', 
+              price: Math.round(startingRate * 1.8), 
+              hours: 8, 
+              designers: 1, 
+              popular: true, 
+              desc: 'Essential plan benefits plus photorealistic 3D room renders and purchase specification sheet.' 
+            },
+            { 
+              id: 'luxury', 
+              name: 'Luxury Plan', 
+              price: Math.round(startingRate * 3.0), 
+              hours: 12, 
+              designers: 2, 
+              desc: 'Premium plan benefits plus turnkey execution drawings, automation design consultation, and director review.' 
+            }
+          ]
         }
       };
       
       setUser(designerUser);
       localStorage.setItem('luxe_user', JSON.stringify(designerUser));
+
+      // Append new designer to state list & localstorage for offline directory
+      const updatedDesigners = [...designersList, designerUser.details];
+      setDesignersList(updatedDesigners);
+      localStorage.setItem('luxe_designers', JSON.stringify(updatedDesigners));
+      
       setIsBackendOnline(false);
       return { success: true };
     } else {
