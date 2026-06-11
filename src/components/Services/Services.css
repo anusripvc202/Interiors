@@ -1,12 +1,29 @@
+/* ===========================
+   SERVICES — COLORFUL REDESIGN
+   =========================== */
+
 .services {
   padding: var(--section-pad) 0;
-  background: var(--charcoal);
+  background: var(--bg-card);
   position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: -10%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 /* Scrolling banner */
 .services__banner {
-  background: var(--gold);
+  background: var(--grad-primary);
   padding: 0.85rem 0;
   overflow: hidden;
   margin-bottom: 0;
@@ -29,7 +46,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--charcoal);
+  color: rgba(255,255,255,0.9);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -38,6 +55,7 @@
 
 .services__banner-dot {
   font-size: 0.6rem;
+  opacity: 0.6;
 }
 
 /* Header */
@@ -52,14 +70,10 @@
   gap: 1.25rem;
 }
 
-.services__header .section-label { color: var(--gold); }
-.services__header .section-title { color: var(--white); }
-.services__header .section-title em { color: var(--gold); }
-
 .services__intro {
   font-size: 1rem;
   line-height: 1.8;
-  color: rgba(255,255,255,0.55);
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -67,19 +81,20 @@
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5px;
-  background: rgba(255,255,255,0.06);
+  gap: 1.5rem;
 }
 
 /* Card */
 .services__card {
   position: relative;
   padding: 2.5rem 2rem;
-  background: var(--charcoal-2);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: background 0.4s var(--ease), transform 0.4s var(--ease);
+  transition: all 0.4s var(--ease);
   overflow: hidden;
   cursor: pointer;
 }
@@ -91,13 +106,22 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--gold);
+  background: var(--grad-primary);
+  border-radius: 0 0 16px 16px;
   transition: width 0.5s var(--ease);
 }
 
+.services__card:nth-child(2)::before { background: var(--grad-warm); }
+.services__card:nth-child(3)::before { background: var(--grad-cool); }
+.services__card:nth-child(4)::before { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+.services__card:nth-child(5)::before { background: linear-gradient(135deg, var(--teal), var(--blue)); }
+.services__card:nth-child(6)::before { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+
 .services__card:hover {
-  background: #2e2a22;
-  transform: translateY(-4px);
+  background: rgba(124,58,237,0.07);
+  border-color: rgba(124,58,237,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(124,58,237,0.15);
 }
 
 .services__card:hover::before {
@@ -108,31 +132,40 @@
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: var(--gold);
-  color: var(--charcoal);
+  background: var(--grad-primary);
+  color: white;
   padding: 0.25rem 0.75rem;
+  border-radius: 100px;
 }
 
 .services__card-icon {
-  color: var(--gold);
   width: 52px;
   height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(201,169,110,0.1);
-  border: 1px solid rgba(201,169,110,0.2);
-  transition: background 0.3s, border-color 0.3s;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 12px;
+  transition: all 0.3s;
+  color: var(--purple-light);
 }
 
+.services__card:nth-child(2) .services__card-icon { background: rgba(236,72,153,0.12); border-color: rgba(236,72,153,0.25); color: var(--pink-light); }
+.services__card:nth-child(3) .services__card-icon { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.25); color: var(--teal-light); }
+.services__card:nth-child(4) .services__card-icon { background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.25); color: var(--orange-light); }
+.services__card:nth-child(5) .services__card-icon { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); color: var(--blue-light); }
+
 .services__card:hover .services__card-icon {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: var(--grad-primary);
+  border-color: transparent;
   color: var(--white);
+  transform: scale(1.1);
+  box-shadow: var(--glow-sm);
 }
 
 .services__card-title {
@@ -145,18 +178,22 @@
 .services__card-desc {
   font-size: 0.88rem;
   line-height: 1.75;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
   flex: 1;
 }
 
 .services__card-link {
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--gold);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-transform: uppercase;
   margin-top: 0.5rem;
   transition: letter-spacing 0.3s;
+  display: inline-block;
 }
 
 .services__card:hover .services__card-link {
@@ -174,7 +211,7 @@
 /* Values section */
 .services__values {
   margin-top: 6rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(124,58,237,0.12);
   padding-top: 5rem;
 }
 
@@ -184,10 +221,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.services__values-header .section-label {
-  color: var(--gold);
 }
 
 .services__values-title {
@@ -200,30 +233,45 @@
 
 .services__values-title em {
   font-style: italic;
-  color: var(--gold);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .services__values-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .services__value-card {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1.5rem;
-  background: var(--charcoal-2);
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  padding: 2rem 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  transition: all 0.3s var(--ease);
+}
+
+.services__value-card:hover {
+  border-color: rgba(124,58,237,0.3);
+  background: rgba(124,58,237,0.06);
+  transform: translateY(-4px);
 }
 
 .services__value-num {
   font-family: var(--font-serif);
   font-size: 2.5rem;
   font-weight: 600;
-  color: rgba(201, 169, 110, 0.15);
   line-height: 1;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.5;
 }
 
 .services__value-title {
@@ -236,13 +284,12 @@
 .services__value-desc {
   font-size: 0.88rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-muted);
 }
 
 @media (max-width: 900px) {
   .services__values-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
-

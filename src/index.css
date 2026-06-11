@@ -1,6 +1,8 @@
 /* ===========================
-   LUXE INTERIORS — GLOBAL CSS
+   LUXE INTERIORS — COLORFUL REDESIGN
    =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 *, *::before, *::after {
   margin: 0;
@@ -9,29 +11,59 @@
 }
 
 :root {
-  /* Colors */
-  --cream:       #F8F5F0;
-  --cream-dark:  #EFE9E0;
-  --gold:        #C9A96E;
-  --gold-light:  #E8D5B0;
-  --gold-dark:   #A8813E;
-  --charcoal:    #1A1814;
-  --charcoal-2:  #2C2820;
-  --stone:       #5C5650;
-  --stone-light: #9C9590;
-  --white:       #FFFFFF;
+  /* === COLORFUL PALETTE === */
+  --bg-dark:       #080B14;
+  --bg-card:       #0F1220;
+  --bg-card-2:     #131729;
+
+  /* Vibrant Accents */
+  --purple:        #7C3AED;
+  --purple-light:  #A855F7;
+  --blue:          #3B82F6;
+  --blue-light:    #60A5FA;
+  --pink:          #EC4899;
+  --pink-light:    #F472B6;
+  --orange:        #F97316;
+  --orange-light:  #FB923C;
+  --teal:          #14B8A6;
+  --teal-light:    #2DD4BF;
+  --yellow:        #EAB308;
+
+  /* Gradients */
+  --grad-primary:  linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #14B8A6 100%);
+  --grad-warm:     linear-gradient(135deg, #F97316 0%, #EC4899 50%, #7C3AED 100%);
+  --grad-cool:     linear-gradient(135deg, #3B82F6 0%, #14B8A6 100%);
+  --grad-text:     linear-gradient(135deg, #A855F7, #60A5FA, #2DD4BF);
+  --grad-hero:     linear-gradient(135deg, #7C3AED 0%, #EC4899 40%, #F97316 100%);
+  --grad-card:     linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
+
+  /* Text Colors */
+  --white:         #FFFFFF;
+  --text-muted:    rgba(255,255,255,0.55);
+  --text-sub:      rgba(255,255,255,0.75);
+
+  /* Borders */
+  --border:        rgba(255,255,255,0.08);
+  --border-color:  rgba(124,58,237,0.3);
 
   /* Typography */
-  --font-serif:  'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Outfit', system-ui, sans-serif;
+  --font-serif:    'Cormorant Garamond', Georgia, serif;
+  --font-sans:     'Outfit', system-ui, sans-serif;
 
   /* Spacing */
-  --section-pad: clamp(5rem, 10vw, 9rem);
-  --container:   1320px;
+  --section-pad:   clamp(5rem, 10vw, 9rem);
+  --container:     1320px;
 
   /* Transitions */
-  --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease:          cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Shadows */
+  --shadow-purple: 0 0 40px rgba(124,58,237,0.25);
+  --shadow-blue:   0 0 40px rgba(59,130,246,0.2);
+  --shadow-pink:   0 0 40px rgba(236,72,153,0.2);
+  --glow-sm:       0 0 20px rgba(124,58,237,0.4);
+  --glow-md:       0 0 40px rgba(124,58,237,0.3), 0 0 80px rgba(59,130,246,0.15);
 }
 
 html {
@@ -41,8 +73,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--cream);
-  color: var(--charcoal);
+  background-color: var(--bg-dark);
+  color: var(--white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -68,8 +100,40 @@ button {
    SCROLLBAR
    =========================== */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--charcoal); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--grad-primary);
+  border-radius: 3px;
+}
+
+/* ===========================
+   FLOATING ORBS (Global Background)
+   =========================== */
+body::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -20%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* ===========================
    UTILITIES
@@ -87,18 +151,24 @@ button {
   gap: 0.75rem;
   font-family: var(--font-sans);
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-label::before {
   content: '';
   display: block;
   width: 2.5rem;
-  height: 1px;
-  background: var(--gold);
+  height: 2px;
+  background: var(--grad-primary);
+  border-radius: 2px;
+  -webkit-text-fill-color: initial;
+  flex-shrink: 0;
 }
 
 .section-title {
@@ -106,41 +176,54 @@ button {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 400;
   line-height: 1.1;
-  color: var(--charcoal);
+  color: var(--white);
 }
 
 .section-title em {
   font-style: italic;
-  color: var(--gold);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ===========================
+   BUTTONS
+   =========================== */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2.25rem;
-  background: var(--gold);
+  background: var(--grad-primary);
   color: var(--white);
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.35s var(--ease);
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
+  box-shadow: var(--shadow-purple);
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--gold-dark);
-  transform: translateX(-100%);
-  transition: transform 0.4s var(--ease);
+  background: var(--grad-warm);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
 }
 
-.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.5);
+}
+
+.btn-primary:hover::before { opacity: 1; }
 .btn-primary span { position: relative; z-index: 1; }
 .btn-primary svg { position: relative; z-index: 1; transition: transform 0.3s var(--ease); }
 .btn-primary:hover svg { transform: translateX(5px); }
@@ -150,19 +233,24 @@ button {
   align-items: center;
   gap: 0.75rem;
   padding: 0.9rem 2.25rem;
-  border: 1px solid var(--gold);
-  color: var(--gold);
+  border: 1px solid rgba(124,58,237,0.5);
+  color: var(--white);
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.35s var(--ease);
+  border-radius: 6px;
+  background: rgba(124,58,237,0.08);
+  backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
-  background: var(--gold);
-  color: var(--white);
+  background: rgba(124,58,237,0.25);
+  border-color: var(--purple-light);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-sm);
 }
 
 /* ===========================
@@ -188,6 +276,27 @@ button {
   50%       { transform: translateY(-12px); }
 }
 
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124,58,237,0.4); }
+  50%       { box-shadow: 0 0 40px rgba(124,58,237,0.7), 0 0 60px rgba(59,130,246,0.3); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
 .anim-fade-up {
   opacity: 0;
   transform: translateY(40px);
@@ -203,6 +312,39 @@ button {
 .anim-delay-2 { transition-delay: 0.3s; }
 .anim-delay-3 { transition-delay: 0.45s; }
 .anim-delay-4 { transition-delay: 0.6s; }
+
+/* ===========================
+   GLASS CARD UTILITY
+   =========================== */
+.glass-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+.glass-card:hover {
+  border-color: rgba(124,58,237,0.3);
+  background: rgba(124,58,237,0.05);
+}
+
+/* ===========================
+   GRADIENT TEXT UTILITY
+   =========================== */
+.gradient-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: var(--grad-warm);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* ===========================
    RESPONSIVE PAGE GRIDS
@@ -294,11 +436,12 @@ button {
    HOME SEARCH WIDGET
    =========================== */
 .home__search-form {
-  background: var(--white);
+  background: rgba(255,255,255,0.04);
   padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(201, 169, 110, 0.3);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(124,58,237,0.25);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), var(--shadow-purple);
+  backdrop-filter: blur(20px);
   display: flex;
   gap: 1.5rem;
   width: 100%;
@@ -318,7 +461,7 @@ button {
 .home__search-form .search-divider {
   width: 1px;
   height: 35px;
-  background: var(--cream-dark);
+  background: rgba(124,58,237,0.3);
   display: block;
 }
 
@@ -326,13 +469,24 @@ button {
   padding: 1rem 2rem;
   border: none;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  background: var(--grad-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s var(--ease);
+}
+
+.home__search-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-sm);
 }
 
 @media (max-width: 768px) {
@@ -378,5 +532,3 @@ button {
     gap: 1.5rem;
   }
 }
-
-
