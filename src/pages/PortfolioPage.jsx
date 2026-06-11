@@ -153,9 +153,11 @@ export default function PortfolioPage() {
   return (
     <div>
       <PageHero 
-        title="Find Verified Designers" 
+        title={<>Find Verified <em>Designers</em></>} 
         subtitle="Compare expert stylists, view visual concepts, and schedule consultations." 
         bgImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85&auto=format&fit=crop" 
+        theme="portfolio"
+        breadcrumb="Find Designers"
       />
 
       {/* Directory Filter Bar Section */}

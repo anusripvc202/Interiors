@@ -159,3 +159,82 @@
   from { transform: scale(1.06); }
   to   { transform: scale(1); }
 }
+
+/* ===========================
+   PAGE HERO THEME MODIFIERS
+   =========================== */
+
+/* About Page - Sunset Magenta Theme */
+.page-hero--about::before {
+  background: radial-gradient(circle, rgba(236,72,153,0.2) 0%, rgba(249,115,22,0.08) 40%, transparent 70%);
+}
+.page-hero--about::after {
+  background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, rgba(236,72,153,0.1) 40%, transparent 70%);
+}
+.page-hero--about .page-hero__title em {
+  background: var(--grad-warm);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Services Page - Cool Teal Theme */
+.page-hero--services::before {
+  background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(20,184,166,0.1) 40%, transparent 70%);
+}
+.page-hero--services::after {
+  background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(59,130,246,0.08) 40%, transparent 70%);
+}
+.page-hero--services .page-hero__title em {
+  background: var(--grad-cool);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Process Page - Creative Violet Theme */
+.page-hero--process::before {
+  background: radial-gradient(circle, rgba(124,58,237,0.25) 0%, rgba(236,72,153,0.1) 40%, transparent 70%);
+}
+.page-hero--process::after {
+  background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(124,58,237,0.08) 40%, transparent 70%);
+}
+.page-hero--process .page-hero__title em {
+  background: var(--grad-primary);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Portfolio Page - Gold Luxury Theme */
+.page-hero--portfolio::before {
+  background: radial-gradient(circle, rgba(234,179,8,0.2) 0%, rgba(249,115,22,0.08) 40%, transparent 70%);
+}
+.page-hero--portfolio::after {
+  background: radial-gradient(circle, rgba(249,115,22,0.18) 0%, rgba(234,179,8,0.08) 40%, transparent 70%);
+}
+.page-hero--portfolio .page-hero__title em {
+  background: linear-gradient(135deg, #F97316 0%, #EAB308 50%, #FB923C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Contact Page - Emerald Biophilic Theme */
+.page-hero--contact::before {
+  background: radial-gradient(circle, rgba(20,184,166,0.25) 0%, rgba(234,179,8,0.08) 40%, transparent 70%);
+}
+.page-hero--contact::after {
+  background: radial-gradient(circle, rgba(234,179,8,0.18) 0%, rgba(20,184,166,0.08) 40%, transparent 70%);
+}
+.page-hero--contact .page-hero__title em {
+  background: linear-gradient(135deg, #2DD4BF 0%, #EAB308 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

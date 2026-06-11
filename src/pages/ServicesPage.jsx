@@ -46,9 +46,11 @@ export default function ServicesPage() {
   return (
     <div>
       <PageHero 
-        title="Our Design Services" 
+        title={<>Our Design <em>Services</em></>} 
         subtitle="From turnkey management to custom lighting blueprints." 
         bgImage="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=85&auto=format&fit=crop" 
+        theme="services"
+        breadcrumb="Services"
       />
       <Services />
 

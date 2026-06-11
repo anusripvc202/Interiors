@@ -37,9 +37,11 @@ export default function AboutPage() {
   return (
     <div>
       <PageHero 
-        title="About Our Studio" 
+        title={<>Our Curation <em>Story</em></>} 
         subtitle="Crafting bespoke, award-winning interiors since 2010." 
         bgImage="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1600&q=85&auto=format&fit=crop" 
+        theme="about"
+        breadcrumb="About Us"
       />
       <About />
 

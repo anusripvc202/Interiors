@@ -32,9 +32,11 @@ export default function ProcessPage() {
   return (
     <div>
       <PageHero 
-        title="Our Design Process" 
+        title={<>The Design <em>Process</em></>} 
         subtitle="A structured journey ensuring complete transparency and premium quality." 
         bgImage="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=1600&q=85&auto=format&fit=crop" 
+        theme="process"
+        breadcrumb="Process"
       />
       <Process />
 

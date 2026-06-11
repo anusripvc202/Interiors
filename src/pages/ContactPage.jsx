@@ -34,9 +34,11 @@ export default function ContactPage() {
   return (
     <div>
       <PageHero 
-        title="Begin Your Journey" 
+        title={<>Begin Your <em>Transformation</em></>} 
         subtitle="Visit our national studios or book a private consultation." 
         bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop" 
+        theme="contact"
+        breadcrumb="Contact"
       />
       <ProjectPlanner />
 
