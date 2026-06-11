@@ -280,7 +280,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Designers Directory Grid */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div className="portfolio__designers-list" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {filteredDesigners.map(designer => (
               <div 
                 key={designer.id}

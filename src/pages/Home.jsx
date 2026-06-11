@@ -208,7 +208,7 @@ export default function Home() {
           </div>
 
           <div className="awards-showcase__grid">
-            {designersData.map((designer) => (
+            {designersData.slice(0, 5).map((designer) => (
               <div 
                 key={designer.id}
                 style={{ 
