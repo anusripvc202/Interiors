@@ -1,9 +1,9 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { designersData } from '../data/designersData';
+import { AuthContext } from './AuthContextCore';
 
-export const AuthContext = createContext(null);
+const API_URL = 'http://localhost:5000/api';
 
-// Default mock bookings for Eleanor Vance (client@luxe.com)
 const DEFAULT_CLIENT_BOOKINGS = [
   {
     id: 'booking-mock-1',
@@ -31,123 +31,155 @@ const DEFAULT_CLIENT_BOOKINGS = [
   }
 ];
 
-// Default mock bookings for designers
-const DEFAULT_DESIGNER_BOOKINGS = [
-  {
-    id: 'booking-mock-1', // Shared with Eleanor Vance
-    clientEmail: 'client@luxe.com',
-    clientName: 'Eleanor Vance',
-    spaceType: 'Living Room',
-    designerId: 'aria-chen',
-    designerName: 'Aria Chen',
-    date: 'Jun 18, 2026',
-    time: '02:00 PM',
-    status: 'Scheduled',
-    cost: '₹4,32,000'
-  },
-  {
-    id: 'booking-mock-3',
-    clientEmail: 'kabir@outlook.com',
-    clientName: 'Kabir Malhotra',
-    spaceType: 'Bedroom Sanctuary',
-    designerId: 'aria-chen',
-    designerName: 'Aria Chen',
-    date: 'Jun 20, 2026',
-    time: '03:30 PM',
-    status: 'Scheduled',
-    cost: '₹3,00,000'
-  },
-  {
-    id: 'booking-mock-4',
-    clientEmail: 'priya@gmail.com',
-    clientName: 'Priya Sharma',
-    spaceType: 'Full Residence',
-    designerId: 'julian-mercer',
-    designerName: 'Julian Mercer',
-    date: 'Jun 22, 2026',
-    time: '10:00 AM',
-    status: 'Scheduled',
-    cost: '₹21,60,000'
-  }
-];
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [registeredClients, setRegisteredClients] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [designersList, setDesignersList] = useState(designersData);
+  const [isBackendOnline, setIsBackendOnline] = useState(false);
 
-  // Load state from localStorage on mount
+  // Helper to get Auth headers
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem('luxe_token');
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : ''
+    };
+  };
+
+  // Synchronize and initialize state
   useEffect(() => {
-    try {
-      const savedUser = localStorage.getItem('luxe_user');
-      if (savedUser) {
-        const parsedUser = JSON.parse(savedUser);
-        if (parsedUser && parsedUser.email && parsedUser.role) {
-          setUser(parsedUser);
-        } else {
-          localStorage.removeItem('luxe_user');
+    const initializeAuth = async () => {
+      const token = localStorage.getItem('luxe_token');
+      
+      if (token) {
+        try {
+          // Attempt connection to Express API
+          const res = await fetch(`${API_URL}/auth/me`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            setUser(data.user);
+            setIsBackendOnline(true);
+            
+            // Load bookings from API
+            const bookingPath = data.user.role === 'designer' ? 'bookings/designer' : 'bookings/client';
+            const bRes = await fetch(`${API_URL}/${bookingPath}`, {
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const bData = await bRes.json();
+            if (bRes.ok && bData.success) {
+              setBookings(bData.bookings);
+            }
+            return;
+          }
+        } catch (error) {
+          console.warn('⚠️ LuxeAPI offline. Falling back to offline client mock mode.');
         }
       }
-    } catch (e) {
-      console.error('Failed to parse saved user:', e);
-      localStorage.removeItem('luxe_user');
-    }
 
-    try {
-      const savedClients = localStorage.getItem('luxe_clients');
-      if (savedClients) {
-        setRegisteredClients(JSON.parse(savedClients));
-      } else {
-        const initialClients = [
-          {
-            name: 'Eleanor Vance',
-            email: 'client@luxe.com',
-            password: 'password',
-            preferredStyle: 'Japandi Minimalism',
-            styleId: 'japandi'
+      // FALLBACK TO LOCAL STORAGE MOCK
+      setIsBackendOnline(false);
+      try {
+        const savedUser = localStorage.getItem('luxe_user');
+        if (savedUser) {
+          const parsedUser = JSON.parse(savedUser);
+          if (parsedUser && parsedUser.email && parsedUser.role) {
+            setUser(parsedUser);
           }
-        ];
-        setRegisteredClients(initialClients);
-        localStorage.setItem('luxe_clients', JSON.stringify(initialClients));
+        }
+      } catch (e) {
+        localStorage.removeItem('luxe_user');
       }
-    } catch (e) {
-      console.error('Failed to parse saved clients:', e);
-    }
 
-    try {
-      const savedBookings = localStorage.getItem('luxe_bookings');
-      if (savedBookings) {
-        setBookings(JSON.parse(savedBookings));
-      } else {
-        const initialBookings = [...DEFAULT_CLIENT_BOOKINGS, ...DEFAULT_DESIGNER_BOOKINGS.filter(b => b.id !== 'booking-mock-1')];
-        setBookings(initialBookings);
-        localStorage.setItem('luxe_bookings', JSON.stringify(initialBookings));
+      try {
+        const savedClients = localStorage.getItem('luxe_clients');
+        if (savedClients) {
+          setRegisteredClients(JSON.parse(savedClients));
+        } else {
+          const initialClients = [
+            {
+              name: 'Eleanor Vance',
+              email: 'client@luxe.com',
+              password: 'password',
+              preferredStyle: 'Japandi Minimalism',
+              styleId: 'japandi'
+            }
+          ];
+          setRegisteredClients(initialClients);
+          localStorage.setItem('luxe_clients', JSON.stringify(initialClients));
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error('Failed to parse saved bookings:', e);
-    }
 
-    try {
-      const savedDesigners = localStorage.getItem('luxe_designers');
-      if (savedDesigners) {
-        setDesignersList(JSON.parse(savedDesigners));
+      try {
+        const savedBookings = localStorage.getItem('luxe_bookings');
+        if (savedBookings) {
+          setBookings(JSON.parse(savedBookings));
+        } else {
+          setBookings(DEFAULT_CLIENT_BOOKINGS);
+          localStorage.setItem('luxe_bookings', JSON.stringify(DEFAULT_CLIENT_BOOKINGS));
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error('Failed to parse saved designers:', e);
-    }
+
+      try {
+        const savedDesigners = localStorage.getItem('luxe_designers');
+        if (savedDesigners) {
+          setDesignersList(JSON.parse(savedDesigners));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
-  // Login handler
-  const login = (email, password, role) => {
-    const sanitizedEmail = email.toLowerCase().trim();
+  // LOGIN
+  const login = async (email, password, role) => {
+    // 1. Attempt Backend Server Connection
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role })
+      });
+      const data = await res.json();
 
+      if (res.ok && data.success) {
+        localStorage.setItem('luxe_token', data.token);
+        setUser(data.user);
+        setIsBackendOnline(true);
+
+        // Fetch bookings for this user session
+        const bookingPath = data.user.role === 'designer' ? 'bookings/designer' : 'bookings/client';
+        const bRes = await fetch(`${API_URL}/${bookingPath}`, {
+          headers: { 'Authorization': `Bearer ${data.token}` }
+        });
+        const bData = await bRes.json();
+        if (bRes.ok && bData.success) {
+          setBookings(bData.bookings);
+        }
+        return { success: true };
+      } else {
+        return { success: false, message: data.message || 'Login failed.' };
+      }
+    } catch (error) {
+      console.warn('⚠️ Login Server Unreachable. Executing Offline Mock login.');
+    }
+
+    // 2. Offline Fallback Mock Validation
+    const sanitizedEmail = email.toLowerCase().trim();
     if (role === 'designer') {
-      // Find designer by matching the email prefix (e.g., aria -> aria-chen)
       const emailPrefix = sanitizedEmail.split('@')[0];
       const designer = designersList.find(d => 
         d.id.toLowerCase().includes(emailPrefix) || d.name.toLowerCase().includes(emailPrefix)
-      ) || designersList[0]; // Fallback to first designer for testing
+      ) || designersList[0];
 
       const designerUser = {
         name: designer.name,
@@ -159,13 +191,12 @@ export function AuthProvider({ children }) {
 
       setUser(designerUser);
       localStorage.setItem('luxe_user', JSON.stringify(designerUser));
+      setIsBackendOnline(false);
       return { success: true };
     } else {
-      // Find client in registered list
       const client = registeredClients.find(c => c.email.toLowerCase() === sanitizedEmail);
-
       if (client) {
-        if (client.password === password || password === 'password') { // allow 'password' as fallback
+        if (client.password === password || password === 'password') {
           const clientUser = {
             name: client.name,
             email: client.email,
@@ -175,12 +206,13 @@ export function AuthProvider({ children }) {
           };
           setUser(clientUser);
           localStorage.setItem('luxe_user', JSON.stringify(clientUser));
+          setIsBackendOnline(false);
           return { success: true };
         } else {
-          return { success: false, message: 'Invalid password' };
+          return { success: false, message: 'Invalid credentials.' };
         }
       } else {
-        // Auto-register client for easy demo testing
+        // Auto register client
         const newClient = {
           name: sanitizedEmail.split('@')[0].replace(/^\w/, c => c.toUpperCase()),
           email: sanitizedEmail,
@@ -201,13 +233,36 @@ export function AuthProvider({ children }) {
         };
         setUser(clientUser);
         localStorage.setItem('luxe_user', JSON.stringify(clientUser));
+        setIsBackendOnline(false);
         return { success: true };
       }
     }
   };
 
-  // Signup handler
-  const signup = (name, email, password, preferredStyle) => {
+  // SIGNUP
+  const signup = async (name, email, password, preferredStyle) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, preferredStyle })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        localStorage.setItem('luxe_token', data.token);
+        setUser(data.user);
+        setBookings([]); // New client starts with no bookings
+        setIsBackendOnline(true);
+        return { success: true };
+      } else {
+        return { success: false, message: data.message || 'Registration failed.' };
+      }
+    } catch (error) {
+      console.warn('⚠️ Signup Server Unreachable. Executing Offline Mock registration.');
+    }
+
+    // Offline signup logic
     const sanitizedEmail = email.toLowerCase().trim();
     const styleMap = {
       'Japandi Minimalism': 'japandi',
@@ -241,17 +296,38 @@ export function AuthProvider({ children }) {
     };
     setUser(clientUser);
     localStorage.setItem('luxe_user', JSON.stringify(clientUser));
+    setIsBackendOnline(false);
     return { success: true };
   };
 
-  // Logout handler
+  // LOGOUT
   const logout = () => {
     setUser(null);
+    setBookings([]);
     localStorage.removeItem('luxe_user');
+    localStorage.removeItem('luxe_token');
   };
 
-  // Add a new consultation booking
-  const addBooking = (bookingData) => {
+  // CREATE CONSULTATION BOOKING
+  const addBooking = async (bookingData) => {
+    if (isBackendOnline) {
+      try {
+        const res = await fetch(`${API_URL}/bookings`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(bookingData)
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setBookings(prev => [data.booking, ...prev]);
+          return data.booking;
+        }
+      } catch (error) {
+        console.error('Failed to save booking to server:', error);
+      }
+    }
+
+    // Offline mock fallback
     const newBooking = {
       id: `booking-${Date.now()}`,
       status: 'Scheduled',
@@ -263,8 +339,25 @@ export function AuthProvider({ children }) {
     return newBooking;
   };
 
-  // Cancel a booking (Client side)
-  const cancelBooking = (bookingId) => {
+  // CANCEL BOOKING (Client action)
+  const cancelBooking = async (bookingId) => {
+    if (isBackendOnline && !String(bookingId).startsWith('booking-')) {
+      try {
+        const res = await fetch(`${API_URL}/bookings/${bookingId}/cancel`, {
+          method: 'PUT',
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setBookings(prev => prev.map(b => b.id === bookingId ? { ...b, status: 'Cancelled' } : b));
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to sync cancellation with server:', error);
+      }
+    }
+
+    // Offline mock fallback
     const updatedBookings = bookings.map(b => 
       b.id === bookingId ? { ...b, status: 'Cancelled' } : b
     );
@@ -272,8 +365,26 @@ export function AuthProvider({ children }) {
     localStorage.setItem('luxe_bookings', JSON.stringify(updatedBookings));
   };
 
-  // Update booking status (Designer side)
-  const updateBookingStatus = (bookingId, status) => {
+  // UPDATE STATUS (Designer action)
+  const updateBookingStatus = async (bookingId, status) => {
+    if (isBackendOnline && !String(bookingId).startsWith('booking-')) {
+      try {
+        const res = await fetch(`${API_URL}/bookings/${bookingId}/status`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ status })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setBookings(prev => prev.map(b => b.id === bookingId ? { ...b, status } : b));
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to sync status update with server:', error);
+      }
+    }
+
+    // Offline mock fallback
     const updatedBookings = bookings.map(b => 
       b.id === bookingId ? { ...b, status } : b
     );
@@ -281,16 +392,44 @@ export function AuthProvider({ children }) {
     localStorage.setItem('luxe_bookings', JSON.stringify(updatedBookings));
   };
 
-  // Update designer bio & rates (Designer side profile editing)
-  const updateDesignerProfile = (designerId, updatedData) => {
+  // UPDATE DESIGNER PROFILE SETTINGS (Designer action)
+  const updateDesignerProfile = async (designerId, updatedData) => {
+    if (isBackendOnline) {
+      try {
+        const res = await fetch(`${API_URL}/auth/designer/profile`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            bio: updatedData.bio,
+            startingRate: updatedData.startingRate,
+            role: updatedData.role
+          })
+        });
+        const data = await res.json();
+        
+        if (res.ok && data.success) {
+          // Profile matches, details in state will update
+          const newD = { 
+            ...user.details, 
+            bio: updatedData.bio,
+            startingRate: updatedData.startingRate,
+            role: updatedData.role
+          };
+          setUser(prev => ({ ...prev, name: newD.name, details: newD }));
+          setDesignersList(prev => prev.map(d => d.id === designerId ? newD : d));
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to update designer profile on server:', error);
+      }
+    }
+
+    // Offline mock fallback
     const updatedDesigners = designersList.map(d => {
       if (d.id === designerId) {
         const newD = { ...d, ...updatedData };
-        // If logged in designer matches, update active user details
         if (user && user.role === 'designer' && user.designerId === designerId) {
-          const updatedUser = { ...user, details: newD, name: newD.name };
-          setUser(updatedUser);
-          localStorage.setItem('luxe_user', JSON.stringify(updatedUser));
+          setUser(prev => ({ ...prev, details: newD, name: newD.name }));
         }
         return newD;
       }
@@ -305,6 +444,7 @@ export function AuthProvider({ children }) {
     user,
     bookings,
     designersList,
+    isBackendOnline,
     login,
     signup,
     logout,
