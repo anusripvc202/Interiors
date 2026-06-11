@@ -1016,6 +1016,7 @@
 .planner__actions-row {
   display: flex;
   gap: 1rem;
+  margin-top: 3rem;
 }
 
 .planner__actions-row.justify-between {
