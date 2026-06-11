@@ -185,6 +185,8 @@ export default function ProjectPlanner() {
     addBooking({
       clientEmail: clientInfo.email,
       clientName: clientInfo.name,
+      clientPhone: clientInfo.phone,
+      clientNotes: clientInfo.notes,
       spaceType: selectedSpaces.map(spaceId => spaceOptions.find(s => s.id === spaceId)?.label).join(', '),
       designerId: designerIdMap[selectedDesigner] || 'aria-chen',
       designerName: designerNameMap[selectedDesigner] || 'Aria Chen',
