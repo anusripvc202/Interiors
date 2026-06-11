@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
 import './Navbar.css';
 
 const navLinks = [
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -27,6 +29,14 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [location]);
+
+  // Dynamically compute navigation links
+  const dynamicLinks = [...navLinks];
+  if (user) {
+    dynamicLinks.push({ label: 'Dashboard', path: '/login' });
+  } else {
+    dynamicLinks.push({ label: 'Log In', path: '/login' });
+  }
 
   return (
     <header className={`navbar ${scrolled || menuOpen || location.pathname !== '/' ? 'navbar--scrolled' : ''}`}>
@@ -41,7 +51,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="navbar__links">
-          {navLinks.map((link) => (
+          {dynamicLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
@@ -52,10 +62,20 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <Link to="/contact" className="navbar__cta btn-primary">
-          <span>Book a Consultation</span>
-        </Link>
+        {/* CTA & Auth Profile */}
+        <div className="navbar__actions">
+          {user && (
+            <div className="navbar__user-pill">
+              <span className="navbar__user-name">Hi, {user.name ? user.name.split(' ')[0] : 'User'} ✦</span>
+              <button onClick={logout} className="navbar__logout-btn" title="Log Out" aria-label="Log out">
+                <LogOut size={13} />
+              </button>
+            </div>
+          )}
+          <Link to="/contact" className="navbar__cta btn-primary">
+            <span>Book a Consultation</span>
+          </Link>
+        </div>
 
         {/* Mobile Toggle */}
         <button className="navbar__toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
@@ -65,7 +85,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`navbar__mobile ${menuOpen ? 'navbar__mobile--open' : ''}`}>
-        {navLinks.map((link) => (
+        {dynamicLinks.map((link) => (
           <NavLink
             key={link.path}
             to={link.path}
@@ -77,6 +97,16 @@ export default function Navbar() {
         <Link to="/contact" className="btn-primary" style={{ marginTop: '1rem', textAlign: 'center' }}>
           <span>Book a Consultation</span>
         </Link>
+        {user && (
+          <button 
+            onClick={logout} 
+            className="btn-outline navbar__mobile-logout" 
+            style={{ marginTop: '0.75rem', justifyContent: 'center', width: '100%' }}
+          >
+            <LogOut size={14} style={{ marginRight: '0.5rem' }} />
+            <span>Sign Out</span>
+          </button>
+        )}
       </div>
     </header>
   );

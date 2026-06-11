@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Check, ChevronRight, ChevronLeft, Calendar as CalendarIcon, 
   User, DollarSign, Compass, Layers, Ruler, Phone, Mail, Award, Clock
 } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
 import './ProjectPlanner.css';
 
 const spaceOptions = [
@@ -57,6 +58,7 @@ const getAvailableDates = () => {
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '03:30 PM', '05:00 PM'];
 
 export default function ProjectPlanner() {
+  const { user, addBooking } = useAuth();
   const [step, setStep] = useState(1);
   const [selectedSpaces, setSelectedSpaces] = useState([]);
   const [spaceSizes, setSpaceSizes] = useState({}); // spaceId -> sqft
@@ -67,11 +69,21 @@ export default function ProjectPlanner() {
   const [selectedTime, setSelectedTime] = useState('');
   
   const [clientInfo, setClientInfo] = useState({
-    name: '',
-    email: '',
+    name: user ? user.name : '',
+    email: user ? user.email : '',
     phone: '',
     notes: ''
   });
+
+  useEffect(() => {
+    if (user) {
+      setClientInfo(prev => ({
+        ...prev,
+        name: prev.name || user.name,
+        email: prev.email || user.email
+      }));
+    }
+  }, [user]);
 
   const availableDates = getAvailableDates();
 
@@ -155,6 +167,32 @@ export default function ProjectPlanner() {
   const handleConfirm = (e) => {
     e.preventDefault();
     if (!clientInfo.name || !clientInfo.email || !clientInfo.phone) return;
+
+    // Save consultation to client profile
+    const designerNameMap = {
+      'aria': 'Aria Chen',
+      'julian': 'Julian Mercer',
+      'marcus': 'Marcus Sterling'
+    };
+    const designerIdMap = {
+      'aria': 'aria-chen',
+      'julian': 'julian-mercer',
+      'marcus': 'marcus-sterling'
+    };
+
+    const calculation = getCalculation();
+
+    addBooking({
+      clientEmail: clientInfo.email,
+      clientName: clientInfo.name,
+      spaceType: selectedSpaces.map(spaceId => spaceOptions.find(s => s.id === spaceId)?.label).join(', '),
+      designerId: designerIdMap[selectedDesigner] || 'aria-chen',
+      designerName: designerNameMap[selectedDesigner] || 'Aria Chen',
+      date: selectedDate,
+      time: selectedTime,
+      cost: `₹${calculation.total.toLocaleString('en-IN')}`
+    });
+
     setStep(6); // Go to receipt/confirmation screen
   };
 
