@@ -63,6 +63,93 @@ export default function ProjectPlanner() {
   const [selectedDesigner, setSelectedDesigner] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
+  const startDayOfMonth = (month, year) => new Date(year, month, 1).getDay();
+
+  const getCalendarDays = () => {
+    const days = [];
+    const totalDays = daysInMonth(currentMonth, currentYear);
+    const startDay = startDayOfMonth(currentMonth, currentYear);
+
+    // Prev Month Trailing Days
+    const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    const prevYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+    const prevTotalDays = daysInMonth(prevMonth, prevYear);
+    for (let i = startDay - 1; i >= 0; i--) {
+      days.push({
+        dayNum: prevTotalDays - i,
+        month: prevMonth,
+        year: prevYear,
+        isCurrentMonth: false
+      });
+    }
+
+    // Current Month Days
+    for (let i = 1; i <= totalDays; i++) {
+      days.push({
+        dayNum: i,
+        month: currentMonth,
+        year: currentYear,
+        isCurrentMonth: true
+      });
+    }
+
+    // Next Month Leading Days
+    const remainingCells = 42 - days.length;
+    const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+    const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+    for (let i = 1; i <= remainingCells; i++) {
+      days.push({
+        dayNum: i,
+        month: nextMonth,
+        year: nextYear,
+        isCurrentMonth: false
+      });
+    }
+
+    return days;
+  };
+
+  const handlePrevMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear(currentYear - 1);
+    } else {
+      setCurrentMonth(currentMonth - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear(currentYear + 1);
+    } else {
+      setCurrentMonth(currentMonth + 1);
+    }
+  };
+
+  const handleSelectDay = (day) => {
+    const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dateStr = `${monthsShort[day.month]} ${String(day.dayNum).padStart(2, '0')}, ${day.year}`;
+    setSelectedDate(dateStr);
+  };
+
+  const isSelected = (day) => {
+    const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dateStr = `${monthsShort[day.month]} ${String(day.dayNum).padStart(2, '0')}, ${day.year}`;
+    return selectedDate === dateStr;
+  };
+
+  const isPrevDisabled = currentYear < new Date().getFullYear() || (currentYear === new Date().getFullYear() && currentMonth <= new Date().getMonth());
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
   
   const [clientInfo, setClientInfo] = useState({
     name: user ? user.name : '',
@@ -500,18 +587,113 @@ export default function ProjectPlanner() {
                 {/* Date Grid */}
                 <div className="planner__schedule-col">
                   <h3><CalendarIcon size={18} /> Select Date</h3>
-                  <div className="planner__dates-grid">
-                    {availableDates.map(date => (
-                      <div 
-                        key={date.formatted}
-                        onClick={() => setSelectedDate(date.formatted)}
-                        className={`planner__date-box ${selectedDate === date.formatted ? 'selected' : ''}`}
-                      >
-                        <span className="day-name">{date.dayName}</span>
-                        <span className="day-num">{date.dayNum}</span>
-                        <span className="month">{date.month}</span>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '1rem' }}>
+                    {/* Calendar Month Selector Header */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', padding: '0 0.2rem' }}>
+                      <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--white)', fontFamily: 'var(--font-sans)' }}>
+                        {monthNames[currentMonth]} {currentYear}
+                      </span>
+                      <div style={{ display: 'flex', gap: '0.4rem' }}>
+                        <button
+                          type="button"
+                          onClick={handlePrevMonth}
+                          disabled={isPrevDisabled}
+                          style={{
+                            background: 'rgba(255,255,255,0.04)',
+                            border: '1px solid var(--border)',
+                            borderRadius: '4px',
+                            color: 'var(--white)',
+                            padding: '0.4rem',
+                            cursor: isPrevDisabled ? 'not-allowed' : 'pointer',
+                            opacity: isPrevDisabled ? 0.3 : 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            outline: 'none'
+                          }}
+                        >
+                          <ChevronLeft size={14} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleNextMonth}
+                          style={{
+                            background: 'rgba(255,255,255,0.04)',
+                            border: '1px solid var(--border)',
+                            borderRadius: '4px',
+                            color: 'var(--white)',
+                            padding: '0.4rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            outline: 'none'
+                          }}
+                        >
+                          <ChevronRight size={14} />
+                        </button>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Calendar Weekday Labels */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(7, 1fr)',
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                      fontSize: '0.7rem',
+                      color: 'var(--stone-light)',
+                      marginBottom: '0.4rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
+                        <div key={d}>{d}</div>
+                      ))}
+                    </div>
+
+                    {/* Calendar Days Grid */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(7, 1fr)',
+                      gap: '0.3rem'
+                    }}>
+                      {getCalendarDays().map((day, idx) => {
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        const cellDate = new Date(day.year, day.month, day.dayNum);
+                        const isPast = cellDate < today;
+                        const isSunday = cellDate.getDay() === 0;
+                        const isDisabled = isPast || isSunday;
+                        const selected = isSelected(day);
+
+                        return (
+                          <div
+                            key={idx}
+                            onClick={() => !isDisabled && handleSelectDay(day)}
+                            style={{
+                              padding: '0.65rem 0',
+                              textAlign: 'center',
+                              borderRadius: '6px',
+                              cursor: isDisabled ? 'not-allowed' : 'pointer',
+                              background: selected ? 'var(--purple)' : day.isCurrentMonth ? 'rgba(255, 255, 255, 0.03)' : 'transparent',
+                              color: selected ? 'var(--white)' : isDisabled ? 'rgba(255,255,255,0.15)' : day.isCurrentMonth ? 'var(--white)' : 'rgba(255,255,255,0.3)',
+                              border: '1px solid',
+                              borderColor: selected ? 'var(--purple-light)' : 'transparent',
+                              boxShadow: selected ? '0 0 12px rgba(124, 58, 237, 0.45)' : 'none',
+                              fontSize: '0.85rem',
+                              fontWeight: day.isCurrentMonth ? '600' : '400',
+                              transition: 'all 0.2s',
+                              opacity: isDisabled ? 0.35 : 1
+                            }}
+                            className={!isDisabled ? "calendar-day-hover" : ""}
+                          >
+                            {day.dayNum}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 
@@ -519,15 +701,39 @@ export default function ProjectPlanner() {
                 <div className="planner__schedule-col">
                   <h3><Clock size={18} /> Select Time</h3>
                   <div className="planner__times-grid">
-                    {timeSlots.map(time => (
-                      <div 
-                        key={time}
-                        onClick={() => setSelectedTime(time)}
-                        className={`planner__time-box ${selectedTime === time ? 'selected' : ''}`}
-                      >
-                        <span>{time}</span>
-                      </div>
-                    ))}
+                    {timeSlots.map(time => {
+                      const selected = selectedTime === time;
+                      return (
+                        <div 
+                          key={time}
+                          onClick={() => setSelectedTime(time)}
+                          className={`planner__time-box ${selected ? 'selected' : ''}`}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            padding: '1rem',
+                            transition: 'all 0.3s'
+                          }}
+                        >
+                          <span>{time}</span>
+                          <div style={{
+                            width: '16px',
+                            height: '16px',
+                            borderRadius: '50%',
+                            border: '1px solid',
+                            borderColor: selected ? 'var(--white)' : 'rgba(255,255,255,0.3)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: selected ? 'var(--white)' : 'transparent',
+                            transition: 'all 0.2s'
+                          }}>
+                            {selected && <Check size={10} color="var(--purple)" strokeWidth={3} />}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
