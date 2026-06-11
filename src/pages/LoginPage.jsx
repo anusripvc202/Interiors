@@ -45,10 +45,10 @@ export default function LoginPage() {
     ? bookings.filter(b => b.designerId === user.designerId)
     : [];
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    const result = login(email, password, activeTab);
+    const result = await login(email, password, activeTab);
     if (!result.success) {
       setError(result.message || 'Login failed. Please verify credentials.');
     } else {
@@ -58,7 +58,7 @@ export default function LoginPage() {
     }
   };
 
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccessMsg('');
@@ -68,7 +68,7 @@ export default function LoginPage() {
       return;
     }
 
-    const result = signup(name, email, password, preferredStyle);
+    const result = await signup(name, email, password, preferredStyle);
     if (!result.success) {
       setError(result.message || 'Signup failed.');
     } else {
