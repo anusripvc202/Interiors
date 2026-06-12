@@ -69,13 +69,13 @@ export default function ServicesPage() {
                 <select
                   value={roomType}
                   onChange={(e) => setRoomType(e.target.value)}
-                  style={{ padding: '0.8rem', border: '1px solid var(--cream-dark)', background: 'var(--cream)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}
+                  style={{ padding: '0.8rem', border: '1px solid var(--cream-dark)', background: 'var(--cream)', color: 'var(--white)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}
                 >
-                  <option value="Living Room">Living Room / Lounge</option>
-                  <option value="Bedroom">Bedroom Sanctuary</option>
-                  <option value="Kitchen">Gourmet Kitchen</option>
-                  <option value="Commercial">Office / Commercial Space</option>
-                  <option value="Hotel Suite">Boutique Hotel Suite</option>
+                  <option value="Living Room" style={{ background: '#0F1220', color: '#fff' }}>Living Room / Lounge</option>
+                  <option value="Bedroom" style={{ background: '#0F1220', color: '#fff' }}>Bedroom Sanctuary</option>
+                  <option value="Kitchen" style={{ background: '#0F1220', color: '#fff' }}>Gourmet Kitchen</option>
+                  <option value="Commercial" style={{ background: '#0F1220', color: '#fff' }}>Office / Commercial Space</option>
+                  <option value="Hotel Suite" style={{ background: '#0F1220', color: '#fff' }}>Boutique Hotel Suite</option>
                 </select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -86,7 +86,7 @@ export default function ServicesPage() {
                   max="10000"
                   value={sqft}
                   onChange={(e) => setSqft(Number(e.target.value))}
-                  style={{ padding: '0.8rem', border: '1px solid var(--cream-dark)', background: 'var(--cream)', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}
+                  style={{ padding: '0.8rem', border: '1px solid var(--cream-dark)', background: 'var(--cream)', color: 'var(--white)', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}
                 />
               </div>
             </div>
