@@ -179,15 +179,15 @@ export default function DesignerProfilePage() {
       {/* Cover Header Hero */}
       <section style={{ 
         position: 'relative', 
-        height: '40vh', 
-        minHeight: '320px', 
-        backgroundImage: `linear-gradient(to bottom, rgba(26, 24, 20, 0.4) 0%, rgba(26, 24, 20, 0.8) 100%), url(${designer.portfolio?.[0]?.image || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80'})`,
+        paddingTop: '8rem',
+        paddingBottom: '3rem',
+        backgroundImage: `linear-gradient(to bottom, rgba(243, 248, 245, 0.82) 0%, rgba(243, 248, 245, 0.96) 100%), url(${designer.portfolio[0]?.image || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop"})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
         alignItems: 'flex-end',
         color: 'var(--white)',
-        paddingBottom: '2.5rem'
+        borderBottom: '1px solid var(--border)'
       }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <Link to="/portfolio" style={{ 
@@ -197,7 +197,7 @@ export default function DesignerProfilePage() {
             fontSize: '0.75rem', 
             textTransform: 'uppercase', 
             letterSpacing: '0.1em', 
-            color: 'rgba(255,255,255,0.7)', 
+            color: 'var(--text-muted)', 
             marginBottom: '2rem',
             transition: 'color 0.3s'
           }} className="back-link">
@@ -209,16 +209,16 @@ export default function DesignerProfilePage() {
             <img 
               src={designer.avatar} 
               alt={designer.name} 
-              style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--gold)', boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }} 
+              style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--border)', boxShadow: '0 8px 30px rgba(0,0,0,0.05)' }} 
             />
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 400, margin: 0 }}>{designer.name}</h1>
-                <span className="designer-match-tag" style={{ background: 'var(--gold)', color: 'var(--white)', fontSize: '0.62rem', padding: '0.25rem 0.6rem', borderRadius: '100px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                <span className="designer-match-tag" style={{ background: 'var(--gold)', color: 'var(--pure-white)', fontSize: '0.62rem', padding: '0.25rem 0.6rem', borderRadius: '100px', fontWeight: 'bold', textTransform: 'uppercase' }}>
                   <Award size={12} style={{ marginRight: '0.2rem' }} /> Verified Specialist
                 </span>
               </div>
-              <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-light)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
+              <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-dark)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
             </div>
           </div>
         </div>
@@ -276,8 +276,8 @@ export default function DesignerProfilePage() {
                         padding: '1.5rem',
                         cursor: 'pointer',
                         transition: 'all 0.3s var(--ease)',
-                        background: isSelected ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-card-2)',
-                        boxShadow: isSelected ? '0 10px 25px rgba(201, 169, 110, 0.15)' : 'none',
+                        background: isSelected ? 'rgba(27, 154, 89, 0.12)' : 'var(--bg-card-2)',
+                        boxShadow: isSelected ? '0 10px 25px rgba(27, 154, 89, 0.12)' : 'none',
                         display: 'flex',
                         flexDirection: 'column',
                         position: 'relative'
@@ -375,7 +375,7 @@ export default function DesignerProfilePage() {
                           padding: '0.6rem', 
                           fontSize: '0.7rem', 
                           background: isSelected ? 'var(--purple)' : 'transparent',
-                          color: isSelected ? 'var(--white)' : 'var(--purple-light)',
+                          color: isSelected ? 'var(--pure-white)' : 'var(--purple-light)',
                           border: '1px solid var(--purple)',
                           fontWeight: '600',
                           textTransform: 'uppercase',
@@ -553,7 +553,7 @@ export default function DesignerProfilePage() {
                               borderRadius: '4px',
                               padding: '0.75rem',
                               cursor: 'pointer',
-                              background: isChecked ? 'rgba(124, 58, 237, 0.12)' : 'var(--bg-card-2)',
+                              background: isChecked ? 'rgba(27, 154, 89, 0.1)' : 'var(--bg-card-2)',
                               borderColor: isChecked ? 'var(--purple-light)' : 'var(--border)',
                               transition: 'all 0.2s',
                               display: 'flex',
@@ -574,7 +574,7 @@ export default function DesignerProfilePage() {
                               borderColor: isChecked ? 'var(--gold)' : 'var(--stone-light)',
                               flexShrink: 0
                             }}>
-                              {isChecked && <Check size={10} color="var(--white)" />}
+                              {isChecked && <Check size={10} color="#ffffff" />}
                             </div>
                             <div style={{ flexGrow: 1 }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -681,11 +681,11 @@ export default function DesignerProfilePage() {
                               textAlign: 'center',
                               borderRadius: '4px',
                               cursor: isDisabled ? 'not-allowed' : 'pointer',
-                              background: selected ? 'var(--purple)' : day.isCurrentMonth ? 'rgba(255, 255, 255, 0.03)' : 'transparent',
-                              color: selected ? 'var(--white)' : isDisabled ? 'rgba(255,255,255,0.15)' : day.isCurrentMonth ? 'var(--charcoal)' : 'rgba(255,255,255,0.3)',
+                              background: selected ? 'var(--purple)' : day.isCurrentMonth ? 'rgba(27, 154, 89, 0.04)' : 'transparent',
+                              color: selected ? 'var(--pure-white)' : isDisabled ? 'rgba(27, 154, 89, 0.2)' : day.isCurrentMonth ? 'var(--charcoal)' : 'rgba(27, 154, 89, 0.35)',
                               border: '1px solid',
                               borderColor: selected ? 'var(--purple-light)' : 'transparent',
-                              boxShadow: selected ? '0 0 12px rgba(124, 58, 237, 0.45)' : 'none',
+                              boxShadow: selected ? '0 0 12px rgba(27, 154, 89, 0.3)' : 'none',
                               fontSize: '0.8rem',
                               fontWeight: day.isCurrentMonth ? '600' : '400',
                               transition: 'all 0.2s',
@@ -722,14 +722,14 @@ export default function DesignerProfilePage() {
                                 cursor: 'pointer',
                                 fontSize: '0.78rem',
                                 fontWeight: '600',
-                                background: selected ? 'var(--purple)' : 'rgba(255, 255, 255, 0.03)',
-                                color: 'var(--white)',
-                                boxShadow: selected ? '0 0 15px rgba(124, 58, 237, 0.45)' : 'none',
+                                background: selected ? 'var(--purple)' : 'rgba(27, 154, 89, 0.04)',
+                                color: selected ? 'var(--pure-white)' : 'var(--white)',
+                                boxShadow: selected ? '0 0 15px rgba(27, 154, 89, 0.3)' : 'none',
                                 transition: 'all 0.25s'
                               }}
                               className={!selected ? "time-slot-hover" : ""}
                             >
-                              {selected && <Check size={12} style={{ color: 'var(--white)', strokeWidth: 3 }} />}
+                              {selected && <Check size={12} style={{ color: '#ffffff', strokeWidth: 3 }} />}
                               <span>{time}</span>
                             </div>
                           );

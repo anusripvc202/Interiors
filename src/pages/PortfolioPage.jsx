@@ -362,7 +362,7 @@ export default function PortfolioPage() {
                       borderColor: comparedDesignerIds.includes(designer.id) ? 'var(--gold)' : 'var(--stone-light)',
                       flexShrink: 0
                     }}>
-                      {comparedDesignerIds.includes(designer.id) && <Check size={8} color="var(--white)" />}
+                      {comparedDesignerIds.includes(designer.id) && <Check size={8} color="#ffffff" />}
                     </div>
                     <span>{comparedDesignerIds.includes(designer.id) ? 'Added to Compare' : 'Compare Designer'}</span>
                   </div>

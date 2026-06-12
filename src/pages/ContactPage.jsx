@@ -48,7 +48,7 @@ export default function ContactPage() {
           <div>
             <p className="section-label" style={{ color: 'var(--gold)' }}>Our Studios</p>
             <h2 className="section-title" style={{ color: 'var(--white)', marginBottom: '1.5rem' }}>Visit <em>Luxe</em></h2>
-            <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: '1.8', marginBottom: '2rem' }}>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '2rem' }}>
               We have fully functional, immersive styling studios across major Indian cities. Choose a branch to inspect our local address and hours.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                   style={{
                     justifyContent: 'flex-start',
                     background: activeLoc === idx ? 'var(--gold)' : 'transparent',
-                    color: activeLoc === idx ? 'var(--white)' : 'var(--gold)',
+                    color: activeLoc === idx ? 'var(--pure-white)' : 'var(--gold)',
                     border: '1px solid var(--gold)',
                     padding: '1rem',
                     textAlign: 'left'
@@ -73,8 +73,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div style={{ background: 'var(--charcoal-2)', padding: '3rem', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--white)', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '1rem', margin: 0 }}>
+          <div style={{ background: 'var(--charcoal-2)', padding: '3rem', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--pure-white)', borderBottom: '1px solid var(--border)', paddingBottom: '1rem', margin: 0 }}>
               {loc.city} Information
             </h3>
 

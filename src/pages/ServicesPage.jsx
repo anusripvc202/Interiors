@@ -71,11 +71,11 @@ export default function ServicesPage() {
                   onChange={(e) => setRoomType(e.target.value)}
                   style={{ padding: '0.8rem', border: '1px solid var(--cream-dark)', background: 'var(--cream)', color: 'var(--white)', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontSize: '0.9rem' }}
                 >
-                  <option value="Living Room" style={{ background: '#0F1220', color: '#fff' }}>Living Room / Lounge</option>
-                  <option value="Bedroom" style={{ background: '#0F1220', color: '#fff' }}>Bedroom Sanctuary</option>
-                  <option value="Kitchen" style={{ background: '#0F1220', color: '#fff' }}>Gourmet Kitchen</option>
-                  <option value="Commercial" style={{ background: '#0F1220', color: '#fff' }}>Office / Commercial Space</option>
-                  <option value="Hotel Suite" style={{ background: '#0F1220', color: '#fff' }}>Boutique Hotel Suite</option>
+                  <option value="Living Room" style={{ background: '#ffffff', color: '#1a2b22' }}>Living Room / Lounge</option>
+                  <option value="Bedroom" style={{ background: '#ffffff', color: '#1a2b22' }}>Bedroom Sanctuary</option>
+                  <option value="Kitchen" style={{ background: '#ffffff', color: '#1a2b22' }}>Gourmet Kitchen</option>
+                  <option value="Commercial" style={{ background: '#ffffff', color: '#1a2b22' }}>Office / Commercial Space</option>
+                  <option value="Hotel Suite" style={{ background: '#ffffff', color: '#1a2b22' }}>Boutique Hotel Suite</option>
                 </select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -104,7 +104,7 @@ export default function ServicesPage() {
             <div style={{ background: 'var(--bg-card-2)', color: 'var(--white)', padding: '2.5rem 2rem', borderLeft: '4px solid var(--teal)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--gold)', letterSpacing: '0.1em' }}>Ultra-Luxury Tier Estimate</span>
               <h3 style={{ fontSize: '2.5rem', fontWeight: '600', color: 'var(--gold)', margin: 0 }}>₹{luxuryEstimate}</h3>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.6' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
                 Includes fine imported Italian materials, premium architectural renovations, fully customized modular layout, automated smart lighting systems, and design director supervision.
               </p>
             </div>

@@ -24,9 +24,9 @@
 .login-card {
   width: 100%;
   max-width: 500px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(124,58,237,0.25);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.4), var(--shadow-purple);
+  background: #ffffff;
+  border: 1px solid rgba(27,154,89,0.15);
+  box-shadow: 0 30px 80px rgba(27,154,89,0.15), var(--shadow-purple);
   padding: 3.5rem 2.5rem 2.5rem;
   border-radius: 20px;
   position: relative;
@@ -59,7 +59,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 8px rgba(124,58,237,0.5));
+  filter: drop-shadow(0 0 8px rgba(27,154,89,0.3));
 }
 
 .login-card__header h2 {
@@ -126,11 +126,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
-  background: rgba(255,255,255,0.04);
+  background: rgba(27,154,89,0.04);
   padding: 0.3rem;
   border-radius: 10px;
   margin-bottom: 2rem;
-  border: 1px solid rgba(124,58,237,0.15);
+  border: 1px solid rgba(27,154,89,0.15);
 }
 
 .auth-tab {
@@ -150,8 +150,8 @@
 
 .auth-tab.active {
   background: var(--grad-primary);
-  color: var(--white);
-  box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+  color: var(--pure-white);
+  box-shadow: 0 4px 15px rgba(27,154,89,0.4);
 }
 
 .auth-tab svg {
@@ -160,7 +160,7 @@
 }
 
 .auth-tab.active svg {
-  color: var(--white);
+  color: var(--pure-white);
 }
 
 /* Form Groups */
@@ -200,7 +200,7 @@
 .input-icon {
   position: absolute;
   left: 1rem;
-  color: rgba(124,58,237,0.5);
+  color: rgba(27,154,89,0.5);
   pointer-events: none;
 }
 
@@ -208,17 +208,17 @@
 .select-input {
   width: 100%;
   padding: 0.9rem 1rem 0.9rem 2.8rem;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27,154,89,0.2);
   border-radius: 8px;
   font-family: var(--font-sans);
   font-size: 0.92rem;
-  background: rgba(255,255,255,0.04);
+  background: #ffffff;
   color: var(--white);
   transition: all 0.3s;
 }
 
 .input-wrapper input::placeholder {
-  color: rgba(255,255,255,0.2);
+  color: rgba(27,154,89,0.45);
 }
 
 .select-input {
@@ -240,8 +240,8 @@
 .select-input:focus {
   outline: none;
   border-color: var(--purple);
-  background: rgba(124,58,237,0.08);
-  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+  background: rgba(27,154,89,0.04);
+  box-shadow: 0 0 0 3px rgba(27,154,89,0.15);
 }
 
 .pwd-toggle {
@@ -290,7 +290,7 @@
 .demo-helper {
   margin-top: 2.2rem;
   padding-top: 1.5rem;
-  border-top: 1px dashed rgba(124,58,237,0.2);
+  border-top: 1px dashed rgba(27,154,89,0.25);
   text-align: left;
 }
 
@@ -317,8 +317,8 @@
 
 .demo-pill {
   padding: 0.4rem 0.8rem;
-  background: rgba(124,58,237,0.08);
-  border: 1px solid rgba(124,58,237,0.2);
+  background: rgba(27,154,89,0.06);
+  border: 1px solid rgba(27,154,89,0.2);
   border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -327,11 +327,11 @@
 }
 
 .demo-pill:hover {
-  background: rgba(124,58,237,0.2);
+  background: rgba(27,154,89,0.15);
   border-color: var(--purple-light);
   color: var(--purple-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(124,58,237,0.2);
+  box-shadow: 0 4px 10px rgba(27,154,89,0.2);
 }
 
 /* ===========================
@@ -343,8 +343,8 @@
 }
 
 .dashboard-banner {
-  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
-  border: 1px solid rgba(124,58,237,0.25);
+  background: linear-gradient(135deg, rgba(27,154,89,0.15), rgba(34,197,94,0.1));
+  border: 1px solid rgba(27,154,89,0.25);
   color: var(--white);
   padding: 3rem;
   border-radius: 16px;
@@ -354,7 +354,7 @@
   margin-bottom: 3rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), var(--shadow-purple);
+  box-shadow: 0 20px 60px rgba(27,154,89,0.08), var(--shadow-purple);
   backdrop-filter: blur(10px);
 }
 
@@ -375,7 +375,7 @@
   top: -50%;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -409,10 +409,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  border: 1px solid rgba(124,58,237,0.35);
+  border: 1px solid rgba(27,154,89,0.35);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
-  background-color: rgba(124,58,237,0.08);
+  background-color: rgba(27,154,89,0.08);
 }
 
 .btn-logout {
@@ -420,15 +420,15 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(27,154,89,0.15);
+  color: var(--white);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.3s;
   border-radius: 8px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(27,154,89,0.05);
 }
 
 .btn-logout:hover {
@@ -452,7 +452,7 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--purple);
-  box-shadow: 0 0 20px rgba(124,58,237,0.4);
+  box-shadow: 0 0 20px rgba(27,154,89,0.3);
 }
 
 /* Dashboard Layout Grid */
@@ -465,8 +465,8 @@
 
 /* Dash Cards */
 .dash-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(124,58,237,0.15);
+  background: #ffffff;
+  border: 1px solid rgba(27,154,89,0.15);
   border-radius: 14px;
   overflow: hidden;
   backdrop-filter: blur(10px);
@@ -474,12 +474,12 @@
 }
 
 .dash-card:hover {
-  border-color: rgba(124,58,237,0.3);
+  border-color: rgba(27,154,89,0.3);
 }
 
 .dash-card__header {
   padding: 1.5rem 2rem;
-  border-bottom: 1px solid rgba(124,58,237,0.1);
+  border-bottom: 1px solid rgba(27,154,89,0.1);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -538,17 +538,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.5rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(124,58,237,0.12);
+  background: #ffffff;
+  border: 1px solid rgba(27,154,89,0.12);
   border-radius: 10px;
   gap: 1.5rem;
   transition: all 0.25s var(--ease);
 }
 
 .booking-row:hover {
-  border-color: rgba(124,58,237,0.35);
-  background: rgba(124,58,237,0.06);
-  box-shadow: 0 4px 20px rgba(124,58,237,0.1);
+  border-color: rgba(27,154,89,0.35);
+  background: rgba(27,154,89,0.04);
+  box-shadow: 0 4px 20px rgba(27,154,89,0.08);
 }
 
 .booking-main {
@@ -684,21 +684,21 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  border-bottom: 1px solid rgba(124,58,237,0.15);
+  border-bottom: 1px solid rgba(27,154,89,0.15);
 }
 
 .estimates-table td,
 .designer-schedule-table td {
   padding: 1.25rem;
   font-size: 0.9rem;
-  border-bottom: 1px solid rgba(124,58,237,0.08);
+  border-bottom: 1px solid rgba(27,154,89,0.08);
   vertical-align: middle;
   color: var(--text-sub);
 }
 
 .estimates-table tbody tr:hover,
 .designer-schedule-table tbody tr:hover {
-  background: rgba(124,58,237,0.06);
+  background: rgba(27,154,89,0.04);
 }
 
 .badge-luxury {
@@ -766,14 +766,14 @@
 
 /* Recommendations Card */
 .advice-card {
-  background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(59,130,246,0.08));
-  border-color: rgba(124,58,237,0.25);
+  background: linear-gradient(135deg, rgba(27,154,89,0.12), rgba(34,197,94,0.08));
+  border-color: rgba(27,154,89,0.25);
 }
 
 .advice-card h3 { color: var(--white); }
 
 .advice-card .dash-card__header {
-  border-color: rgba(124,58,237,0.15);
+  border-color: rgba(27,154,89,0.15);
 }
 
 .advice-content {

@@ -57,7 +57,7 @@ export default function AboutPage() {
               <div key={m.year} className="anim-fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderLeft: '1px solid rgba(201, 169, 110, 0.4)', paddingLeft: '1.5rem', transitionDelay: `${i * 0.15}s` }}>
                 <span style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', color: 'var(--gold)', fontWeight: 'bold' }}>{m.year}</span>
                 <h4 style={{ fontSize: '1.1rem', fontWeight: '500' }}>{m.title}</h4>
-                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.6' }}>{m.desc}</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>{m.desc}</p>
               </div>
             ))}
           </div>

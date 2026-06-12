@@ -4,7 +4,7 @@
 
 .footer {
   background: var(--bg-card);
-  border-top: 1px solid rgba(124,58,237,0.2);
+  border-top: 1px solid rgba(27,154,89,0.2);
   color: var(--white);
   padding: 6rem 0 2rem;
   position: relative;
@@ -28,7 +28,7 @@
   left: -10%;
   width: 40vw;
   height: 40vw;
-  background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -92,19 +92,19 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 8px;
-  border: 1px solid rgba(124,58,237,0.25);
+  border: 1px solid rgba(27,154,89,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
   transition: all 0.3s var(--ease);
-  background: rgba(124,58,237,0.05);
+  background: rgba(27,154,89,0.05);
 }
 
 .footer__socials a:hover {
   background: var(--grad-primary);
   border-color: transparent;
-  color: var(--white);
+  color: var(--pure-white);
   transform: translateY(-3px);
   box-shadow: var(--glow-sm);
 }
@@ -160,7 +160,7 @@
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(124,58,237,0.25);
+  border: 1px solid rgba(27,154,89,0.25);
 }
 
 .footer__newsletter-form input {
@@ -179,13 +179,13 @@
 
 .footer__newsletter-form input:focus {
   outline: none;
-  background: rgba(124,58,237,0.08);
+  background: rgba(27,154,89,0.08);
 }
 
 .footer__newsletter-btn {
   padding: 0 1.5rem;
   background: var(--grad-primary);
-  color: var(--white);
+  color: var(--pure-white);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -204,7 +204,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid rgba(124,58,237,0.1);
+  border-top: 1px solid rgba(27,154,89,0.1);
   padding-top: 2.25rem;
   position: relative;
 }
@@ -233,19 +233,19 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 50%;
-  border: 1px solid rgba(124,58,237,0.4);
+  border: 1px solid rgba(27,154,89,0.4);
   color: var(--purple-light);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.35s var(--ease);
-  background: rgba(124,58,237,0.08);
+  background: rgba(27,154,89,0.08);
 }
 
 .footer__scroll-top:hover {
   background: var(--grad-primary);
   border-color: transparent;
-  color: var(--white);
+  color: var(--pure-white);
   transform: translateY(-4px);
   box-shadow: var(--glow-sm);
 }
