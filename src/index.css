@@ -569,47 +569,41 @@ body::after {
   }
 }
 
-/* Home Process Split Layout */
-.home__process-split {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
+/* --- HOME PAGE VISUAL UPGRADES --- */
 
-@media (max-width: 900px) {
+/* Split Process Responsive Layout */
+@media (max-width: 991px) {
   .home__process-split {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .home__process-split > div:first-child {
-    height: 380px !important;
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
   }
 }
 
-/* Home Inspirations Gallery */
-.home__inspirations-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.inspiration-card {
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease) !important;
-}
-
+/* Inspirations Grid & Cards */
 .inspiration-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(27, 154, 89, 0.08) !important;
+  transform: translateY(-5px);
+  border-color: rgba(27, 154, 89, 0.25) !important;
+  box-shadow: 0 12px 30px rgba(27, 154, 89, 0.08) !important;
 }
 
-.inspiration-card:hover .zoom-img {
+.zoom-img {
+  transition: transform 0.5s var(--ease);
+}
+
+.inspiration-card:hover .zoom-img,
+.style-category-card:hover .zoom-img {
   transform: scale(1.06);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   .home__inspirations-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .home__inspirations-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
 }

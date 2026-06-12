@@ -983,3 +983,37 @@
   .booking-right { width: 100%; justify-content: space-between; }
   .stats-row { grid-template-columns: 1fr 1fr; }
 }
+
+/* Metrics List Styling */
+.metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.metric-val {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.metric-val .star-icon {
+  color: var(--purple-light);
+}
+
+.metric-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}

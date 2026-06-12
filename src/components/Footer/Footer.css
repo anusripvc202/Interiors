@@ -70,7 +70,7 @@
 
 .footer__logo-text em {
   font-style: italic;
-  background: var(--grad-text);
+  background: var(--grad-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

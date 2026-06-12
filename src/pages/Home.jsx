@@ -29,7 +29,7 @@ export default function Home() {
         justifyContent: 'center', 
         paddingTop: '10rem', 
         paddingBottom: '5rem',
-        backgroundImage: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.82) 0%, rgba(243, 248, 245, 0.98) 100%), url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop")',
+        backgroundImage: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.85) 0%, rgba(243, 248, 245, 0.98) 100%), url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         color: 'var(--white)',
@@ -118,21 +118,30 @@ export default function Home() {
             <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>We have standardized the interior design lifecycle so you can hire and plan transparently.</p>
           </div>
 
-          <div className="home__process-split">
-            {/* Left Column: Premium Interior Image Showcase */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1.1fr',
+            gap: '4rem',
+            alignItems: 'center'
+          }} className="home__process-split">
+            {/* Left Column: Premium Interior Image */}
             <div style={{ 
               position: 'relative', 
               borderRadius: '16px', 
               overflow: 'hidden', 
               height: '520px', 
               border: '1px solid rgba(27,154,89,0.15)', 
-              boxShadow: 'var(--shadow-purple)'
+              boxShadow: 'var(--shadow-purple)' 
             }}>
-              <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80" alt="Minimalist Oak Kitchen" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img 
+                src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80" 
+                alt="Oak & Clay Kitchen" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              />
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(to top, rgba(243,248,245,0.4) 0%, transparent 100%)'
+                background: 'linear-gradient(to top, rgba(27,154,89,0.15) 0%, transparent 100%)'
               }} />
             </div>
 
@@ -140,23 +149,22 @@ export default function Home() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {/* Step 1 */}
               <div style={{ 
-                background: 'rgba(27,154,89,0.03)', 
-                padding: '1.5rem 1.75rem', 
-                borderLeft: '4px solid var(--purple)', 
-                borderRadius: '8px', 
+                background: 'rgba(27,154,89,0.04)', 
+                padding: '1.75rem 2rem', 
+                borderRadius: '14px', 
                 border: '1px solid rgba(27,154,89,0.12)',
                 display: 'flex', 
-                alignItems: 'center',
-                gap: '1.25rem',
+                alignItems: 'center', 
+                gap: '1.5rem',
                 textAlign: 'left',
                 transition: 'all 0.3s'
               }}>
-                <div style={{ background: 'rgba(27,154,89,0.08)', color: 'var(--purple-light)', padding: '0.85rem', borderRadius: '50%', border: '1px solid rgba(27,154,89,0.25)', flexShrink: 0 }}>
-                  <Compass size={22} />
+                <div style={{ background: 'rgba(27,154,89,0.08)', color: 'var(--purple-light)', padding: '1rem', borderRadius: '50%', border: '1px solid rgba(27,154,89,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Compass size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>1. Search & Filter</h4>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>1. Search & Filter</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Explore portfolios of certified designers. Filter by layout specialty, style expertise, rating, and city location.
                   </p>
                 </div>
@@ -164,47 +172,45 @@ export default function Home() {
 
               {/* Step 2 */}
               <div style={{ 
-                background: 'rgba(34,197,94,0.03)', 
-                padding: '1.5rem 1.75rem', 
-                borderLeft: '4px solid var(--blue)', 
-                borderRadius: '8px', 
+                background: 'rgba(34,197,94,0.04)', 
+                padding: '1.75rem 2rem', 
+                borderRadius: '14px', 
                 border: '1px solid rgba(34,197,94,0.12)',
                 display: 'flex', 
-                alignItems: 'center',
-                gap: '1.25rem',
+                alignItems: 'center', 
+                gap: '1.5rem',
                 textAlign: 'left',
                 transition: 'all 0.3s'
               }}>
-                <div style={{ background: 'rgba(34,197,94,0.08)', color: 'var(--blue-light)', padding: '0.85rem', borderRadius: '50%', border: '1px solid rgba(34,197,94,0.25)', flexShrink: 0 }}>
-                  <Shield size={22} />
+                <div style={{ background: 'rgba(34,197,94,0.08)', color: 'var(--blue-light)', padding: '1rem', borderRadius: '50%', border: '1px solid rgba(34,197,94,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Shield size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>2. Compare Packages</h4>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
-                    Check individual designer packages, from basic layout concepts to 3D realistic visualizer builds and complete turkey setup.
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>2. Compare Packages</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
+                    Check individual designer packages, from basic layout concepts to 3D realistic visualizer builds and complete turnkey setup.
                   </p>
                 </div>
               </div>
 
               {/* Step 3 */}
               <div style={{ 
-                background: 'rgba(16,185,129,0.03)', 
-                padding: '1.5rem 1.75rem', 
-                borderLeft: '4px solid var(--teal)', 
-                borderRadius: '8px', 
+                background: 'rgba(16,185,129,0.04)', 
+                padding: '1.75rem 2rem', 
+                borderRadius: '14px', 
                 border: '1px solid rgba(16,185,129,0.12)',
                 display: 'flex', 
-                alignItems: 'center',
-                gap: '1.25rem',
+                alignItems: 'center', 
+                gap: '1.5rem',
                 textAlign: 'left',
                 transition: 'all 0.3s'
               }}>
-                <div style={{ background: 'rgba(16,185,129,0.08)', color: 'var(--teal-light)', padding: '0.85rem', borderRadius: '50%', border: '1px solid rgba(16,185,129,0.25)', flexShrink: 0 }}>
-                  <Calendar size={22} />
+                <div style={{ background: 'rgba(16,185,129,0.08)', color: 'var(--teal-light)', padding: '1rem', borderRadius: '50%', border: '1px solid rgba(16,185,129,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Calendar size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>3. Book Consultation</h4>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>3. Book Consultation</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Select a live schedule slot directly on your matched designer's calendar and secure your styling consultation in minutes.
                   </p>
                 </div>
@@ -334,37 +340,50 @@ export default function Home() {
       </section>
 
       {/* Curated Inspirations Gallery */}
-      <section className="curated-inspirations" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-dark)' }}>
+      <section className="curated-inspirations" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card-2)' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
           <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
             <span className="section-label">Design Gallery</span>
             <h2 className="section-title">Bespoke Interior <em>Curations</em></h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>A visual selection of premium spaces designed by our certified specialists.</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>A preview of our designers' premium work, showcasing signature styles and living environments.</p>
           </div>
 
-          <div className="home__inspirations-grid">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '2rem'
+          }} className="home__inspirations-grid">
             {[
-              { title: 'Minimalist Salon', img: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&q=80', tag: 'Aria Chen · Japandi' },
-              { title: 'Culinary Hearth', img: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80', tag: 'Julian Mercer · Modern Luxury' },
-              { title: 'Suite Retreat', img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80', tag: 'Sophia Vance · Classic Parisian' }
-            ].map((item, idx) => (
+              { title: 'Minimalist Salon', img: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&q=80', desc: 'Serene Japandi layouts focused on natural textures and balance.' },
+              { title: 'Culinary Hearth', img: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&q=80', desc: 'Bespoke marble islands paired with functional oak storage cabinetry.' },
+              { title: 'Suite Retreat', img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80', desc: 'Luxurious organic mid-century bedrooms with integrated warm vanity layouts.' }
+            ].map((item, index) => (
               <div 
-                key={idx}
+                key={index}
                 style={{ 
                   borderRadius: '12px', 
                   overflow: 'hidden', 
                   background: '#ffffff',
-                  border: '1px solid rgba(27,154,89,0.12)',
-                  boxShadow: 'var(--shadow-purple)'
+                  border: '1px solid rgba(27,154,89,0.12)', 
+                  boxShadow: 'var(--shadow-purple)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.3s var(--ease)'
                 }}
                 className="inspiration-card"
               >
-                <div style={{ height: '260px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} className="zoom-img" />
+                <div style={{ position: 'relative', height: '260px', overflow: 'hidden' }}>
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    className="zoom-img"
+                  />
+                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(27,154,89,0.03)' }} />
                 </div>
-                <div style={{ padding: '1.25rem', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.68rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--purple)', letterSpacing: '0.05em' }}>{item.tag}</span>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--white)', margin: '0.25rem 0 0' }}>{item.title}</h4>
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: 'var(--white)', margin: 0 }}>{item.title}</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.55', margin: 0 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
