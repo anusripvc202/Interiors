@@ -101,7 +101,7 @@ export default function Home() {
               <select 
                 value={searchCity}
                 onChange={(e) => setSearchCity(e.target.value)}
-                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: '#ffffff', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
+                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: 'var(--white)', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
               >
                 <option value="" style={{ background: '#ffffff', color: '#1a2b22' }}>All Cities (India)</option>
                 <option value="Bangalore" style={{ background: '#ffffff', color: '#1a2b22' }}>Bangalore</option>
@@ -120,7 +120,7 @@ export default function Home() {
               <select
                 value={searchStyle}
                 onChange={(e) => setSearchStyle(e.target.value)}
-                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: '#ffffff', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
+                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: 'var(--white)', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
               >
                 <option value="" style={{ background: '#ffffff', color: '#1a2b22' }}>All Styles</option>
                 <option value="Japandi Minimalism" style={{ background: '#ffffff', color: '#1a2b22' }}>Japandi Minimalism</option>
