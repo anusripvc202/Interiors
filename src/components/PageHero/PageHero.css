@@ -4,9 +4,9 @@
 
 .page-hero {
   position: relative;
-  height: 50vh;
-  min-height: 380px;
-  max-height: 520px;
+  height: 70vh;
+  min-height: 500px;
+  max-height: 650px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -50,14 +50,15 @@
   z-index: 0;
 }
 
-.page-hero__bg-img {
+.page-hero__bg-img,
+.page-hero__bg-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   animation: slowZoom 12s ease-out forwards;
-  opacity: 0.28;
-  filter: saturate(1.2) contrast(1.05);
+  opacity: 0.45;
+  filter: saturate(1.25) contrast(1.05);
 }
 
 .page-hero__overlay {
@@ -65,9 +66,9 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(243, 248, 245, 0.82) 0%,
-    rgba(243, 248, 245, 0.88) 55%,
-    rgba(243, 248, 245, 0.98) 100%
+    rgba(243, 248, 245, 0.45) 0%,
+    rgba(243, 248, 245, 0.6) 55%,
+    rgba(243, 248, 245, 0.85) 100%
   );
   z-index: 1;
 }

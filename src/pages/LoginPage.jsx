@@ -620,163 +620,153 @@ export default function LoginPage() {
 
           <div className="dashboard-grid">
             
-            {/* Left: Schedule and Estimations */}
-            <div className="dashboard-main-col">
-              
-              {/* Consultations Card */}
-              <div className="dash-card">
-                <div className="dash-card__header">
-                  <Calendar size={18} className="header-icon" />
-                  <h3>My Studio Consultations</h3>
-                </div>
-                <div className="dash-card__body">
-                  {clientBookings.length === 0 ? (
-                    <div className="empty-state">
-                      <Clock size={36} />
-                      <p>You do not have any consultations scheduled at this moment.</p>
-                      <a href="#/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</a>
-                    </div>
-                  ) : (
-                    <div className="bookings-list">
-                      {clientBookings.map(booking => (
-                        <div key={booking.id} className="booking-row">
-                          <div className="booking-main">
-                            <span className={`booking-status-badge ${booking.status.toLowerCase()}`}>
-                              {booking.status}
-                            </span>
-                            <h4>{booking.spaceType} Custom Consultation</h4>
-                            <p className="booking-meta">
-                              <span><strong>Designer:</strong> {booking.designerName}</span>
-                              <span className="dot">•</span>
-                              <span><Clock size={12} /> {booking.date} at {booking.time}</span>
-                            </p>
-                          </div>
-                          <div className="booking-right">
-                            <div className="booking-value">
-                              <span className="label">Est. Investment</span>
-                              <span className="val">{booking.cost || '₹4,50,000'}</span>
-                            </div>
-                            {booking.status === 'Scheduled' && (
-                              <button 
-                                onClick={() => {
-                                  if (window.confirm('Are you sure you want to cancel this booking?')) {
-                                    cancelBooking(booking.id);
-                                  }
-                                }}
-                                className="btn-cancel"
-                                aria-label="Cancel consultation"
-                              >
-                                Cancel
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+            {/* Consultations Card */}
+            <div className="dash-card">
+              <div className="dash-card__header">
+                <Calendar size={18} className="header-icon" />
+                <h3>My Studio Consultations</h3>
               </div>
-
-              {/* History estimates */}
-              <div className="dash-card" style={{ marginTop: '2rem' }}>
-                <div className="dash-card__header">
-                  <DollarSign size={18} className="header-icon" />
-                  <h3>Recent Interactive Estimates</h3>
-                </div>
-                <div className="dash-card__body">
-                  <div className="table-responsive">
-                    <table className="estimates-table">
-                      <thead>
-                        <tr>
-                          <th>Space Type</th>
-                          <th>Craftsmanship Tier</th>
-                          <th>Approx Area</th>
-                          <th>Est. Cost</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>🛋️ Living Room / Lounge</td>
-                          <td><span className="badge-luxury">Ultra-Luxury</span></td>
-                          <td>450 Sq.Ft</td>
-                          <td>₹11,66,400</td>
-                        </tr>
-                        <tr>
-                          <td>🍳 Gourmet Kitchen</td>
-                          <td><span className="badge-premium">Premium</span></td>
-                          <td>300 Sq.Ft</td>
-                          <td>₹6,04,800</td>
-                        </tr>
-                      </tbody>
-                    </table>
+              <div className="dash-card__body">
+                {clientBookings.length === 0 ? (
+                  <div className="empty-state">
+                    <Clock size={36} />
+                    <p>You do not have any consultations scheduled at this moment.</p>
+                    <a href="#/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</a>
                   </div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right: Profile details & styling recommendations */}
-            <div className="dashboard-side-col">
-              
-              {/* Profile Card */}
-              <div className="dash-card side-card">
-                <div className="dash-card__header">
-                  <User size={18} className="header-icon" />
-                  <h3>My Design Profile</h3>
-                </div>
-                <div className="dash-card__body profile-detail">
-                  <div className="detail-item">
-                    <span className="label">Email Address</span>
-                    <span className="val">{user.email}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="label">Preferred Aesthetic Theme</span>
-                    <span className="val theme-highlight">
-                      <Compass size={14} />
-                      {user.preferredStyle}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Aesthetic recommendation */}
-              <div className="dash-card side-card advice-card" style={{ marginTop: '2rem' }}>
-                <div className="dash-card__header">
-                  <Sparkles size={18} className="header-icon" />
-                  <h3>Style Recommendations</h3>
-                </div>
-                <div className="dash-card__body">
-                  {(() => {
-                    const advice = getStyleAdvice(user.styleId);
-                    return (
-                      <div className="advice-content">
-                        <div className="advice-group">
-                          <span className="label">Curated Palette Colors</span>
-                          <div className="color-swatches">
-                            {advice.palette.map((color, index) => (
-                              <div 
-                                key={index} 
-                                className="swatch" 
-                                style={{ backgroundColor: color }}
-                                title={color}
-                              />
-                            ))}
+                ) : (
+                  <div className="bookings-list">
+                    {clientBookings.map(booking => (
+                      <div key={booking.id} className="booking-row">
+                        <div className="booking-main">
+                          <span className={`booking-status-badge ${booking.status.toLowerCase()}`}>
+                            {booking.status}
+                          </span>
+                          <h4>{booking.spaceType} Custom Consultation</h4>
+                          <p className="booking-meta">
+                            <span><strong>Designer:</strong> {booking.designerName}</span>
+                            <span className="dot">•</span>
+                            <span><Clock size={12} /> {booking.date} at {booking.time}</span>
+                          </p>
+                        </div>
+                        <div className="booking-right">
+                          <div className="booking-value">
+                            <span className="label">Est. Investment</span>
+                            <span className="val">{booking.cost || '₹4,50,000'}</span>
                           </div>
-                        </div>
-                        <div className="advice-group">
-                          <span className="label">Recommended Materials</span>
-                          <p>{advice.materials}</p>
-                        </div>
-                        <div className="advice-group">
-                          <span className="label">Pro Styling Tip</span>
-                          <p className="tip-text">"{advice.tips}"</p>
+                          {booking.status === 'Scheduled' && (
+                            <button 
+                              onClick={() => {
+                                if (window.confirm('Are you sure you want to cancel this booking?')) {
+                                  cancelBooking(booking.id);
+                                }
+                              }}
+                              className="btn-cancel"
+                              aria-label="Cancel consultation"
+                            >
+                              Cancel
+                            </button>
+                          )}
                         </div>
                       </div>
-                    );
-                  })()}
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Profile Card */}
+            <div className="dash-card side-card">
+              <div className="dash-card__header">
+                <User size={18} className="header-icon" />
+                <h3>My Design Profile</h3>
+              </div>
+              <div className="dash-card__body profile-detail">
+                <div className="detail-item">
+                  <span className="label">Email Address</span>
+                  <span className="val">{user.email}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Preferred Aesthetic Theme</span>
+                  <span className="val theme-highlight">
+                    <Compass size={14} />
+                    {user.preferredStyle}
+                  </span>
                 </div>
               </div>
+            </div>
 
+            {/* History estimates */}
+            <div className="dash-card">
+              <div className="dash-card__header">
+                <DollarSign size={18} className="header-icon" />
+                <h3>Recent Interactive Estimates</h3>
+              </div>
+              <div className="dash-card__body">
+                <div className="table-responsive">
+                  <table className="estimates-table">
+                    <thead>
+                      <tr>
+                        <th>Space Type</th>
+                        <th>Craftsmanship Tier</th>
+                        <th>Approx Area</th>
+                        <th>Est. Cost</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>🛋️ Living Room / Lounge</td>
+                        <td><span className="badge-luxury">Ultra-Luxury</span></td>
+                        <td>450 Sq.Ft</td>
+                        <td>₹11,66,400</td>
+                      </tr>
+                      <tr>
+                        <td>🍳 Gourmet Kitchen</td>
+                        <td><span className="badge-premium">Premium</span></td>
+                        <td>300 Sq.Ft</td>
+                        <td>₹6,04,800</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Aesthetic recommendation */}
+            <div className="dash-card side-card advice-card">
+              <div className="dash-card__header">
+                <Sparkles size={18} className="header-icon" />
+                <h3>Style Recommendations</h3>
+              </div>
+              <div className="dash-card__body">
+                {(() => {
+                  const advice = getStyleAdvice(user.styleId);
+                  return (
+                    <div className="advice-content">
+                      <div className="advice-group">
+                        <span className="label">Curated Palette Colors</span>
+                        <div className="color-swatches">
+                          {advice.palette.map((color, index) => (
+                            <div 
+                              key={index} 
+                              className="swatch" 
+                              style={{ backgroundColor: color }}
+                              title={color}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="advice-group">
+                        <span className="label">Recommended Materials</span>
+                        <p>{advice.materials}</p>
+                      </div>
+                      <div className="advice-group">
+                        <span className="label">Pro Styling Tip</span>
+                        <p className="tip-text">"{advice.tips}"</p>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
             </div>
 
           </div>
@@ -810,201 +800,192 @@ export default function LoginPage() {
 
           <div className="dashboard-grid">
             
-            {/* Left: Client bookings table */}
-            <div className="dashboard-main-col">
-              
-              <div className="dash-card">
-                <div className="dash-card__header justify-between">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <CheckSquare size={18} className="header-icon" />
-                    <h3>Client Consultation Schedule</h3>
-                  </div>
-                  <span className="badge-small">{designerBookings.length} Active Slots</span>
+            {/* Client bookings table */}
+            <div className="dash-card">
+              <div className="dash-card__header justify-between">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <CheckSquare size={18} className="header-icon" />
+                  <h3>Client Consultation Schedule</h3>
                 </div>
-                <div className="dash-card__body">
-                  {designerBookings.length === 0 ? (
-                    <div className="empty-state">
-                      <Clock size={36} />
-                      <p>You do not have any assigned consultations scheduled at this moment.</p>
-                    </div>
-                  ) : (
-                    <div className="table-responsive">
-                      <table className="designer-schedule-table">
-                        <thead>
-                          <tr>
-                            <th>Client Name</th>
-                            <th>Space Type</th>
-                            <th>Date & Time</th>
-                            <th>Est. Value</th>
-                            <th>Status Control</th>
+                <span className="badge-small">{designerBookings.length} Active Slots</span>
+              </div>
+              <div className="dash-card__body">
+                {designerBookings.length === 0 ? (
+                  <div className="empty-state">
+                    <Clock size={36} />
+                    <p>You do not have any assigned consultations scheduled at this moment.</p>
+                  </div>
+                ) : (
+                  <div className="table-responsive">
+                    <table className="designer-schedule-table">
+                      <thead>
+                        <tr>
+                          <th>Client Name</th>
+                          <th>Space Type</th>
+                          <th>Date & Time</th>
+                          <th>Est. Value</th>
+                          <th>Status Control</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {designerBookings.map(booking => (
+                          <tr key={booking.id}>
+                            <td>
+                              <div className="client-cell">
+                                <strong>{booking.clientName}</strong>
+                                <span>{booking.clientEmail}</span>
+                              </div>
+                            </td>
+                            <td>{booking.spaceType}</td>
+                            <td>
+                              <div className="date-cell">
+                                <span>{booking.date}</span>
+                                <span>at {booking.time}</span>
+                              </div>
+                            </td>
+                            <td className="cost-val">{booking.cost || '₹4,50,000'}</td>
+                            <td>
+                              <div className="status-controller">
+                                <span className={`status-badge-inline ${booking.status.toLowerCase()}`}>
+                                  {booking.status}
+                                </span>
+                                <select 
+                                  value={booking.status} 
+                                  onChange={(e) => updateBookingStatus(booking.id, e.target.value)}
+                                  className="status-dropdown"
+                                >
+                                  <option value="Scheduled">Scheduled</option>
+                                  <option value="In Progress">In Progress</option>
+                                  <option value="Completed">Completed</option>
+                                  <option value="Cancelled">Cancelled</option>
+                                </select>
+                              </div>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          {designerBookings.map(booking => (
-                            <tr key={booking.id}>
-                              <td>
-                                <div className="client-cell">
-                                  <strong>{booking.clientName}</strong>
-                                  <span>{booking.clientEmail}</span>
-                                </div>
-                              </td>
-                              <td>{booking.spaceType}</td>
-                              <td>
-                                <div className="date-cell">
-                                  <span>{booking.date}</span>
-                                  <span>at {booking.time}</span>
-                                </div>
-                              </td>
-                              <td className="cost-val">{booking.cost || '₹4,50,000'}</td>
-                              <td>
-                                <div className="status-controller">
-                                  <span className={`status-badge-inline ${booking.status.toLowerCase()}`}>
-                                    {booking.status}
-                                  </span>
-                                  <select 
-                                    value={booking.status} 
-                                    onChange={(e) => updateBookingStatus(booking.id, e.target.value)}
-                                    className="status-dropdown"
-                                  >
-                                    <option value="Scheduled">Scheduled</option>
-                                    <option value="In Progress">In Progress</option>
-                                    <option value="Completed">Completed</option>
-                                    <option value="Cancelled">Cancelled</option>
-                                  </select>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Designer bio editing section */}
-              <div className="dash-card" style={{ marginTop: '2rem' }}>
-                <div className="dash-card__header justify-between">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Edit2 size={18} className="header-icon" />
-                    <h3>Profile Portfolio Settings</h3>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
-                  {!isEditingProfile && (
-                    <button onClick={handleEditProfileInit} className="btn-edit-inline">
-                      Edit Profile
-                    </button>
-                  )}
-                </div>
-                <div className="dash-card__body">
-                  {isEditingProfile ? (
-                    <form onSubmit={handleSaveProfile} className="profile-edit-form">
-                      <div className="form-group">
-                        <label htmlFor="edit-role">Design Title / Role</label>
-                        <input 
-                          type="text" 
-                          id="edit-role"
-                          required
-                          value={editRole}
-                          onChange={(e) => setEditRole(e.target.value)}
-                        />
-                      </div>
-                      
-                      <div className="form-group">
-                        <label htmlFor="edit-rate">Starting Consultation Rate (₹)</label>
-                        <input 
-                          type="number" 
-                          id="edit-rate"
-                          required
-                          value={editRate}
-                          onChange={(e) => setEditRate(e.target.value)}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="edit-bio">Studio Biography</label>
-                        <textarea 
-                          id="edit-bio" 
-                          rows="4" 
-                          required
-                          value={editBio}
-                          onChange={(e) => setEditBio(e.target.value)}
-                        />
-                      </div>
-
-                      <div className="btn-row-edit">
-                        <button type="button" onClick={() => setIsEditingProfile(false)} className="btn-outline btn-sm">
-                          Cancel
-                        </button>
-                        <button type="submit" className="btn-primary btn-sm">
-                          Save Changes
-                        </button>
-                      </div>
-                    </form>
-                  ) : (
-                    <div className="designer-profile-display">
-                      <div className="display-row">
-                        <span className="label">Public Role Title</span>
-                        <span className="val">{details.role}</span>
-                      </div>
-                      <div className="display-row">
-                        <span className="label">Studio Specialty</span>
-                        <span className="val">{details.style}</span>
-                      </div>
-                      <div className="display-row">
-                        <span className="label">Consultation Starting rate</span>
-                        <span className="val">₹{(details.startingRate || 0).toLocaleString('en-IN')}</span>
-                      </div>
-                      <div className="display-row">
-                        <span className="label">Biography</span>
-                        <p className="bio-display-text">"{details.bio}"</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
-
             </div>
 
-            {/* Right: Metrics & stats */}
-            <div className="dashboard-side-col">
-              
-              {/* Metrics Card */}
-              <div className="dash-card side-card">
-                <div className="dash-card__header">
-                  <Activity size={18} className="header-icon" />
-                  <h3>Studio Performance</h3>
+            {/* Metrics Card */}
+            <div className="dash-card side-card">
+              <div className="dash-card__header">
+                <Activity size={18} className="header-icon" />
+                <h3>Studio Performance</h3>
+              </div>
+              <div className="dash-card__body metrics-list">
+                <div className="metric-box">
+                  <span className="metric-val">{details.rating || 5.0} <Star size={14} className="star-icon" /></span>
+                  <span className="metric-lbl">Average Rating ({details.reviewsCount || 0} reviews)</span>
                 </div>
-                <div className="dash-card__body metrics-list">
-                  <div className="metric-box">
-                    <span className="metric-val">{details.rating || 5.0} <Star size={14} className="star-icon" /></span>
-                    <span className="metric-lbl">Average Rating ({details.reviewsCount || 0} reviews)</span>
-                  </div>
-                  
-                  <div className="metric-box">
-                    <span className="metric-val">{details.experience || '8 Years'}</span>
-                    <span className="metric-lbl">Studio Experience</span>
-                  </div>
+                
+                <div className="metric-box">
+                  <span className="metric-val">{details.experience || '8 Years'}</span>
+                  <span className="metric-lbl">Studio Experience</span>
+                </div>
 
-                  <div className="metric-box">
-                    <span className="metric-val">{details.city || 'Mumbai'}</span>
-                    <span className="metric-lbl">Primary Studio Office</span>
-                  </div>
+                <div className="metric-box">
+                  <span className="metric-val">{details.city || 'Mumbai'}</span>
+                  <span className="metric-lbl">Primary Studio Office</span>
                 </div>
               </div>
+            </div>
 
-              {/* Safety notice */}
-              <div className="dash-card side-card advice-card alert-card" style={{ marginTop: '2rem' }}>
-                <div className="dash-card__header">
-                  <ShieldAlert size={18} className="header-icon" />
-                  <h3>Security & Protocol</h3>
+            {/* Designer bio editing section */}
+            <div className="dash-card">
+              <div className="dash-card__header justify-between">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Edit2 size={18} className="header-icon" />
+                  <h3>Profile Portfolio Settings</h3>
                 </div>
-                <div className="dash-card__body">
-                  <p style={{ fontSize: '0.85rem', color: 'var(--stone)', lineHeight: '1.6' }}>
-                    Verify layout measurements before uploading 3D concepts. Project fee structures remain locked once the digital schedule reaches <strong style={{ color: 'var(--gold-dark)' }}>In Progress</strong> state.
-                  </p>
-                </div>
+                {!isEditingProfile && (
+                  <button onClick={handleEditProfileInit} className="btn-edit-inline">
+                    Edit Profile
+                  </button>
+                )}
               </div>
+              <div className="dash-card__body">
+                {isEditingProfile ? (
+                  <form onSubmit={handleSaveProfile} className="profile-edit-form">
+                    <div className="form-group">
+                      <label htmlFor="edit-role">Design Title / Role</label>
+                      <input 
+                        type="text" 
+                        id="edit-role"
+                        required
+                        value={editRole}
+                        onChange={(e) => setEditRole(e.target.value)}
+                      />
+                    </div>
+                    
+                    <div className="form-group">
+                      <label htmlFor="edit-rate">Starting Consultation Rate (₹)</label>
+                      <input 
+                        type="number" 
+                        id="edit-rate"
+                        required
+                        value={editRate}
+                        onChange={(e) => setEditRate(e.target.value)}
+                      />
+                    </div>
 
+                    <div className="form-group">
+                      <label htmlFor="edit-bio">Studio Biography</label>
+                      <textarea 
+                        id="edit-bio" 
+                        rows="4" 
+                        required
+                        value={editBio}
+                        onChange={(e) => setEditBio(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="btn-row-edit">
+                      <button type="button" onClick={() => setIsEditingProfile(false)} className="btn-outline btn-sm">
+                        Cancel
+                      </button>
+                      <button type="submit" className="btn-primary btn-sm">
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="designer-profile-display">
+                    <div className="display-row">
+                      <span className="label">Public Role Title</span>
+                      <span className="val">{details.role}</span>
+                    </div>
+                    <div className="display-row">
+                      <span className="label">Studio Specialty</span>
+                      <span className="val">{details.style}</span>
+                    </div>
+                    <div className="display-row">
+                      <span className="label">Consultation Starting rate</span>
+                      <span className="val">₹{(details.startingRate || 0).toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="display-row">
+                      <span className="label">Biography</span>
+                      <p className="bio-display-text">"{details.bio}"</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Safety notice */}
+            <div className="dash-card side-card advice-card alert-card">
+              <div className="dash-card__header">
+                <ShieldAlert size={18} className="header-icon" />
+                <h3>Security & Protocol</h3>
+              </div>
+              <div className="dash-card__body">
+                <p style={{ fontSize: '0.85rem', color: 'var(--stone)', lineHeight: '1.6' }}>
+                  Verify layout measurements before uploading 3D concepts. Project fee structures remain locked once the digital schedule reaches <strong style={{ color: 'var(--gold-dark)' }}>In Progress</strong> state.
+                </p>
+              </div>
             </div>
 
           </div>

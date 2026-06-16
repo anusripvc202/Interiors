@@ -25,16 +25,44 @@ export default function Home() {
       {/* Hero Search Section */}
       <section className="hero" style={{ 
         position: 'relative',
-        minHeight: '75vh', 
+        minHeight: '88vh', 
         justifyContent: 'center', 
-        paddingTop: '10rem', 
-        paddingBottom: '5rem',
-        backgroundImage: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.85) 0%, rgba(243, 248, 245, 0.98) 100%), url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        paddingTop: '12rem', 
+        paddingBottom: '6rem',
         color: 'var(--white)',
-        borderBottom: '1px solid var(--border)'
+        borderBottom: '1px solid var(--border)',
+        overflow: 'hidden'
       }}>
+        {/* Background Video */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0
+        }}>
+          <video
+            src={`${import.meta.env.BASE_URL}hero-video.mp4`}
+            poster={`${import.meta.env.BASE_URL}hero-poster.jpg`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              opacity: 0.45,
+              filter: 'saturate(1.25) contrast(1.05)'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.45) 0%, rgba(243, 248, 245, 0.6) 55%, rgba(243, 248, 245, 0.85) 100%)',
+            zIndex: 1
+          }} />
+        </div>
+
         <div className="container" style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '2.5rem', alignItems: 'center', textAlign: 'center' }}>
           
           <div style={{ maxWidth: '850px' }}>

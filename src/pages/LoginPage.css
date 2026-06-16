@@ -460,7 +460,6 @@
   display: grid;
   grid-template-columns: 1.8fr 1fr;
   gap: 2rem;
-  align-items: flex-start;
 }
 
 /* Dash Cards */

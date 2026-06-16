@@ -53,7 +53,15 @@ export default function PageHero({ title, subtitle, bgImage, theme, breadcrumb }
   return (
     <section className={`page-hero ${theme ? `page-hero--${theme}` : ''}`} ref={ref}>
       <div className="page-hero__bg">
-        <img src={bgImage} alt={title && typeof title === 'string' ? title : 'Hero image'} className="page-hero__bg-img" />
+        <video 
+          src={`${import.meta.env.BASE_URL}hero-video.mp4`}
+          poster={bgImage}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="page-hero__bg-video"
+        />
         <div className="page-hero__overlay" />
       </div>
 

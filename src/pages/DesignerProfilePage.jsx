@@ -179,16 +179,44 @@ export default function DesignerProfilePage() {
       {/* Cover Header Hero */}
       <section style={{ 
         position: 'relative', 
-        paddingTop: '8rem',
-        paddingBottom: '3rem',
-        backgroundImage: `linear-gradient(to bottom, rgba(243, 248, 245, 0.82) 0%, rgba(243, 248, 245, 0.96) 100%), url(${designer.portfolio[0]?.image || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=90&auto=format&fit=crop"})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        paddingTop: '12rem',
+        paddingBottom: '6rem',
         display: 'flex',
         alignItems: 'flex-end',
         color: 'var(--white)',
-        borderBottom: '1px solid var(--border)'
+        borderBottom: '1px solid var(--border)',
+        overflow: 'hidden'
       }}>
+        {/* Background Video */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0
+        }}>
+          <video
+            src={`${import.meta.env.BASE_URL}hero-video.mp4`}
+            poster={designer.portfolio[0]?.image || `${import.meta.env.BASE_URL}hero-poster.jpg`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              opacity: 0.45,
+              filter: 'saturate(1.25) contrast(1.05)'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.45) 0%, rgba(243, 248, 245, 0.85) 100%)',
+            zIndex: 1
+          }} />
+        </div>
+
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <Link to="/portfolio" style={{ 
             display: 'inline-flex', 
