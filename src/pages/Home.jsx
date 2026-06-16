@@ -29,7 +29,7 @@ export default function Home() {
         justifyContent: 'center', 
         paddingTop: '12rem', 
         paddingBottom: '6rem',
-        color: 'var(--white)',
+        color: '#ffffff',
         borderBottom: '1px solid var(--border)',
         overflow: 'hidden'
       }}>
@@ -67,15 +67,15 @@ export default function Home() {
           
           <div style={{ 
             maxWidth: '850px',
-            textShadow: '0 2px 10px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)'
+            textShadow: '0 2px 15px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)'
           }}>
-            <span className="section-label" style={{ justifyContent: 'center' }}>Book Verified Designers</span>
+            <span className="section-label" style={{ justifyContent: 'center', color: '#ffffff', background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.25)', padding: '0.45rem 1.25rem', borderRadius: '100px', width: 'fit-content', margin: '0 auto' }}>Book Verified Designers</span>
             <h1 style={{ 
               fontFamily: 'var(--font-serif)', 
               fontSize: 'clamp(2.5rem, 5.5vw, 4.8rem)', 
               fontWeight: '400', 
               lineHeight: '1.1', 
-              color: 'var(--white)',
+              color: '#ffffff',
               marginTop: '1rem',
               marginBottom: '1.5rem' 
             }}>
@@ -84,7 +84,7 @@ export default function Home() {
             <p style={{ 
               fontFamily: 'var(--font-sans)', 
               fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', 
-              color: 'var(--text-muted)',
+              color: 'rgba(255, 255, 255, 0.85)',
               fontWeight: 300,
               maxWidth: '650px',
               margin: '0 auto'
@@ -101,7 +101,7 @@ export default function Home() {
               <select 
                 value={searchCity}
                 onChange={(e) => setSearchCity(e.target.value)}
-                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: 'var(--white)', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
+                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: '#ffffff', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
               >
                 <option value="" style={{ background: '#ffffff', color: '#1a2b22' }}>All Cities (India)</option>
                 <option value="Bangalore" style={{ background: '#ffffff', color: '#1a2b22' }}>Bangalore</option>
@@ -120,7 +120,7 @@ export default function Home() {
               <select
                 value={searchStyle}
                 onChange={(e) => setSearchStyle(e.target.value)}
-                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: 'var(--white)', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
+                style={{ border: 'none', background: 'transparent', fontSize: '0.95rem', fontWeight: '500', color: '#ffffff', cursor: 'pointer', outline: 'none', fontFamily: 'var(--font-sans)', width: '100%' }}
               >
                 <option value="" style={{ background: '#ffffff', color: '#1a2b22' }}>All Styles</option>
                 <option value="Japandi Minimalism" style={{ background: '#ffffff', color: '#1a2b22' }}>Japandi Minimalism</option>
@@ -194,7 +194,7 @@ export default function Home() {
                   <Compass size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>1. Search & Filter</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>1. Search & Filter</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Explore portfolios of certified designers. Filter by layout specialty, style expertise, rating, and city location.
                   </p>
@@ -217,7 +217,7 @@ export default function Home() {
                   <Shield size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>2. Compare Packages</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>2. Compare Packages</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Check individual designer packages, from basic layout concepts to 3D realistic visualizer builds and complete turnkey setup.
                   </p>
@@ -240,7 +240,7 @@ export default function Home() {
                   <Calendar size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>3. Book Consultation</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>3. Book Consultation</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Select a live schedule slot directly on your matched designer's calendar and secure your styling consultation in minutes.
                   </p>
@@ -303,7 +303,7 @@ export default function Home() {
                 
                 <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flexGrow: 1 }}>
                   <div>
-                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>{designer.name}</h4>
+                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: '#ffffff', margin: '0 0 0.25rem' }}>{designer.name}</h4>
                     <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--purple-light)', fontWeight: 700, letterSpacing: '0.08em' }}>{designer.role}</span>
                   </div>
 
@@ -361,7 +361,7 @@ export default function Home() {
                   background: 'linear-gradient(to top, rgba(27,154,89,0.95) 0%, rgba(27,154,89,0.45) 55%, transparent 100%)',
                   display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem'
                 }}>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>{styleItem.label}</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#ffffff', margin: '0 0 0.25rem' }}>{styleItem.label}</h4>
                   <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.65)', margin: 0 }}>{styleItem.desc}</p>
                 </div>
               </div>
@@ -413,7 +413,7 @@ export default function Home() {
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(27,154,89,0.03)' }} />
                 </div>
                 <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: 'var(--white)', margin: 0 }}>{item.title}</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#ffffff', margin: 0 }}>{item.title}</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.55', margin: 0 }}>{item.desc}</p>
                 </div>
               </div>

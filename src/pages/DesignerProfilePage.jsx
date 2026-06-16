@@ -183,7 +183,7 @@ export default function DesignerProfilePage() {
         paddingBottom: '6rem',
         display: 'flex',
         alignItems: 'flex-end',
-        color: 'var(--white)',
+        color: '#ffffff',
         borderBottom: '1px solid var(--border)',
         overflow: 'hidden'
       }}>
@@ -220,7 +220,7 @@ export default function DesignerProfilePage() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{
             width: '100%',
-            textShadow: '0 2px 10px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)'
+            textShadow: '0 2px 15px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)'
           }}>
             <Link to="/portfolio" style={{ 
               display: 'inline-flex', 
@@ -229,7 +229,7 @@ export default function DesignerProfilePage() {
               fontSize: '0.75rem', 
               textTransform: 'uppercase', 
               letterSpacing: '0.1em', 
-              color: 'var(--text-muted)', 
+              color: 'rgba(255, 255, 255, 0.8)', 
               marginBottom: '2rem',
               transition: 'color 0.3s'
             }} className="back-link">
@@ -245,12 +245,12 @@ export default function DesignerProfilePage() {
               />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                  <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 400, margin: 0 }}>{designer.name}</h1>
+                  <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 400, margin: 0, color: '#ffffff' }}>{designer.name}</h1>
                   <span className="designer-match-tag" style={{ background: 'var(--gold)', color: 'var(--pure-white)', fontSize: '0.62rem', padding: '0.25rem 0.6rem', borderRadius: '100px', fontWeight: 'bold', textTransform: 'uppercase' }}>
                     <Award size={12} style={{ marginRight: '0.2rem' }} /> Verified Specialist
                   </span>
                 </div>
-                <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-dark)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
+                <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255, 255, 255, 0.9)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
               </div>
             </div>
           </div>
@@ -324,7 +324,7 @@ export default function DesignerProfilePage() {
                           left: '50%',
                           transform: 'translateX(-50%)',
                           background: 'var(--gold)',
-                          color: 'var(--white)',
+                          color: '#ffffff',
                           fontSize: '0.58rem',
                           fontWeight: '800',
                           textTransform: 'uppercase',
@@ -628,7 +628,7 @@ export default function DesignerProfilePage() {
                     
                     {/* Calendar Month Selector Header */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', padding: '0 0.2rem' }}>
-                      <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--white)', fontFamily: 'var(--font-sans)' }}>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#ffffff', fontFamily: 'var(--font-sans)' }}>
                         {monthNames[currentMonth]} {currentYear}
                       </span>
                       <div style={{ display: 'flex', gap: '0.4rem' }}>
@@ -640,7 +640,7 @@ export default function DesignerProfilePage() {
                             background: 'rgba(255,255,255,0.04)',
                             border: '1px solid var(--border)',
                             borderRadius: '4px',
-                            color: 'var(--white)',
+                            color: '#ffffff',
                             padding: '0.4rem',
                             cursor: isPrevDisabled ? 'not-allowed' : 'pointer',
                             opacity: isPrevDisabled ? 0.3 : 1,
@@ -659,7 +659,7 @@ export default function DesignerProfilePage() {
                             background: 'rgba(255,255,255,0.04)',
                             border: '1px solid var(--border)',
                             borderRadius: '4px',
-                            color: 'var(--white)',
+                            color: '#ffffff',
                             padding: '0.4rem',
                             cursor: 'pointer',
                             display: 'flex',
