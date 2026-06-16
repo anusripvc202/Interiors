@@ -18,7 +18,7 @@
   transform: translateX(-50%);
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, rgba(59,130,246,0.05) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.08) 0%, rgba(34,197,94,0.05) 40%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -94,14 +94,14 @@
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
-  border: 1px solid rgba(124,58,237,0.35);
+  border: 1px solid rgba(27,154,89,0.35);
   color: var(--purple-light);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s var(--ease);
   cursor: pointer;
-  background: rgba(124,58,237,0.08);
+  background: rgba(27,154,89,0.08);
 }
 
 .testimonials__btn:hover {
@@ -131,5 +131,5 @@
   background: var(--grad-primary);
   background: var(--purple-light);
   transform: scale(1.6);
-  box-shadow: 0 0 8px rgba(124,58,237,0.6);
+  box-shadow: 0 0 8px rgba(27,154,89,0.6);
 }

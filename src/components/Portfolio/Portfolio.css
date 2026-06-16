@@ -80,7 +80,7 @@
 }
 
 .portfolio__item:hover {
-  border-color: rgba(124,58,237,0.3);
+  border-color: rgba(27,154,89,0.3);
 }
 
 .portfolio__item--featured {

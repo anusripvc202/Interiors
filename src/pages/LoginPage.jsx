@@ -237,7 +237,7 @@ export default function LoginPage() {
             {/* Header */}
             <div className="login-card__header">
               <span className="logo-spark">✦</span>
-              <h2>Luxe<em>Portal</em></h2>
+              <h2>Interiors<em>Portal</em></h2>
               <p>{isSignUp ? 'Create a premium client profile' : 'Sign in to access your luxury interior studio'}</p>
             </div>
 
@@ -566,7 +566,7 @@ export default function LoginPage() {
                 </button>
 
                 <div className="auth-toggle-link">
-                  <span>New to LuxeInteriors? </span>
+                  <span>New to Interiors Outfit? </span>
                   <button type="button" onClick={() => setIsSignUp(true)}>Create Client Profile</button>
                 </div>
               </form>
@@ -610,7 +610,7 @@ export default function LoginPage() {
             <div className="banner-details">
               <span className="badge-gold">Client Account</span>
               <h1>Welcome, {user.name}</h1>
-              <p className="subtitle">Luxe client portal for custom design plans and bookings.</p>
+              <p className="subtitle">Interiors Outfit client portal for custom design plans and bookings.</p>
             </div>
             <button onClick={logout} className="btn-logout">
               <LogOut size={16} />
@@ -789,7 +789,7 @@ export default function LoginPage() {
               <div className="banner-details">
                 <span className="badge-gold">Lead Designer Account</span>
                 <h1>{user.name}</h1>
-                <p className="subtitle">{details.role || 'Lead Designer'} | {details.city || 'Luxe'} Studio</p>
+                <p className="subtitle">{details.role || 'Lead Designer'} | {details.city || 'Interiors Outfit'} Studio</p>
               </div>
             </div>
             <button onClick={logout} className="btn-logout">

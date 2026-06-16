@@ -22,7 +22,7 @@
   left: -5%;
   width: 70vw;
   height: 70vw;
-  background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, rgba(59,130,246,0.08) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.18) 0%, rgba(34,197,94,0.08) 40%, transparent 70%);
   border-radius: 50%;
   animation: float 8s ease-in-out infinite;
   pointer-events: none;
@@ -36,7 +36,7 @@
   right: -5%;
   width: 55vw;
   height: 55vw;
-  background: radial-gradient(circle, rgba(236,72,153,0.12) 0%, rgba(249,115,22,0.06) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(21,128,61,0.12) 0%, rgba(249,115,22,0.06) 40%, transparent 70%);
   border-radius: 50%;
   animation: float 10s ease-in-out infinite reverse;
   pointer-events: none;
@@ -86,9 +86,9 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(124,58,237,0.12);
+  background: rgba(27,154,89,0.12);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(124,58,237,0.35);
+  border: 1px solid rgba(27,154,89,0.35);
   padding: 0.6rem 1.2rem;
   border-radius: 100px;
   font-size: 0.72rem;
@@ -97,7 +97,7 @@
   letter-spacing: 0.05em;
   z-index: 10;
   animation: fadeIn 1s var(--ease) 0.5s both;
-  box-shadow: 0 4px 20px rgba(124,58,237,0.25);
+  box-shadow: 0 4px 20px rgba(27,154,89,0.25);
 }
 
 .hero__badge-dot {
@@ -170,7 +170,7 @@
 .hero__stats {
   display: flex;
   gap: 0;
-  border-top: 1px solid rgba(124,58,237,0.2);
+  border-top: 1px solid rgba(27,154,89,0.2);
   padding-top: 2rem;
   max-width: 680px;
   animation: fadeIn 1s var(--ease) 0.8s both;
@@ -182,7 +182,7 @@
   flex-direction: column;
   gap: 0.25rem;
   padding-right: 2rem;
-  border-right: 1px solid rgba(124,58,237,0.15);
+  border-right: 1px solid rgba(27,154,89,0.15);
   margin-right: 2rem;
 }
 
@@ -218,7 +218,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(124,58,237,0.4);
+  border: 1px solid rgba(27,154,89,0.4);
   color: var(--white);
   display: flex;
   align-items: center;
@@ -226,7 +226,7 @@
   z-index: 10;
   transition: all 0.35s var(--ease);
   animation: fadeIn 1s var(--ease) 1.2s both, float 3s ease-in-out 1.5s infinite;
-  background: rgba(124,58,237,0.08);
+  background: rgba(27,154,89,0.08);
   backdrop-filter: blur(10px);
 }
 
@@ -265,7 +265,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-top: 1px solid rgba(124,58,237,0.1);
+  border-top: 1px solid rgba(27,154,89,0.1);
   padding-top: 1.5rem;
   max-width: 680px;
   animation: fadeIn 1s var(--ease) 1s both;

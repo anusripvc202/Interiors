@@ -16,7 +16,7 @@
   right: -10%;
   width: 45vw;
   height: 45vw;
-  background: radial-gradient(circle, rgba(236,72,153,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(21,128,61,0.07) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -58,8 +58,8 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 10px;
-  background: rgba(124,58,237,0.1);
-  border: 1px solid rgba(124,58,237,0.25);
+  background: rgba(27,154,89,0.1);
+  border: 1px solid rgba(27,154,89,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,7 +97,7 @@
 /* Form Card */
 .contact__form-card {
   background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27,154,89,0.2);
   border-radius: 20px;
   padding: 3rem 2.5rem;
   position: relative;
@@ -160,7 +160,7 @@
 .contact__form-group textarea {
   width: 100%;
   padding: 0.85rem 1rem;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27,154,89,0.2);
   background: rgba(255,255,255,0.04);
   border-radius: 8px;
   font-family: var(--font-sans);
@@ -179,8 +179,8 @@
 .contact__form-group textarea:focus {
   outline: none;
   border-color: var(--purple);
-  background: rgba(124,58,237,0.08);
-  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+  background: rgba(27,154,89,0.08);
+  box-shadow: 0 0 0 3px rgba(27,154,89,0.15);
 }
 
 .contact__form-group select {

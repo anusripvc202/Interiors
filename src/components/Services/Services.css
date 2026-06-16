@@ -16,7 +16,7 @@
   left: -10%;
   width: 45vw;
   height: 45vw;
-  background: radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(21,128,61,0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -118,10 +118,10 @@
 .services__card:nth-child(6)::before { background: linear-gradient(135deg, var(--purple), var(--pink)); }
 
 .services__card:hover {
-  background: rgba(124,58,237,0.07);
-  border-color: rgba(124,58,237,0.3);
+  background: rgba(27,154,89,0.07);
+  border-color: rgba(27,154,89,0.3);
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(124,58,237,0.15);
+  box-shadow: 0 16px 40px rgba(27,154,89,0.15);
 }
 
 .services__card:hover::before {
@@ -148,17 +148,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(124,58,237,0.12);
-  border: 1px solid rgba(124,58,237,0.25);
+  background: rgba(27,154,89,0.12);
+  border: 1px solid rgba(27,154,89,0.25);
   border-radius: 12px;
   transition: all 0.3s;
   color: var(--purple-light);
 }
 
-.services__card:nth-child(2) .services__card-icon { background: rgba(236,72,153,0.12); border-color: rgba(236,72,153,0.25); color: var(--pink-light); }
+.services__card:nth-child(2) .services__card-icon { background: rgba(21,128,61,0.12); border-color: rgba(21,128,61,0.25); color: var(--pink-light); }
 .services__card:nth-child(3) .services__card-icon { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.25); color: var(--teal-light); }
 .services__card:nth-child(4) .services__card-icon { background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.25); color: var(--orange-light); }
-.services__card:nth-child(5) .services__card-icon { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); color: var(--blue-light); }
+.services__card:nth-child(5) .services__card-icon { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.25); color: var(--blue-light); }
 
 .services__card:hover .services__card-icon {
   background: var(--grad-primary);
@@ -211,7 +211,7 @@
 /* Values section */
 .services__values {
   margin-top: 6rem;
-  border-top: 1px solid rgba(124,58,237,0.12);
+  border-top: 1px solid rgba(27,154,89,0.12);
   padding-top: 5rem;
 }
 
@@ -257,8 +257,8 @@
 }
 
 .services__value-card:hover {
-  border-color: rgba(124,58,237,0.3);
-  background: rgba(124,58,237,0.06);
+  border-color: rgba(27,154,89,0.3);
+  background: rgba(27,154,89,0.06);
   transform: translateY(-4px);
 }
 

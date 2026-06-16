@@ -35,7 +35,7 @@ class ErrorBoundary extends Component {
     if (this.state.hasError) {
       return (
         <div className="container" style={{ padding: '5rem 2rem', background: '#FFF0F0', color: '#C62828', border: '1px solid #E57373', margin: '4rem auto', borderRadius: '8px', textAlign: 'left' }}>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '1rem' }}>LuxePortal Rendering Error</h2>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '1rem' }}>Interiors Portal Rendering Error</h2>
           <p style={{ fontSize: '0.95rem', color: '#333', marginBottom: '1.5rem' }}>An exception occurred while rendering the page components:</p>
           <pre style={{ background: '#FFF', padding: '1.5rem', borderRadius: '4px', border: '1px solid #FFCDD2', overflowX: 'auto', fontFamily: 'monospace', fontSize: '0.9rem', color: '#000' }}>
             {this.state.error && this.state.error.toString()}

@@ -504,7 +504,7 @@ export default function DesignerProfilePage() {
             {isBooked ? (
               /* Receipt Confirmation Ticket */
               <div className="planner__sticky-card planner__receipt-card text-center" style={{ borderTop: '6px solid var(--purple)', padding: '2.5rem 2rem' }}>
-                <div className="success-checkmark" style={{ width: '4rem', height: '4rem', background: 'rgba(124,58,237,0.1)', color: 'var(--purple-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', margin: '0 auto 1.5rem' }}>
+                <div className="success-checkmark" style={{ width: '4rem', height: '4rem', background: 'rgba(27,154,89,0.1)', color: 'var(--purple-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', margin: '0 auto 1.5rem' }}>
                   <Check size={36} />
                 </div>
                 <span className="section-label" style={{ justifyContent: 'center' }}>Consultation Confirmed</span>

@@ -163,10 +163,10 @@
 
 /* About Page - Sunset Magenta Theme */
 .page-hero--about::before {
-  background: radial-gradient(circle, rgba(236,72,153,0.2) 0%, rgba(249,115,22,0.08) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(21,128,61,0.2) 0%, rgba(249,115,22,0.08) 40%, transparent 70%);
 }
 .page-hero--about::after {
-  background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, rgba(236,72,153,0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.2) 0%, rgba(21,128,61,0.1) 40%, transparent 70%);
 }
 .page-hero--about .page-hero__title em {
   background: var(--grad-warm);
@@ -178,10 +178,10 @@
 
 /* Services Page - Cool Teal Theme */
 .page-hero--services::before {
-  background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(20,184,166,0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(34,197,94,0.25) 0%, rgba(20,184,166,0.1) 40%, transparent 70%);
 }
 .page-hero--services::after {
-  background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(59,130,246,0.08) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(34,197,94,0.08) 40%, transparent 70%);
 }
 .page-hero--services .page-hero__title em {
   background: var(--grad-cool);
@@ -193,10 +193,10 @@
 
 /* Process Page - Creative Violet Theme */
 .page-hero--process::before {
-  background: radial-gradient(circle, rgba(124,58,237,0.25) 0%, rgba(236,72,153,0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(27,154,89,0.25) 0%, rgba(21,128,61,0.1) 40%, transparent 70%);
 }
 .page-hero--process::after {
-  background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(124,58,237,0.08) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(34,197,94,0.2) 0%, rgba(27,154,89,0.08) 40%, transparent 70%);
 }
 .page-hero--process .page-hero__title em {
   background: var(--grad-primary);
@@ -335,15 +335,15 @@
 
 /* About Page - Sunset Magenta Theme */
 .page-hero--about .page-hero__card:hover {
-  border-color: rgba(236, 72, 153, 0.35);
-  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.08);
+  border-color: rgba(21, 128, 61, 0.35);
+  box-shadow: 0 10px 30px rgba(21, 128, 61, 0.08);
 }
 .page-hero--about .page-hero__card-title {
   color: var(--pink-light);
 }
 .page-hero--about .page-hero__card-icon {
   color: var(--pink-light);
-  border-color: rgba(236, 72, 153, 0.2);
+  border-color: rgba(21, 128, 61, 0.2);
 }
 
 /* Services Page - Cool Teal Theme */
