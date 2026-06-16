@@ -205,48 +205,53 @@ export default function DesignerProfilePage() {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
-              opacity: 0.45,
+              opacity: 1.0,
               filter: 'saturate(1.25) contrast(1.05)'
             }}
           />
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.45) 0%, rgba(243, 248, 245, 0.85) 100%)',
+            background: 'linear-gradient(to bottom, rgba(227, 239, 232, 0.15) 0%, rgba(227, 239, 232, 0.05) 50%, rgba(227, 239, 232, 0.25) 100%)',
             zIndex: 1
           }} />
         </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <Link to="/portfolio" style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '0.5rem', 
-            fontSize: '0.75rem', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.1em', 
-            color: 'var(--text-muted)', 
-            marginBottom: '2rem',
-            transition: 'color 0.3s'
-          }} className="back-link">
-            <ArrowLeft size={14} />
-            <span>Back to Directory</span>
-          </Link>
-          
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
-            <img 
-              src={designer.avatar} 
-              alt={designer.name} 
-              style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--border)', boxShadow: '0 8px 30px rgba(0,0,0,0.05)' }} 
-            />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 400, margin: 0 }}>{designer.name}</h1>
-                <span className="designer-match-tag" style={{ background: 'var(--gold)', color: 'var(--pure-white)', fontSize: '0.62rem', padding: '0.25rem 0.6rem', borderRadius: '100px', fontWeight: 'bold', textTransform: 'uppercase' }}>
-                  <Award size={12} style={{ marginRight: '0.2rem' }} /> Verified Specialist
-                </span>
+          <div style={{
+            width: '100%',
+            textShadow: '0 2px 10px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)'
+          }}>
+            <Link to="/portfolio" style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '0.5rem', 
+              fontSize: '0.75rem', 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.1em', 
+              color: 'var(--text-muted)', 
+              marginBottom: '2rem',
+              transition: 'color 0.3s'
+            }} className="back-link">
+              <ArrowLeft size={14} />
+              <span>Back to Directory</span>
+            </Link>
+            
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+              <img 
+                src={designer.avatar} 
+                alt={designer.name} 
+                style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--border)', boxShadow: '0 8px 30px rgba(0,0,0,0.05)' }} 
+              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                  <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 400, margin: 0 }}>{designer.name}</h1>
+                  <span className="designer-match-tag" style={{ background: 'var(--gold)', color: 'var(--pure-white)', fontSize: '0.62rem', padding: '0.25rem 0.6rem', borderRadius: '100px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    <Award size={12} style={{ marginRight: '0.2rem' }} /> Verified Specialist
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-dark)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
               </div>
-              <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-dark)', margin: 0, fontWeight: 600 }}>{designer.role} · {designer.style}</p>
             </div>
           </div>
         </div>

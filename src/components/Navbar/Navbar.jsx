@@ -43,7 +43,11 @@ export default function Navbar() {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo">
-          <span className="navbar__logo-icon">✦</span>
+          <img 
+            src={`${import.meta.env.BASE_URL}logo.svg`} 
+            alt="Luxe Interiors Logo" 
+            style={{ width: '2rem', height: '2rem', objectFit: 'contain' }} 
+          />
           <span className="navbar__logo-text">
             Luxe<em>Interiors</em>
           </span>

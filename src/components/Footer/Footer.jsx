@@ -13,7 +13,11 @@ export default function Footer() {
       <div className="container footer__top">
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
-            <span className="footer__logo-icon">✦</span>
+            <img 
+              src={`${import.meta.env.BASE_URL}logo.svg`} 
+              alt="Luxe Interiors Logo" 
+              style={{ width: '2rem', height: '2rem', objectFit: 'contain' }} 
+            />
             <span className="footer__logo-text">Luxe<em>Interiors</em></span>
           </Link>
           <p className="footer__brand-desc">

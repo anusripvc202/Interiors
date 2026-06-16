@@ -51,21 +51,24 @@ export default function Home() {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
-              opacity: 0.45,
+              opacity: 1.0,
               filter: 'saturate(1.25) contrast(1.05)'
             }}
           />
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, rgba(243, 248, 245, 0.45) 0%, rgba(243, 248, 245, 0.6) 55%, rgba(243, 248, 245, 0.85) 100%)',
+            background: 'linear-gradient(to bottom, rgba(227, 239, 232, 0.15) 0%, rgba(227, 239, 232, 0.05) 50%, rgba(227, 239, 232, 0.25) 100%)',
             zIndex: 1
           }} />
         </div>
 
         <div className="container" style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '2.5rem', alignItems: 'center', textAlign: 'center' }}>
           
-          <div style={{ maxWidth: '850px' }}>
+          <div style={{ 
+            maxWidth: '850px',
+            textShadow: '0 2px 10px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8)'
+          }}>
             <span className="section-label" style={{ justifyContent: 'center' }}>Book Verified Designers</span>
             <h1 style={{ 
               fontFamily: 'var(--font-serif)', 

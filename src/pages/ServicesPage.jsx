@@ -63,7 +63,7 @@ export default function ServicesPage() {
             <p style={{ color: 'var(--stone)', lineHeight: '1.8', marginBottom: '2rem' }}>
               Plan your renovation budget transparently. Select your project parameters below to get an estimated cost for Premium and Ultra-Luxury fit-outs.
             </p>
-            <div style={{ background: 'var(--bg-card)', padding: '2rem', border: '1px solid rgba(124, 58, 237, 0.25)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '2rem', border: '1px solid rgba(27, 154, 89, 0.15)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', color: 'var(--stone)' }}>Select Space Type</label>
                 <select

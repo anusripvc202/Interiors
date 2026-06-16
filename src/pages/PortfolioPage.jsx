@@ -480,13 +480,13 @@ export default function PortfolioPage() {
                       onMouseLeave={() => setHoveredOpt(null)}
                       style={{
                         border: '1px solid var(--cream-dark)',
-                        borderRadius: '4px',
+                        borderRadius: '8px',
                         padding: '1.1rem 1.25rem',
                         cursor: 'pointer',
                         transition: 'all 0.2s',
-                        background: hoveredOpt === opt.key ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-card-2)',
+                        background: hoveredOpt === opt.key ? 'rgba(27, 154, 89, 0.08)' : 'var(--bg-card-2)',
                         borderColor: hoveredOpt === opt.key ? 'var(--purple-light)' : 'var(--border)',
-                        boxShadow: hoveredOpt === opt.key ? '0 4px 12px rgba(201, 169, 110, 0.15)' : 'none',
+                        boxShadow: hoveredOpt === opt.key ? '0 4px 12px rgba(27, 154, 89, 0.08)' : 'none',
                         color: 'var(--charcoal)'
                       }}
                     >

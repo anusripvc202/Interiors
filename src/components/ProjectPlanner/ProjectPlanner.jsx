@@ -681,7 +681,7 @@ export default function ProjectPlanner() {
                               color: selected ? 'var(--white)' : isDisabled ? 'rgba(255,255,255,0.15)' : day.isCurrentMonth ? 'var(--white)' : 'rgba(255,255,255,0.3)',
                               border: '1px solid',
                               borderColor: selected ? 'var(--purple-light)' : 'transparent',
-                              boxShadow: selected ? '0 0 12px rgba(124, 58, 237, 0.45)' : 'none',
+                              boxShadow: selected ? '0 0 12px rgba(27, 154, 89, 0.4)' : 'none',
                               fontSize: '0.85rem',
                               fontWeight: day.isCurrentMonth ? '600' : '400',
                               transition: 'all 0.2s',

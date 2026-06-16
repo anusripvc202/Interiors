@@ -28,7 +28,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background-color: rgba(124,58,237,0.12);
+  background-color: rgba(27, 154, 89,0.12);
   z-index: -1;
   border-radius: 2px;
 }
@@ -55,7 +55,7 @@
   height: 2.5rem;
   border-radius: 50%;
   background-color: var(--bg-dark);
-  border: 2px solid rgba(124,58,237,0.2);
+  border: 2px solid rgba(27, 154, 89,0.2);
   color: rgba(255,255,255,0.35);
   display: flex;
   align-items: center;
@@ -81,7 +81,7 @@
   border-color: var(--purple-light);
   color: var(--purple-light);
   background-color: rgba(255,255,255,0.04);
-  box-shadow: 0 0 15px rgba(124,58,237, 0.25);
+  box-shadow: 0 0 15px rgba(27, 154, 89, 0.25);
 }
 
 .planner__progress-step.active .planner__progress-label {
@@ -105,7 +105,7 @@
    -------------------------------------------------------------------------- */
 .planner__container {
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(124,58,237, 0.18);
+  border: 1px solid rgba(27, 154, 89, 0.18);
   border-radius: 8px;
   padding: clamp(2rem, 5vw, 4rem);
   box-shadow: 0 15px 50px rgba(8,11,20, 0.04);
@@ -155,7 +155,7 @@
 }
 
 .planner__space-card {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   padding: 2rem 1.5rem;
   background-color: rgba(255,255,255,0.04);
@@ -175,7 +175,7 @@
 .planner__space-card.selected {
   border-color: var(--purple-light);
   background-color: rgba(248, 245, 240, 0.6);
-  box-shadow: 0 8px 25px rgba(124,58,237, 0.12);
+  box-shadow: 0 8px 25px rgba(27, 154, 89, 0.12);
 }
 
 .planner__space-icon {
@@ -213,7 +213,7 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 50%;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,7 +248,7 @@
 
 .planner__sticky-card {
   background-color: var(--bg-dark);
-  border: 1px solid rgba(124,58,237, 0.25);
+  border: 1px solid rgba(27, 154, 89, 0.25);
   border-radius: 6px;
   padding: 2.5rem;
 }
@@ -293,7 +293,7 @@
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--text-muted);
-  border-bottom: 1px solid rgba(124,58,237, 0.15);
+  border-bottom: 1px solid rgba(27, 154, 89, 0.15);
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -320,7 +320,7 @@
 
 .planner__summary-pill {
   margin-top: 2rem;
-  border-top: 1px dashed rgba(124,58,237, 0.25);
+  border-top: 1px dashed rgba(27, 154, 89, 0.25);
   padding-top: 1.5rem;
 }
 
@@ -341,7 +341,7 @@
 
 .spaces-tags .tag {
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   font-size: 0.75rem;
   padding: 0.35rem 0.75rem;
   border-radius: 100px;
@@ -360,7 +360,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  border-bottom: 1px solid rgba(124,58,237,0.12);
+  border-bottom: 1px solid rgba(27, 154, 89,0.12);
   padding-bottom: 0.75rem;
 }
 
@@ -371,7 +371,7 @@
 }
 
 .planner__style-card {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
@@ -386,7 +386,7 @@
 
 .planner__style-card.selected {
   border-color: var(--purple-light);
-  box-shadow: 0 8px 25px rgba(124,58,237, 0.15);
+  box-shadow: 0 8px 25px rgba(27, 154, 89, 0.15);
 }
 
 .planner__style-img {
@@ -447,7 +447,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   padding: 0.4rem 0.75rem;
   border-radius: 4px;
   background: var(--bg-dark);
@@ -483,7 +483,7 @@
 }
 
 .planner__tier-card {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   padding: 1.75rem;
   cursor: pointer;
@@ -499,7 +499,7 @@
 .planner__tier-card.selected {
   border-color: var(--purple-light);
   background-color: rgba(248, 245, 240, 0.5);
-  box-shadow: 0 8px 25px rgba(124,58,237, 0.15);
+  box-shadow: 0 8px 25px rgba(27, 154, 89, 0.15);
 }
 
 .planner__tier-header {
@@ -517,7 +517,7 @@
 }
 
 .planner__badge-small {
-  background: rgba(124,58,237,0.12);
+  background: rgba(27, 154, 89,0.12);
   font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -549,7 +549,7 @@
 }
 
 .planner__designer-card {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 8px;
   background: rgba(255,255,255,0.04);
   padding: 2rem;
@@ -567,7 +567,7 @@
 
 .planner__designer-card.selected {
   border-color: var(--purple-light);
-  box-shadow: 0 10px 30px rgba(124,58,237, 0.18);
+  box-shadow: 0 10px 30px rgba(27, 154, 89, 0.18);
   background: rgba(248, 245, 240, 0.4);
 }
 
@@ -583,7 +583,7 @@
   height: 4.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(124,58,237,0.2);
+  border: 2px solid rgba(27, 154, 89,0.2);
 }
 
 .planner__designer-card.selected .planner__designer-avatar {
@@ -614,7 +614,7 @@
   font-weight: 700;
   text-transform: uppercase;
   color: var(--teal-light);
-  background: rgba(124,58,237, 0.12);
+  background: rgba(27, 154, 89, 0.12);
   padding: 0.2rem 0.5rem;
   border-radius: 100px;
 }
@@ -643,7 +643,7 @@
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--white);
-  border-top: 1px solid rgba(124,58,237,0.12);
+  border-top: 1px solid rgba(27, 154, 89,0.12);
   padding-top: 1rem;
 }
 
@@ -654,7 +654,7 @@
 
 .planner__designer-select-btn {
   margin-top: 2rem;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   padding: 0.75rem;
   border-radius: 4px;
   text-align: center;
@@ -702,7 +702,7 @@
 }
 
 .planner__date-box {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   padding: 1.5rem 1rem;
   text-align: center;
@@ -721,7 +721,7 @@
 .planner__date-box.selected {
   border-color: var(--purple-light);
   background-color: var(--bg-dark);
-  box-shadow: 0 8px 20px rgba(124,58,237, 0.12);
+  box-shadow: 0 8px 20px rgba(27, 154, 89, 0.12);
 }
 
 .planner__date-box .day-name {
@@ -755,7 +755,7 @@
 }
 
 .planner__time-box {
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   padding: 1rem;
   text-align: center;
@@ -775,7 +775,7 @@
   border-color: var(--purple-light);
   background: var(--grad-primary);
   color: var(--white);
-  box-shadow: 0 8px 20px rgba(124,58,237, 0.15);
+  box-shadow: 0 8px 20px rgba(27, 154, 89, 0.15);
 }
 
 /* --------------------------------------------------------------------------
@@ -810,7 +810,7 @@
 .planner__form-group input,
 .planner__form-group textarea {
   padding: 1rem;
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 4px;
   background-color: var(--bg-dark);
   font-family: var(--font-sans);
@@ -824,7 +824,7 @@
   outline: none;
   border-color: var(--purple-light);
   background-color: rgba(255,255,255,0.04);
-  box-shadow: 0 0 10px rgba(124,58,237, 0.1);
+  box-shadow: 0 0 10px rgba(27, 154, 89, 0.1);
 }
 
 .planner__summary-card {
@@ -832,7 +832,7 @@
 }
 
 .planner__summary-section {
-  border-bottom: 1px solid rgba(124,58,237, 0.15);
+  border-bottom: 1px solid rgba(27, 154, 89, 0.15);
   padding: 1.25rem 0;
 }
 
@@ -896,7 +896,7 @@
 
 .planner__receipt-card {
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(124,58,237, 0.2);
+  border: 1px solid rgba(27, 154, 89, 0.2);
   border-top: 6px solid var(--purple-light);
   border-radius: 8px;
   padding: clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
@@ -907,7 +907,7 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background-color: rgba(124,58,237, 0.1);
+  background-color: rgba(27, 154, 89, 0.1);
   color: var(--teal-light);
   display: flex;
   align-items: center;
@@ -936,7 +936,7 @@
 
 .receipt__divider {
   height: 1px;
-  border-top: 2px dashed rgba(124,58,237,0.12);
+  border-top: 2px dashed rgba(27, 154, 89,0.12);
   margin: 2.5rem 0;
 }
 
@@ -970,7 +970,7 @@
 
 .receipt__total-panel {
   background-color: var(--bg-dark);
-  border: 1px solid rgba(124,58,237, 0.15);
+  border: 1px solid rgba(27, 154, 89, 0.15);
   border-radius: 4px;
   padding: 2rem;
   text-align: center;
@@ -1001,7 +1001,7 @@
    ACTIONS FOOTER & OFFLINE INFO
    -------------------------------------------------------------------------- */
 .planner__footer {
-  border-top: 1px solid rgba(124,58,237,0.12);
+  border-top: 1px solid rgba(27, 154, 89,0.12);
   padding-top: 2rem;
   display: flex;
   justify-content: space-between;
@@ -1030,7 +1030,7 @@
   flex-wrap: wrap;
   gap: 2.5rem;
   margin-top: 3.5rem;
-  border-top: 1px solid rgba(124,58,237, 0.15);
+  border-top: 1px solid rgba(27, 154, 89, 0.15);
   padding-top: 2rem;
 }
 
@@ -1135,5 +1135,5 @@
 
 .calendar-day-hover:hover {
   background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(124, 58, 237, 0.3) !important;
+  border-color: rgba(27, 154, 89, 0.3) !important;
 }

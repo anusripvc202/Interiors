@@ -166,7 +166,7 @@
 .footer__newsletter-form input {
   flex: 1;
   padding: 0.85rem 1rem;
-  background: rgba(255,255,255,0.04);
+  background: rgba(0, 0, 0, 0.03);
   border: none;
   color: var(--white);
   font-family: var(--font-sans);
@@ -174,7 +174,7 @@
 }
 
 .footer__newsletter-form input::placeholder {
-  color: rgba(255,255,255,0.3);
+  color: var(--text-muted);
 }
 
 .footer__newsletter-form input:focus {
@@ -211,7 +211,7 @@
 
 .footer__copy {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-muted);
 }
 
 .footer__bottom-links {
@@ -221,7 +221,7 @@
 
 .footer__bottom-links a {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-muted);
   transition: color 0.3s;
 }
 
