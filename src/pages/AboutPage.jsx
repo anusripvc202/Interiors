@@ -20,7 +20,7 @@ const values = [
 ];
 
 const milestones = [
-  { year: '2010', title: 'Studio Founded', desc: 'Luxe Interiors starts in a boutique office in Mumbai with two designers.' },
+  { year: '2010', title: 'Studio Founded', desc: 'Interiors Outfit starts in a boutique office in Mumbai with two designers.' },
   { year: '2015', title: 'Commercial Expansion', desc: 'Secured first corporate headquarters design project spanning over 20,000 sq.ft.' },
   { year: '2020', title: 'Global Recognition', desc: 'Awarded elite international residential design recognition in Milan.' },
   { year: '2026', title: 'Digital VR Studios', desc: 'Pioneered interactive Virtual Reality design walk-throughs across India.' },
@@ -49,7 +49,7 @@ export default function AboutPage() {
       <section className="milestones" ref={ref} style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card)', color: 'var(--white)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p className="section-label" style={{ color: 'var(--gold)' }}>Our Journey</p>
+            <p className="section-label" style={{ color: 'var(--gold)', WebkitTextFillColor: 'var(--gold)' }}>Our Journey</p>
             <h2 className="section-title" style={{ color: 'var(--white)' }}>Key <em>Milestones</em></h2>
           </div>
           <div className="milestones__grid">

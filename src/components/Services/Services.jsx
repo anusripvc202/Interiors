@@ -86,7 +86,7 @@ export default function Services() {
         {/* Turnkey Values Section */}
         <div className="services__values anim-fade-up">
           <div className="services__values-header">
-            <p className="section-label">Why Choose Luxe</p>
+            <p className="section-label">Why Choose Interiors Outfit</p>
             <h3 className="services__values-title">Our Operational <em>Standards</em></h3>
           </div>
           <div className="services__values-grid">

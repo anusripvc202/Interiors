@@ -167,7 +167,7 @@ export default function PortfolioPage() {
           {/* Style Finder Banner */}
           <div className="portfolio__style-finder-banner">
             <div style={{ position: 'relative', zIndex: 2, maxWidth: '600px' }}>
-              <span className="section-label" style={{ color: 'var(--gold-light)' }}>Style Finder</span>
+              <span className="section-label" style={{ color: 'var(--gold-light)', WebkitTextFillColor: 'var(--gold-light)' }}>Style Finder</span>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', margin: '0.25rem 0 0.5rem', fontWeight: 400 }}>Not sure which design style suits your space?</h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6', margin: 0 }}>
                 Take our quick 3-step visual style personality quiz to discover your ideal interior aesthetic and instantly view matched specialists.

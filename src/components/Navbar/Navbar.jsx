@@ -44,12 +44,12 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="navbar__logo">
           <img 
-            src={`${import.meta.env.BASE_URL}logo.svg`} 
-            alt="Luxe Interiors Logo" 
-            style={{ width: '2rem', height: '2rem', objectFit: 'contain' }} 
+            src={`${import.meta.env.BASE_URL}logo.png`} 
+            alt="Interiors Outfit Logo" 
+            style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} 
           />
           <span className="navbar__logo-text">
-            Luxe<em>Interiors</em>
+            Interiors<em>Outfit</em>
           </span>
         </Link>
 

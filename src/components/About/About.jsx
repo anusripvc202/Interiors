@@ -43,7 +43,7 @@ export default function About() {
             Design That Speaks<br />to the <em>Soul</em>
           </h2>
           <p className="about__desc anim-fade-up anim-delay-2">
-            At Luxe Interiors, we believe great design goes beyond aesthetics — it's about
+            At Interiors Outfit, we believe great design goes beyond aesthetics — it's about
             creating spaces that resonate with who you are. Founded in 2010, our studio has
             crafted over 500 exceptional interiors across residential, commercial, and
             hospitality sectors.
@@ -85,7 +85,7 @@ export default function About() {
             {
               name: 'Aria Sharma',
               role: 'Principal Designer & Co-Founder',
-              bio: 'With over a decade of design experience in Milan and London, Aria leads the creative vision at Luxe, specializing in upscale residential estates and customized bespoke furniture.',
+              bio: 'With over a decade of design experience in Milan and London, Aria leads the creative vision at Interiors Outfit, specializing in upscale residential estates and customized bespoke furniture.',
               img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80&auto=format&fit=crop',
             },
             {

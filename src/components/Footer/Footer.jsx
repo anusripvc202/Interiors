@@ -14,11 +14,11 @@ export default function Footer() {
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
             <img 
-              src={`${import.meta.env.BASE_URL}logo.svg`} 
-              alt="Luxe Interiors Logo" 
-              style={{ width: '2rem', height: '2rem', objectFit: 'contain' }} 
+              src={`${import.meta.env.BASE_URL}logo.png`} 
+              alt="Interiors Outfit Logo" 
+              style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }} 
             />
-            <span className="footer__logo-text">Luxe<em>Interiors</em></span>
+            <span className="footer__logo-text">Interiors<em>Outfit</em></span>
           </Link>
           <p className="footer__brand-desc">
             Crafting elegant, premium living environments since 2010. We turn standard spaces into architectural masterpieces.
@@ -89,7 +89,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="container footer__bottom">
         <p className="footer__copy">
-          &copy; {new Date().getFullYear()} Luxe Interiors. All rights reserved. Designed with precision & elegance.
+          &copy; {new Date().getFullYear()} Interiors Outfit. All rights reserved. Designed with precision & elegance.
         </p>
         <div className="footer__bottom-links">
           <a href="#">Privacy Policy</a>

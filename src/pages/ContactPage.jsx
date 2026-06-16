@@ -46,8 +46,8 @@ export default function ContactPage() {
       <section className="locations-selector" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card)', color: 'var(--white)' }}>
         <div className="container locations-selector__grid">
           <div>
-            <p className="section-label" style={{ color: 'var(--gold)' }}>Our Studios</p>
-            <h2 className="section-title" style={{ color: 'var(--white)', marginBottom: '1.5rem' }}>Visit <em>Luxe</em></h2>
+            <p className="section-label" style={{ color: 'var(--gold)', WebkitTextFillColor: 'var(--gold)' }}>Our Studios</p>
+            <h2 className="section-title" style={{ color: 'var(--white)', marginBottom: '1.5rem' }}>Visit <em>Interiors Outfit</em></h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '2rem' }}>
               We have fully functional, immersive styling studios across major Indian cities. Choose a branch to inspect our local address and hours.
             </p>

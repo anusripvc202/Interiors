@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero/PageHero';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqsList = [
-  { q: "How does the Luxe Interiors marketplace match me with designers?", a: "We utilize your location, preferred aesthetic style (determined via our Style Quiz), and project scope to match you with verified independent designers who have portfolios aligning with your goals." },
+  { q: "How does the Interiors Outfit marketplace match me with designers?", a: "We utilize your location, preferred aesthetic style (determined via our Style Quiz), and project scope to match you with verified independent designers who have portfolios aligning with your goals." },
   { q: "What is included in the Essential, Premium, and Luxury packages?", a: "Essential plans cover concept layouts and materials selection. Premium plans add photo-realistic 3D renders and electrical/lighting schematics. Luxury plans include European material sourcing, modular kitchen templates, and onsite director supervision." },
   { q: "Can I choose custom project add-ons later?", a: "Yes. You can select custom add-ons (like Vastu Reviews, 3D video walkthroughs, or extra revisions) directly on the designer's booking page, or request them during your initial slot review." },
   { q: "What is the rescheduling policy for consultation bookings?", a: "You can reschedule your booked consultation up to 24 hours before your slot free of charge. Cancellations within 24 hours may incur a small transaction fee to cover the designer's reserved slot." }

@@ -4,7 +4,7 @@ import './Testimonials.css';
 
 const testimonials = [
   {
-    quote: "Luxe Interiors completely transformed our penthouse into a masterpiece of light and luxury. Their attention to detail was exceptional.",
+    quote: "Interiors Outfit completely transformed our penthouse into a masterpiece of light and luxury. Their attention to detail was exceptional.",
     author: "Rajesh Malhotra",
     title: "CEO, Malhotra Group",
     location: "Mumbai",

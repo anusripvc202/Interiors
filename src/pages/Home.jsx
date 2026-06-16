@@ -69,7 +69,7 @@ export default function Home() {
             maxWidth: '850px',
             textShadow: '0 2px 15px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)'
           }}>
-            <span className="section-label section-label--pill">Book Verified Designers</span>
+            <span className="section-label" style={{ justifyContent: 'center', color: '#ffffff', background: 'rgba(27, 154, 89, 0.25)', border: '1px solid rgba(27, 154, 89, 0.4)', padding: '0.45rem 1.25rem', borderRadius: '100px', width: 'fit-content', margin: '0 auto', backgroundClip: 'unset', WebkitBackgroundClip: 'unset', WebkitTextFillColor: '#ffffff' }}>Book Verified Designers</span>
             <h1 style={{ 
               fontFamily: 'var(--font-serif)', 
               fontSize: 'clamp(2.5rem, 5.5vw, 4.8rem)', 
