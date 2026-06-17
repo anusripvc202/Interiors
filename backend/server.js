@@ -51,9 +51,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Initialize server listen port listener
-app.listen(port, () => {
-  console.log(`\n✦ LuxeInteriors API Server Running on http://localhost:${port} ✦`);
-  console.log(`➜  Auth API:     http://localhost:${port}/api/auth`);
-  console.log(`➜  Bookings API: http://localhost:${port}/api/bookings\n`);
-});
+// Initialize server listen port listener only when running locally (not on Vercel)
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`\n✦ LuxeInteriors API Server Running on http://localhost:${port} ✦`);
+    console.log(`➜  Auth API:     http://localhost:${port}/api/auth`);
+    console.log(`➜  Bookings API: http://localhost:${port}/api/bookings\n`);
+  });
+}
+
+export default app;
