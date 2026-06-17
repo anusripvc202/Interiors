@@ -18,11 +18,14 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Body parser middleware for JSON payloads
-app.use(express.json());
+// Body parser middleware for JSON payloads (with extended size limit to support fallback base64 uploads)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Serve static uploads folder
-app.use('/uploads', express.static(path.resolve('uploads')));
+// Serve static uploads folder (dynamically routes to /tmp on Vercel)
+const uploadDir = process.env.VERCEL ? '/tmp' : path.resolve('uploads');
+app.use('/uploads', express.static(uploadDir));
+app.use('/api/uploads', express.static(uploadDir));
 
 // API Base check route
 app.get('/', (req, res) => {
