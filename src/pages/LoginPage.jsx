@@ -72,7 +72,9 @@ export default function LoginPage() {
 
       const uploadUrl = window.location.origin.includes('localhost')
         ? 'http://localhost:5000/api/auth/upload'
-        : '/api/auth/upload';
+        : window.location.origin.includes('github.io')
+          ? 'https://interiors-iz9y.vercel.app/api/auth/upload'
+          : '/api/auth/upload';
 
       const response = await fetch(uploadUrl, {
         method: 'POST',

@@ -7,10 +7,14 @@ import fs from 'fs';
 
 const router = express.Router();
 
-// Ensure uploads folder exists
+// Ensure uploads folder exists (handled gracefully on read-only environments like Vercel)
 const uploadDir = './uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+  }
+} catch (error) {
+  console.warn('⚠️ Could not create uploads directory (read-only filesystem on Vercel):', error.message);
 }
 
 const storage = multer.diskStorage({

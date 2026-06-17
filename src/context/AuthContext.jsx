@@ -4,7 +4,10 @@ import { AuthContext } from './AuthContextCore';
 
 const API_URL = window.location.origin.includes('localhost')
   ? 'http://localhost:5000/api'
-  : '/api';
+  : window.location.origin.includes('github.io')
+    ? 'https://interiors-iz9y.vercel.app/api'
+    : '/api';
+
 
 const DEFAULT_CLIENT_BOOKINGS = [
   {
