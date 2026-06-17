@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-
 import { 
   User, Mail, Lock, LogOut, Compass, Calendar, Clock, Sparkles, 
   DollarSign, CheckCircle, AlertCircle, X, Check, Edit2, 
@@ -9,11 +7,6 @@ import {
   ChevronRight
 } from 'lucide-react';
 import './LoginPage.css';
-
-const API_URL = import.meta.env.VITE_API_URL || 
-  (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:5000/api'
-    : '/api');
 
 export default function LoginPage() {
   const { 
@@ -77,7 +70,7 @@ export default function LoginPage() {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch(`${API_URL}/auth/upload`, {
+      const response = await fetch('http://localhost:5000/api/auth/upload', {
         method: 'POST',
         body: formData,
       });
@@ -615,7 +608,7 @@ export default function LoginPage() {
                   <div className="empty-state">
                     <Clock size={36} />
                     <p>You do not have any consultations scheduled at this moment.</p>
-                    <Link to="/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</Link>
+                    <a href="#/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</a>
                   </div>
                 ) : (
                   <div className="bookings-list">

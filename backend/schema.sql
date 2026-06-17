@@ -25,7 +25,7 @@ CREATE TABLE designer_profiles (
     user_id INT UNIQUE NOT NULL,
     designer_code VARCHAR(50) UNIQUE NOT NULL, -- used for login matching (e.g. 'aria-chen')
     role_title VARCHAR(255) NOT NULL,
-    avatar_url LONGTEXT NULL,
+    avatar_url VARCHAR(500) NULL,
     city VARCHAR(100) NOT NULL,
     style_specialty VARCHAR(255) NOT NULL,
     rating DECIMAL(3,2) DEFAULT 5.0,

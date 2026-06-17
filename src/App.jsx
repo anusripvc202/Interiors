@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -57,11 +57,10 @@ class ErrorBoundary extends Component {
   }
 }
 
-// Trigger Vercel redeployment after database variables update
 export default function App() {
   return (
     <AuthProvider>
-      <Router basename={import.meta.env.BASE_URL}>
+      <Router>
         <ScrollToTop />
         <Navbar />
         <main>

@@ -18,14 +18,11 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Body parser middleware for JSON payloads (with extended size limit to support fallback base64 uploads)
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+// Body parser middleware for JSON payloads
+app.use(express.json());
 
-// Serve static uploads folder (dynamically routes to /tmp on Vercel)
-const uploadDir = process.env.VERCEL ? '/tmp' : path.resolve('uploads');
-app.use('/uploads', express.static(uploadDir));
-app.use('/api/uploads', express.static(uploadDir));
+// Serve static uploads folder
+app.use('/uploads', express.static(path.resolve('uploads')));
 
 // API Base check route
 app.get('/', (req, res) => {
@@ -35,47 +32,9 @@ app.get('/', (req, res) => {
   });
 });
 
-import pool from './config/db.js';
-app.get('/api/db-check', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT 1 + 1 AS result');
-    res.json({
-      success: true,
-      message: 'Database connection successful!',
-      config: {
-        host: process.env.DB_HOST || 'localhost',
-        port: process.env.DB_PORT || 3306,
-        user: process.env.DB_USER || 'root',
-        database: process.env.DB_NAME || 'luxe_interiors_db',
-        hasPassword: !!process.env.DB_PASSWORD
-      },
-      result: rows
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Database connection failed.',
-      config: {
-        host: process.env.DB_HOST || 'localhost',
-        port: process.env.DB_PORT || 3306,
-        user: process.env.DB_USER || 'root',
-        database: process.env.DB_NAME || 'luxe_interiors_db',
-        hasPassword: !!process.env.DB_PASSWORD
-      },
-      error: error.message
-    });
-  }
-});
-
 // Register router namespace endpoints
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
-
-// Support Vercel experimentalServices routing (which strips the /api prefix)
-if (process.env.VERCEL) {
-  app.use('/auth', authRoutes);
-  app.use('/bookings', bookingRoutes);
-}
 
 // Global fallback 404 handler
 app.use((req, res, next) => {
@@ -92,13 +51,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Initialize server listen port listener only when running locally (not on Vercel)
-if (!process.env.VERCEL) {
-  app.listen(port, () => {
-    console.log(`\n✦ LuxeInteriors API Server Running on http://localhost:${port} ✦`);
-    console.log(`➜  Auth API:     http://localhost:${port}/api/auth`);
-    console.log(`➜  Bookings API: http://localhost:${port}/api/bookings\n`);
-  });
-}
-
-export default app;
+// Initialize server listen port listener
+app.listen(port, () => {
+  console.log(`\n✦ LuxeInteriors API Server Running on http://localhost:${port} ✦`);
+  console.log(`➜  Auth API:     http://localhost:${port}/api/auth`);
+  console.log(`➜  Bookings API: http://localhost:${port}/api/bookings\n`);
+});

@@ -143,8 +143,8 @@
   align-items: flex-start;
   gap: 1.25rem;
   padding: 1.25rem 1.5rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--bg-card);
+  border: 1px solid rgba(27,154,89,0.15);
   border-left: 3px solid transparent;
   border-radius: 10px;
   transition: all 0.3s var(--ease);
@@ -237,7 +237,7 @@
   display: flex;
   gap: 2rem;
   align-items: center;
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-card);
   border: 1px solid rgba(27,154,89,0.15);
   padding: 2rem;
   border-radius: 16px;

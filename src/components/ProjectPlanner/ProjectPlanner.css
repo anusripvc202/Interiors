@@ -56,7 +56,7 @@
   border-radius: 50%;
   background-color: var(--bg-dark);
   border: 2px solid rgba(27, 154, 89,0.2);
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +72,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   transition: color 0.4s var(--ease);
 }
 
@@ -80,7 +80,7 @@
 .planner__progress-step.active .planner__progress-num {
   border-color: var(--purple-light);
   color: var(--purple-light);
-  background-color: rgba(255,255,255,0.04);
+  background-color: var(--bg-card);
   box-shadow: 0 0 15px rgba(27, 154, 89, 0.25);
 }
 
@@ -104,7 +104,9 @@
    PLANNER HEADER & CONTAINERS
    -------------------------------------------------------------------------- */
 .planner__container {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(27, 154, 89, 0.18);
   border-radius: 8px;
   padding: clamp(2rem, 5vw, 4rem);
@@ -158,7 +160,7 @@
   border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 6px;
   padding: 2rem 1.5rem;
-  background-color: rgba(255,255,255,0.04);
+  background-color: var(--bg-card);
   cursor: pointer;
   position: relative;
   transition: all 0.35s var(--ease);
@@ -174,7 +176,7 @@
 
 .planner__space-card.selected {
   border-color: var(--purple-light);
-  background-color: rgba(248, 245, 240, 0.6);
+  background-color: rgba(248, 245, 240, 0.85);
   box-shadow: 0 8px 25px rgba(27, 154, 89, 0.12);
 }
 
@@ -217,14 +219,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-dark);
   transition: all 0.3s;
 }
 
 .planner__space-card.selected .planner__space-checkbox {
   background: var(--grad-primary);
   border-color: var(--purple-light);
-  color: var(--white);
+  color: var(--pure-white);
 }
 
 /* --------------------------------------------------------------------------
@@ -302,7 +304,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
@@ -328,7 +330,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   display: block;
   margin-bottom: 0.8rem;
 }
@@ -340,7 +342,7 @@
 }
 
 .spaces-tags .tag {
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
   border: 1px solid rgba(27, 154, 89,0.2);
   font-size: 0.75rem;
   padding: 0.35rem 0.75rem;
@@ -376,7 +378,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: all 0.35s var(--ease);
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
 }
 
 .planner__style-card:hover {
@@ -387,6 +389,7 @@
 .planner__style-card.selected {
   border-color: var(--purple-light);
   box-shadow: 0 8px 25px rgba(27, 154, 89, 0.15);
+  background: rgba(248, 245, 240, 0.85);
 }
 
 .planner__style-img {
@@ -471,7 +474,7 @@
 
 .planner__size-val span {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -487,7 +490,7 @@
   border-radius: 6px;
   padding: 1.75rem;
   cursor: pointer;
-  background-color: rgba(255,255,255,0.04);
+  background-color: var(--bg-card);
   transition: all 0.35s var(--ease);
 }
 
@@ -498,7 +501,7 @@
 
 .planner__tier-card.selected {
   border-color: var(--purple-light);
-  background-color: rgba(248, 245, 240, 0.5);
+  background-color: rgba(248, 245, 240, 0.85);
   box-shadow: 0 8px 25px rgba(27, 154, 89, 0.15);
 }
 
@@ -551,7 +554,7 @@
 .planner__designer-card {
   border: 1px solid rgba(27, 154, 89,0.2);
   border-radius: 8px;
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
   padding: 2rem;
   cursor: pointer;
   transition: all 0.35s var(--ease);
@@ -568,7 +571,7 @@
 .planner__designer-card.selected {
   border-color: var(--purple-light);
   box-shadow: 0 10px 30px rgba(27, 154, 89, 0.18);
-  background: rgba(248, 245, 240, 0.4);
+  background: rgba(248, 245, 240, 0.85);
 }
 
 .planner__designer-header-row {
@@ -604,7 +607,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
 }
 
 .designer-match-tag {
@@ -634,7 +637,7 @@
 .designer-bio {
   font-style: italic;
   margin-bottom: 1.25rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-sub);
 }
 
 .designer-rating {
@@ -673,7 +676,7 @@
 .planner__designer-card.selected .planner__designer-select-btn {
   background: var(--grad-primary);
   border-color: var(--purple-light);
-  color: var(--white);
+  color: var(--pure-white);
 }
 
 /* --------------------------------------------------------------------------
@@ -708,7 +711,7 @@
   padding: 1.5rem 1rem;
   text-align: center;
   cursor: pointer;
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
   display: flex;
   flex-direction: column;
   transition: all 0.3s var(--ease);
@@ -721,7 +724,7 @@
 
 .planner__date-box.selected {
   border-color: var(--purple-light);
-  background-color: var(--bg-dark);
+  background-color: rgba(248, 245, 240, 0.85);
   box-shadow: 0 8px 20px rgba(27, 154, 89, 0.12);
 }
 
@@ -730,7 +733,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
 }
 
 .planner__date-box .day-num {
@@ -764,7 +767,7 @@
   font-weight: 500;
   font-size: 0.9rem;
   color: var(--white);
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
   transition: all 0.3s;
 }
 
@@ -775,7 +778,7 @@
 .planner__time-box.selected {
   border-color: var(--purple-light);
   background: var(--grad-primary);
-  color: var(--white);
+  color: var(--pure-white);
   box-shadow: 0 8px 20px rgba(27, 154, 89, 0.15);
 }
 
@@ -849,7 +852,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
 
@@ -896,7 +899,7 @@
 }
 
 .planner__receipt-card {
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-card);
   border: 1px solid rgba(27, 154, 89, 0.2);
   border-top: 6px solid var(--purple-light);
   border-radius: 8px;
@@ -959,7 +962,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
 }
 
 .receipt__col .val {
@@ -993,7 +996,7 @@
 
 .receipt__total-panel p {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.35);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
