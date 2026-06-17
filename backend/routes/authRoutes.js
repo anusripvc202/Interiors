@@ -7,10 +7,14 @@ import fs from 'fs';
 
 const router = express.Router();
 
-// Ensure uploads folder exists
-const uploadDir = './uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
+// Ensure uploads folder exists (uses /tmp on Vercel due to read-only filesystem)
+const uploadDir = process.env.VERCEL ? '/tmp' : './uploads';
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+  }
+} catch (err) {
+  console.warn('⚠️ Could not create upload directory:', err.message);
 }
 
 const storage = multer.diskStorage({

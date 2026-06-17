@@ -36,6 +36,12 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 
+// Support Vercel experimentalServices routing (which strips the /api prefix)
+if (process.env.VERCEL) {
+  app.use('/auth', authRoutes);
+  app.use('/bookings', bookingRoutes);
+}
+
 // Global fallback 404 handler
 app.use((req, res, next) => {
   res.status(404).json({ success: false, message: 'API Route path not found.' });
