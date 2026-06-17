@@ -57,6 +57,7 @@ class ErrorBoundary extends Component {
   }
 }
 
+// Trigger Vercel redeployment after database variables update
 export default function App() {
   return (
     <AuthProvider>
