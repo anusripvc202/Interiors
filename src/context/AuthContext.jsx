@@ -77,6 +77,7 @@ export function AuthProvider({ children }) {
 
           if (res.ok && data.success) {
             setUser(data.user);
+            localStorage.setItem('luxe_user', JSON.stringify(data.user));
             setIsBackendOnline(true);
             backendOnline = true;
             
@@ -172,6 +173,7 @@ export function AuthProvider({ children }) {
       if (res.ok && data.success) {
         localStorage.setItem('luxe_token', data.token);
         setUser(data.user);
+        localStorage.setItem('luxe_user', JSON.stringify(data.user));
         setIsBackendOnline(true);
 
         // Fetch bookings for this user session
@@ -207,9 +209,30 @@ export function AuthProvider({ children }) {
     const sanitizedEmail = email.toLowerCase().trim();
     if (role === 'designer') {
       const emailPrefix = sanitizedEmail.split('@')[0];
-      const designer = designersList.find(d => 
+      let designer = designersList.find(d => 
         d.id.toLowerCase().includes(emailPrefix) || d.name.toLowerCase().includes(emailPrefix)
-      ) || designersList[0];
+      );
+
+      if (!designer) {
+        const designerName = emailPrefix.charAt(0).toUpperCase() + emailPrefix.slice(1);
+        designer = {
+          id: emailPrefix,
+          name: designerName,
+          role: 'Lead Designer',
+          avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&q=80',
+          city: 'Mumbai',
+          style: 'Modern Luxury',
+          rating: 5.0,
+          reviewsCount: 0,
+          experience: '5 Years',
+          startingRate: 15000,
+          bio: 'Custom registered designer profile.',
+          portfolio: [],
+          packages: [
+            { id: 'essential', name: 'Essential Plan', price: 15000, hours: 4, designers: 1, desc: 'Concept layout, 4-hour design consult.' }
+          ]
+        };
+      }
 
       const designerUser = {
         name: designer.name,
@@ -294,6 +317,7 @@ export function AuthProvider({ children }) {
       if (res.ok && data.success) {
         localStorage.setItem('luxe_token', data.token);
         setUser(data.user);
+        localStorage.setItem('luxe_user', JSON.stringify(data.user));
         setBookings([]); // New user starts with no bookings
         setIsBackendOnline(true);
 
@@ -564,7 +588,11 @@ export function AuthProvider({ children }) {
             startingRate: updatedData.startingRate,
             role: updatedData.role
           };
-          setUser(prev => ({ ...prev, name: newD.name, details: newD }));
+          setUser(prev => {
+            const updated = { ...prev, name: newD.name, details: newD };
+            localStorage.setItem('luxe_user', JSON.stringify(updated));
+            return updated;
+          });
           setDesignersList(prev => prev.map(d => d.id === designerId ? newD : d));
           return;
         }
