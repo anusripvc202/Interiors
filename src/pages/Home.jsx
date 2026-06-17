@@ -198,7 +198,7 @@ export default function Home() {
                   <Compass size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>1. Search & Filter</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>1. Search & Filter</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Explore portfolios of certified designers. Filter by layout specialty, style expertise, rating, and city location.
                   </p>
@@ -221,7 +221,7 @@ export default function Home() {
                   <Shield size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>2. Compare Packages</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>2. Compare Packages</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Check individual designer packages, from basic layout concepts to 3D realistic visualizer builds and complete turnkey setup.
                   </p>
@@ -244,7 +244,7 @@ export default function Home() {
                   <Calendar size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#ffffff', margin: '0 0 0.3rem' }}>3. Book Consultation</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--white)', margin: '0 0 0.3rem' }}>3. Book Consultation</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
                     Select a live schedule slot directly on your matched designer's calendar and secure your styling consultation in minutes.
                   </p>
@@ -307,7 +307,7 @@ export default function Home() {
                 
                 <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flexGrow: 1 }}>
                   <div>
-                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: '#ffffff', margin: '0 0 0.25rem' }}>{designer.name}</h4>
+                    <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--white)', margin: '0 0 0.25rem' }}>{designer.name}</h4>
                     <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--purple-light)', fontWeight: 700, letterSpacing: '0.08em' }}>{designer.role}</span>
                   </div>
 
@@ -418,7 +418,7 @@ export default function Home() {
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(27,154,89,0.03)' }} />
                 </div>
                 <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#ffffff', margin: 0 }}>{item.title}</h4>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: 'var(--white)', margin: 0 }}>{item.title}</h4>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.55', margin: 0 }}>{item.desc}</p>
                 </div>
               </div>
