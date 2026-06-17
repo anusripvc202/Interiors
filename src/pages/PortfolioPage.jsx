@@ -292,7 +292,7 @@ export default function PortfolioPage() {
                     <img 
                       src={designer.avatar} 
                       alt={designer.name} 
-                      style={{ width: '5.5rem', height: '5.5rem', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--cream-dark)' }} 
+                      style={{ width: '5.5rem', height: '5.5rem', borderRadius: '50%', objectFit: 'cover', objectPosition: 'center top', border: '2px solid var(--cream-dark)' }} 
                     />
                     <div>
                       <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: 'var(--charcoal)', margin: '0 0 0.2rem' }}>{designer.name}</h3>
@@ -623,7 +623,7 @@ export default function PortfolioPage() {
                       return (
                         <th key={id} style={{ padding: '1rem', minWidth: '180px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <img src={d?.avatar} alt={d?.name} style={{ width: '3rem', height: '3rem', borderRadius: '50%', objectFit: 'cover' }} />
+                            <img src={d?.avatar} alt={d?.name} style={{ width: '3rem', height: '3rem', borderRadius: '50%', objectFit: 'cover', objectPosition: 'center top' }} />
                             <div>
                               <strong style={{ display: 'block', fontSize: '0.95rem', color: 'var(--charcoal)' }}>{d?.name}</strong>
                               <span style={{ fontSize: '0.72rem', color: 'var(--stone-light)' }}>{d?.role}</span>

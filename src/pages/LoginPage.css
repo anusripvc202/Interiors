@@ -451,6 +451,7 @@
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center top;
   border: 2px solid var(--purple);
   box-shadow: 0 0 20px rgba(27,154,89,0.3);
 }

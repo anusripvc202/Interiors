@@ -583,6 +583,7 @@
   height: 4.5rem;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center top;
   border: 2px solid rgba(27, 154, 89,0.2);
 }
 

@@ -19,14 +19,16 @@ export default function About() {
           <div className="about__img-main">
             <img
               src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=85&auto=format&fit=crop"
-              alt="Elegant interior design"
+              alt="Signature Living room interior design project in Mumbai"
+              loading="lazy"
             />
             <div className="about__img-caption">Showcase: Signature Living, Mumbai</div>
           </div>
           <div className="about__img-accent">
             <img
               src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=85&auto=format&fit=crop"
-              alt="Interior design detail"
+              alt="Custom Oakwood study room interior design detail in Delhi"
+              loading="lazy"
             />
             <div className="about__img-caption">Fitting: Oakwood Study, Delhi</div>
           </div>

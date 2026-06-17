@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Search, Compass, Shield, Calendar, Star, MapPin, ArrowRight } from 'lucide-react';
 import { designersData } from '../data/designersData';
 import Testimonials from '../components/Testimonials/Testimonials';
+import TrustBand from '../components/TrustBand/TrustBand';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -139,6 +140,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* Trust Band — Stats Section */}
+      <TrustBand />
 
       {/* How It Works Section */}
       <section className="how-it-works" style={{ padding: 'var(--section-pad) 0', background: 'var(--bg-card)' }}>
@@ -287,7 +291,7 @@ export default function Home() {
                 className="designer-hover-card"
               >
                 <div style={{ position: 'relative', height: '220px' }}>
-                  <img src={designer.avatar} alt={designer.name} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.95) saturate(1.1)' }} />
+                  <img src={designer.avatar} alt={designer.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.95) saturate(1.1)' }} />
                   <div style={{ 
                     position: 'absolute', top: '1rem', right: '1rem', 
                     background: 'rgba(27,154,89,0.85)', padding: '0.2rem 0.7rem', 
@@ -406,9 +410,10 @@ export default function Home() {
                 <div style={{ position: 'relative', height: '260px', overflow: 'hidden' }}>
                   <img 
                     src={item.img} 
-                    alt={item.title} 
+                    alt={`${item.title} — interior design inspiration`}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     className="zoom-img"
+                    loading="lazy"
                   />
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(27,154,89,0.03)' }} />
                 </div>

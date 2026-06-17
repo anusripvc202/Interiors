@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+
 import { 
   User, Mail, Lock, LogOut, Compass, Calendar, Clock, Sparkles, 
   DollarSign, CheckCircle, AlertCircle, X, Check, Edit2, 
@@ -7,6 +9,8 @@ import {
   ChevronRight
 } from 'lucide-react';
 import './LoginPage.css';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export default function LoginPage() {
   const { 
@@ -70,7 +74,7 @@ export default function LoginPage() {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch('http://localhost:5000/api/auth/upload', {
+      const response = await fetch(`${API_URL}/auth/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -572,30 +576,7 @@ export default function LoginPage() {
               </form>
             )}
 
-            {/* Quick Demo Helper Pills */}
-            <div className="demo-helper">
-              <span className="demo-helper__title"><Sparkles size={12} /> Live Developer Demo Credentials</span>
-              <div className="demo-helper__pills">
-                <button 
-                  onClick={() => fillDemoCredentials('client', 'client@luxe.com')}
-                  className="demo-pill"
-                >
-                  Demo Client
-                </button>
-                <button 
-                  onClick={() => fillDemoCredentials('designer', 'aria@luxe.com')}
-                  className="demo-pill"
-                >
-                  Demo Designer (Aria)
-                </button>
-                <button 
-                  onClick={() => fillDemoCredentials('designer', 'julian@luxe.com')}
-                  className="demo-pill"
-                >
-                  Demo Designer (Julian)
-                </button>
-              </div>
-            </div>
+
 
           </div>
         </section>
@@ -631,7 +612,7 @@ export default function LoginPage() {
                   <div className="empty-state">
                     <Clock size={36} />
                     <p>You do not have any consultations scheduled at this moment.</p>
-                    <a href="#/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</a>
+                    <Link to="/contact" className="btn-outline" style={{ marginTop: '1rem' }}>Book a Consultation</Link>
                   </div>
                 ) : (
                   <div className="bookings-list">

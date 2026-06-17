@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { designersData } from '../data/designersData';
 import { AuthContext } from './AuthContextCore';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const DEFAULT_CLIENT_BOOKINGS = [
   {

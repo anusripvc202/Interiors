@@ -52,6 +52,33 @@
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+/* Clickable contact items */
+.contact__item--link {
+  padding: 0.75rem;
+  margin: -0.75rem;
+  border-radius: 10px;
+}
+
+.contact__item--link:hover {
+  background: rgba(27,154,89,0.05);
+}
+
+.contact__item--link:hover .contact__icon {
+  background: var(--grad-primary);
+  border-color: transparent;
+  color: white;
+  box-shadow: var(--glow-sm);
+}
+
+.contact__item--link:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
 }
 
 .contact__icon {
@@ -64,14 +91,14 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--purple-light);
+  color: var(--purple);
   transition: all 0.3s;
 }
 
 .contact__item:hover .contact__icon {
   background: var(--grad-primary);
   border-color: transparent;
-  color: var(--white);
+  color: white;
   box-shadow: var(--glow-sm);
 }
 
@@ -81,10 +108,7 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--white);
   margin-bottom: 0.25rem;
 }
 
@@ -93,6 +117,61 @@
   line-height: 1.6;
   color: var(--text-muted);
 }
+
+/* WhatsApp CTA */
+.contact__whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.contact__whatsapp-btn:hover {
+  background: #1ebe5a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(37,211,102,0.45);
+}
+
+.contact__whatsapp-btn:focus-visible {
+  outline: 2px solid #25D366;
+  outline-offset: 3px;
+}
+
+.contact__whatsapp-sub {
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.85;
+  display: block;
+}
+
+/* Google Maps */
+.contact__map {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(27,154,89,0.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  margin-top: 0.5rem;
+}
+
+/* Privacy note */
+.contact__form-privacy {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
 
 /* Form Card */
 .contact__form-card {

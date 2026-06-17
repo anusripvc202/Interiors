@@ -241,7 +241,7 @@ export default function DesignerProfilePage() {
               <img 
                 src={designer.avatar} 
                 alt={designer.name} 
-                style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--border)', boxShadow: '0 8px 30px rgba(0,0,0,0.05)' }} 
+                style={{ width: '7rem', height: '7rem', borderRadius: '50%', objectFit: 'cover', objectPosition: 'center top', border: '3px solid var(--border)', boxShadow: '0 8px 30px rgba(0,0,0,0.05)' }} 
               />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
