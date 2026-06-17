@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { designersData } from '../data/designersData';
 import { AuthContext } from './AuthContextCore';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = window.location.origin.includes('localhost')
+  ? 'http://localhost:5000/api'
+  : '/api';
 
 const DEFAULT_CLIENT_BOOKINGS = [
   {

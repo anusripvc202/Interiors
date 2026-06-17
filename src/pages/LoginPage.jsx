@@ -70,7 +70,11 @@ export default function LoginPage() {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch('http://localhost:5000/api/auth/upload', {
+      const uploadUrl = window.location.origin.includes('localhost')
+        ? 'http://localhost:5000/api/auth/upload'
+        : '/api/auth/upload';
+
+      const response = await fetch(uploadUrl, {
         method: 'POST',
         body: formData,
       });
